@@ -627,17 +627,190 @@ img { display: block; max-width: 100%; }
 .reveal { opacity: 0; transform: translateY(38px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
-/* ===================== MOBILE ===================== */
+/* ===================== MOBILE & TABLET (820px and below) ===================== */
 @media (max-width: 820px) {
+  /* Navigation */
+  .nav { padding: 18px clamp(16px, 3vw, 32px); }
+  .nav-mark img { height: 32px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; }
+
+  /* Hero */
+  .hero { padding: 0 18px; }
+  .hero-wordmark { width: min(var(--hero-logo), 85vw); }
+  .hero-line { margin-top: 20px; gap: 4px; }
+  .hero-en { font-size: clamp(16px, 2vw, 24px); }
+  .hero-he { font-size: clamp(10px, 0.9vw, 12px); }
+  .hero-role { bottom: 100px; font-size: 10px; }
+  .scroll-cue { bottom: 28px; }
+  .scroll-cue span { font-size: 9px; }
+  .scroll-line { height: 32px; }
+
+  /* Works intro */
+  .works-intro {
+    flex-wrap: wrap;
+    padding: clamp(40px, 7vh, 80px) clamp(16px, 3vw, 30px) 0;
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  /* Projects */
   .project {
     grid-template-columns: 1fr;
-    gap: 26px;
-    padding: 64px clamp(22px, 5vw, 30px);
+    gap: 20px;
+    padding: clamp(40px, 8vh, 80px) clamp(16px, 3vw, 30px);
+    margin: 0 auto;
   }
+  .project:nth-of-type(even) { grid-template-columns: 1fr; }
   .project:nth-of-type(even) .project-media { order: 0; }
-  .shop-grid { grid-template-columns: 1fr; gap: 22px; }
-  .works-intro { flex-wrap: wrap; }
-  .footer-links { gap: 22px; }
+  .project-media { aspect-ratio: 1 / 1.2; }
+  .project-text { gap: 16px; }
+  .project-kicker { gap: 10px; }
+  .project-index { font-size: 12px; }
+  .project-place { font-size: 10px; }
+  .title-en { font-size: clamp(28px, 4vw, 48px); }
+  .title-he { font-size: clamp(12px, 1.2vw, 16px); }
+  .project-desc { font-size: clamp(14px, 1vw, 16px); }
+
+  /* About */
+  .about {
+    padding: clamp(60px, 12vh, 120px) clamp(16px, 3vw, 28px);
+    gap: 28px;
+  }
+  .about-statement { font-size: clamp(20px, 2.8vw, 32px); }
+  .about-note { font-size: clamp(13px, 1.1vw, 15px); }
+
+  /* Shop */
+  .shop {
+    padding: clamp(60px, 12vh, 120px) clamp(16px, 3vw, 30px);
+    margin-top: clamp(30px, 6vh, 70px);
+  }
+  .shop-head {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    gap: 12px;
+  }
+  .shop-title { font-size: clamp(12px, 1.3vw, 14px); }
+  .shop-sub { font-size: 12px; }
+  .shop-grid { grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 20px); }
+  .product-image { aspect-ratio: 1; }
+  .product-badge { font-size: clamp(13px, 1.5vw, 16px); padding: 8px 12px; }
+  .product-name { font-size: 14px; }
+  .product-price { font-size: 12px; }
+  .product-info { margin-top: 12px; gap: 8px; flex-direction: column; align-items: flex-start; }
+
+  /* CTA */
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(60px, 12vh, 100px) clamp(16px, 3vw, 30px);
+    gap: 28px;
+    border-top: 1px solid rgba(233, 231, 226, 0.5);
+  }
+  .cta-headline { font-size: clamp(28px, 4.5vw, 56px); }
+  .cta-links { align-items: flex-start; gap: 10px; }
+  .cta-links a { font-size: 14px; }
+
+  /* Footer */
+  .footer {
+    padding: clamp(50px, 10vh, 100px) clamp(16px, 3vw, 30px) clamp(40px, 8vh, 60px);
+    gap: 24px;
+  }
+  .footer-credo { font-size: clamp(18px, 2.2vw, 26px); margin-bottom: 6px; }
+  .footer-mark { height: 36px; }
+  .footer-links { gap: 18px; }
+  .footer-links a { font-size: 10px; }
+  .footer-copy { font-size: 10px; }
+}
+
+/* ===================== SMALL PHONES (480px and below) ===================== */
+@media (max-width: 480px) {
+  /* Navigation */
+  .nav { padding: 16px 14px; }
+  .nav-mark img { height: 28px; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 10px; letter-spacing: 0.16em; }
+
+  /* Hero */
+  .hero { padding: 0 14px; }
+  .hero-wordmark { width: min(280px, 90vw); }
+  .hero-line { margin-top: 16px; gap: 3px; }
+  .hero-en { font-size: 14px; }
+  .hero-he { font-size: 9px; }
+  .hero-role { bottom: 80px; font-size: 9px; }
+  .scroll-cue { bottom: 20px; }
+  .scroll-cue span { font-size: 8px; }
+  .scroll-line { height: 24px; }
+
+  /* Works intro */
+  .works-intro {
+    padding: clamp(30px, 5vh, 50px) 14px 0;
+    gap: 10px;
+    padding-bottom: 16px;
+  }
+  .works-en { font-size: 12px; }
+  .works-count { font-size: 11px; }
+
+  /* Projects */
+  .project {
+    gap: 16px;
+    padding: clamp(30px, 6vh, 60px) 14px;
+  }
+  .project-media { aspect-ratio: 1; }
+  .project-text { gap: 14px; }
+  .project-kicker { gap: 8px; }
+  .project-index { font-size: 11px; }
+  .project-place { font-size: 9px; }
+  .project-kicker::after { width: 20px; }
+  .title-en { font-size: clamp(22px, 3.5vw, 36px); line-height: 1; }
+  .title-he { font-size: clamp(11px, 1vw, 13px); }
+  .project-desc { font-size: clamp(13px, 0.9vw, 15px); max-width: 100%; }
+
+  /* Status stamp */
+  .status-stamp { padding: 10px 16px; }
+  .status-stamp b { font-size: clamp(16px, 2vw, 22px); }
+  .status-stamp small { font-size: 8px; }
+
+  /* About */
+  .about {
+    padding: clamp(50px, 10vh, 80px) 14px;
+    gap: 22px;
+    max-width: 100%;
+  }
+  .about-kicker { font-size: 11px; gap: 10px; }
+  .about-statement { font-size: clamp(18px, 2.5vw, 26px); line-height: 1.15; }
+  .about-note { font-size: clamp(12px, 0.95vw, 14px); }
+
+  /* Shop */
+  .shop { padding: clamp(50px, 10vh, 80px) 14px; margin-top: clamp(20px, 4vh, 50px); }
+  .shop-head { margin-bottom: 30px; padding-bottom: 16px; }
+  .shop-title { font-size: 11px; }
+  .shop-sub { font-size: 11px; }
+  .shop-grid { grid-template-columns: 1fr; gap: clamp(12px, 1.5vw, 16px); }
+  .product-image { aspect-ratio: 1; }
+  .product-badge { font-size: clamp(12px, 1.3vw, 14px); padding: 6px 10px; }
+  .product-name { font-size: 13px; }
+  .product-price { font-size: 11px; }
+  .product-info { margin-top: 10px; gap: 6px; }
+
+  /* CTA */
+  .cta { padding: clamp(50px, 10vh, 80px) 14px; gap: 22px; }
+  .cta-label { font-size: 11px; margin-bottom: 16px; }
+  .cta-headline { font-size: clamp(24px, 4vw, 40px); line-height: 1; }
+  .cta-links { gap: 8px; padding-bottom: 0; }
+  .cta-links a { font-size: 13px; }
+  .cta-links a::after { font-size: 16px; }
+
+  /* Footer */
+  .footer {
+    padding: clamp(40px, 8vh, 70px) 14px clamp(30px, 6vh, 50px);
+    gap: 20px;
+  }
+  .footer-credo { font-size: clamp(16px, 2vw, 20px); }
+  .footer-mark { height: 30px; }
+  .footer-links { gap: 14px; }
+  .footer-links a { font-size: 9px; }
+  .footer-copy { font-size: 9px; }
 }
 
 /* ===================== ACCESSIBILITY ===================== */
