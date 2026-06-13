@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almog — Admin</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .login-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .login-screen.hidden { display: none; }
+    .login-box {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #333;
+    }
+    .login-box h1 { font-size: 28px; margin-bottom: 30px; text-align: center; }
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      background: #0c0c0c;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #fff;
+      color: #0c0c0c;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .admin-panel {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 40px;
+    }
+    .admin-panel.hidden { display: none; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #333;
+    }
+    .header h1 { font-size: 32px; }
+    .logout-btn {
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .section { margin-bottom: 50px; }
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #aaa;
+    }
+
+    .upload-area {
+      border: 2px dashed #444;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 20px;
+    }
+    .upload-area:hover { border-color: #666; }
+    .upload-area.dragover { border-color: #fff; }
+    .upload-area input { display: none; }
+    .upload-text { font-size: 16px; color: #aaa; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .image-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0c0c0c;
+      aspect-ratio: 1;
+    }
+    .image-item img { width: 100%; height: 100%; object-fit: cover; }
+    .image-item .delete {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .message {
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .message.show { display: block; }
+    .message.success { background: #1b5e20; color: #4caf50; }
+  </style>
+</head>
+<body>
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <h1>🌿 Almog</h1>
+      <input type="password" id="passwordInput" placeholder="Backstage password" />
+      <button class="login-btn" onclick="login()">Enter</button>
+    </div>
+  </div>
+
+  <div class="admin-panel hidden" id="adminPanel">
+    <div class="container">
+      <div class="header">
+        <h1>Admin Backstage</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+
+      <div class="message" id="message"></div>
+
+      <div class="section">
+        <div class="section-title">📸 Projects</div>
+        <div class="upload-area" id="projectsUpload">
+          <input type="file" id="projectsInput" accept="image/*" multiple />
+          <div class="upload-text">📁 Tap to upload</div>
+        </div>
+        <div class="gallery" id="projectsGallery"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🛍️ Products</div>
+        <div class="upload-area" id="productsUpload">
+          <input type="file" id="productsInput" accept="image/*" multiple />
+          <div class="upload-text">📁 Tap to upload</div>
+        </div>
+        <div class="gallery" id="productsGallery"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CORRECT_PASSWORD = "almog2025";
+
+    function login() {
+      const pass = document.getElementById('passwordInput').value;
+      if (pass === CORRECT_PASSWORD) {
+        localStorage.setItem('almogAdmin', 'true');
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminPanel').classList.remove('hidden');
+        setupUploads();
+        loadExistingImages();
+      } else {
+        alert('❌ Wrong password');
+        document.getElementById('passwordInput').value = '';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('almogAdmin');
+      location.reload();
+    }
+
+    function showMessage(text, type) {
+      const msg = document.getElementById('message');
+      msg.textContent = text;
+      msg.className = `message show ${type}`;
+      setTimeout(() => msg.classList.remove('show'), 3000);
+    }
+
+    function setupUploads() {
+      setupZone('projectsUpload', 'projectsInput', 'projectsGallery', 'projects');
+      setupZone('productsUpload', 'productsInput', 'productsGallery', 'products');
+    }
+
+    function setupZone(zoneId, inputId, galleryId, folder) {
+      const zone = document.getElementById(zoneId);
+      const input = document.getElementById(inputId);
+      const gallery = document.getElementById(galleryId);
+
+      zone.addEventListener('click', () => input.click());
+      zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('dragover'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('dragover');
+        handleFiles(e.dataTransfer.files, folder, gallery);
+      });
+      input.addEventListener('change', (e) => handleFiles(e.target.files, folder, gallery));
+    }
+
+    function handleFiles(files, folder, gallery) {
+      Array.from(files).forEach((file) => {
+        if (!file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const url = e.target.result;
+          localStorage.setItem(`img_${folder}_${file.name}`, url);
+          const item = document.createElement('div');
+          item.className = 'image-item';
+          item.innerHTML = `<img src="${url}" alt="${file.name}" /><button class="delete" onclick="deleteImage('${folder}', '${file.name}', this)">✕</button>`;
+          gallery.appendChild(item);
+          showMessage(`✓ ${file.name} uploaded`, 'success');
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function deleteImage(folder, filename, btn) {
+      localStorage.removeItem(`img_${folder}_${filename}`);
+      btn.closest('.image-item').remove();
+      showMessage('Image deleted', 'success');
+    }
+
+    function loadExistingImages() {
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith('img_')) {
+          const [_, folder, ...nameparts] = key.split('_');
+          const filename = nameparts.join('_');
+          const url = localStorage.getItem(key);
+          const gallery = document.getElementById(folder + 'Gallery');
+          if (gallery) {
+            const item = document.createElement('div');
+            item.className = 'image-item';
+            item.innerHTML = `<img src="${url}" alt="${filename}" /><button class="delete" onclick="deleteImage('${folder}', '${filename}', this)">✕</button>`;
+            gallery.appendChild(item);
+          }
+        }
+      });
+    }
+
+    if (localStorage.getItem('almogAdmin') === 'true') {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('adminPanel').classList.remove('hidden');
+      setupUploads();
+      loadExistingImages();
+    }
+  </script>
+</body>
+</html>

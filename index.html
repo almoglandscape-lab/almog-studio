@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Almog Studio — Landscape Artist</title>
+  <meta name="description" content="Almog is a landscape artist and outdoor designer based in Israel. He doesn't design gardens — he composes feelings." />
+  <meta name="keywords" content="landscape artist, garden designer, outdoor design, Israel, landscape architecture, garden art" />
+  <meta name="author" content="Almog Studio" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://almog.studio/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://almog.studio/" />
+  <meta property="og:title" content="Almog Studio — Landscape Artist" />
+  <meta property="og:description" content="He doesn't design gardens — he composes feelings." />
+  <meta property="og:image" content="https://almog.studio/assets/wordmark.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Almog Studio — Landscape Artist" />
+  <meta name="twitter:description" content="He doesn't design gardens — he composes feelings." />
+
+  <!-- GEO: Schema.org JSON-LD — מה שה-AI קורא -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://almog.studio/#almog",
+        "name": "Almog",
+        "jobTitle": "Landscape Artist & Outdoor Designer",
+        "description": "Israeli landscape artist who composes feelings through nature, plants, materials and space. Specializes in high-end private gardens and outdoor spaces.",
+        "url": "https://almog.studio",
+        "sameAs": [
+          "https://www.instagram.com/almogstudio"
+        ],
+        "knowsAbout": ["Landscape Design", "Garden Art", "Outdoor Spaces", "Landscape Architecture", "Garden Management", "Nature Design"],
+        "worksFor": {
+          "@type": "Organization",
+          "@id": "https://almog.studio/#org"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://almog.studio/#org",
+        "name": "Almog Studio",
+        "url": "https://almog.studio",
+        "founder": { "@id": "https://almog.studio/#almog" },
+        "description": "A creative studio combining art, nature, architecture and design. Every garden is a living creation with soul, character and its own story.",
+        "areaServed": "Israel",
+        "serviceType": ["Landscape Design", "Garden Art", "Garden Management", "Outdoor Design"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://almog.studio/#site",
+        "url": "https://almog.studio",
+        "name": "Almog Studio",
+        "description": "Portfolio of Almog — landscape artist and outdoor designer."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicon (הסמל שלך) -->
+  <link rel="icon" type="image/png" href="assets/symbol.png" />
+
+  <!-- Type: Clash Display + Satoshi (Fontshare) · Assistant (Hebrew) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/editor.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <!-- ניווט מינימלי: סמל משמאל, SHOP מימין. זהו. -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav-mark" aria-label="בית">
+      <img src="assets/symbol.png" alt="אלמוג" />
+    </a>
+    <nav class="nav-links">
+      <a href="#project-01">Works</a>
+      <a href="#about">About</a>
+      <a href="#shop">Shop</a>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <img class="hero-wordmark" src="assets/wordmark.png" alt="אלמוג" />
+    <p class="hero-line">
+      <span class="hero-en">Gardens that make you feel something.</span>
+      <span class="hero-he">Artist · Landscape · Almog Studio</span>
+    </p>
+    <div class="scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <!--
+    כל פרויקט = סקשן אחד.
+    הסדר באתר = הסדר האמיתי בחיים, ממוספר לפי תאריך.
+    כדי להוסיף פרויקט: שכפל בלוק <section class="project"> ושנה את הפרטים.
+    התמונה: שים קובץ ב-assets/ ועדכן את ה-src.
+  -->
+
+  <!-- כותרת הסקשן: מספור = אינדקס של "עבודות נבחרות", לא ספירת קריירה -->
+  <div class="works-intro reveal">
+    <span class="works-en">Selected Works</span>
+    <span class="works-he">2025</span>
+    <span class="works-count">005</span>
+  </div>
+
+  <!-- 001 -->
+  <section class="project reveal" id="project-01">
+    <div class="project-media">
+      <img src="assets/project-01.jpg" alt="White Jungle" onerror="this.classList.add('placeholder')" />
+    </div>
+    <div class="project-text">
+      <div class="project-kicker">
+        <span class="project-index">001</span>
+        <span class="project-place">Private Residence</span>
+      </div>
+      <h2 class="project-title">
+        <span class="title-en">White Jungle</span>
+      </h2>
+      <p class="project-desc">The closest to my hands. Stone, green and light composed into one breath.</p>
+    </div>
+  </section>
+
+  <!-- 002 -->
+  <section class="project reveal" id="project-02">
+    <div class="project-media">
+      <img src="assets/project-02.jpg" alt="Low of Nature" onerror="this.classList.add('placeholder')" />
+    </div>
+    <div class="project-text">
+      <div class="project-kicker">
+        <span class="project-index">002</span>
+        <span class="project-place">Luxury Neighborhood</span>
+      </div>
+      <h2 class="project-title">
+        <span class="title-en">Low of Nature</span>
+      </h2>
+      <p class="project-desc">My largest canvas. Nature that feels like it was always there.</p>
+    </div>
+  </section>
+
+  <!-- 003 -->
+  <section class="project reveal" id="project-03">
+    <div class="project-media">
+      <img src="assets/project-03.jpg" alt="Sky Garden" onerror="this.classList.add('placeholder')" />
+    </div>
+    <div class="project-text">
+      <div class="project-kicker">
+        <span class="project-index">003</span>
+        <span class="project-place">Penthouse · Floor 20</span>
+      </div>
+      <h2 class="project-title">
+        <span class="title-en">Sky Garden</span>
+      </h2>
+      <p class="project-desc">High above the city. Green that learned to live with the wind.</p>
+    </div>
+  </section>
+
+  <!-- 004 — בעבודה -->
+  <section class="project reveal" id="project-04">
+    <div class="project-media is-stamp">
+      <span class="status-stamp"><b>Work in progress</b><small>Coming soon</small></span>
+    </div>
+    <div class="project-text">
+      <div class="project-kicker">
+        <span class="project-index">004</span>
+        <span class="project-place">In Progress</span>
+      </div>
+      <h2 class="project-title">
+        <span class="title-en">Norish Yard</span>
+      </h2>
+      <p class="project-desc">First frames are alive. The rest is on its way.</p>
+    </div>
+  </section>
+
+  <!-- 005 — בעבודה -->
+  <section class="project reveal" id="project-05">
+    <div class="project-media is-stamp">
+      <span class="status-stamp"><b>Work in progress</b><small>Stay close</small></span>
+    </div>
+    <div class="project-text">
+      <div class="project-kicker">
+        <span class="project-index">005</span>
+        <span class="project-place">6 May</span>
+      </div>
+      <h2 class="project-title">
+        <span class="title-en">My Secret</span>
+      </h2>
+      <p class="project-desc">Still a secret. A feeling already exists — the garden is yet to be born.</p>
+    </div>
+  </section>
+
+
+  <!-- ===================== ABOUT (Meet Almog) ===================== -->
+  <section class="about reveal" id="about">
+    <span class="about-kicker">The Artist</span>
+    <p class="about-statement">Almog is a landscape artist and outdoor designer based in Israel. He doesn't design gardens — he composes feelings. Every space begins with the people who will live in it.</p>
+    <span class="about-credo">Passion &amp; Patience · Honest Art</span>
+  </section>
+
+  <!-- ===================== SHOP ===================== -->
+  <section class="shop reveal" id="shop">
+    <div class="shop-head">
+      <h2 class="shop-title">Shop</h2>
+      <p class="shop-sub">From the studio to your home.</p>
+    </div>
+
+    <!-- מוצרי placeholder. סטטוס "עובד על זה" עד שהחנות תעלה. -->
+    <div class="shop-grid">
+      <article class="product">
+        <div class="product-image">
+          <span class="product-badge">Working on it</span>
+        </div>
+        <div class="product-info">
+          <span class="product-name">Cap</span>
+          <span class="product-price">₪100</span>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-image">
+          <span class="product-badge">Working on it</span>
+        </div>
+        <div class="product-info">
+          <span class="product-name">Tee</span>
+          <span class="product-price">₪100</span>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-image">
+          <span class="product-badge">Working on it</span>
+        </div>
+        <div class="product-info">
+          <span class="product-name">Thermal Bottle</span>
+          <span class="product-price">₪100</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta reveal" id="contact">
+    <div class="cta-left">
+      <span class="cta-label">Let's talk</span>
+      <h2 class="cta-headline">Your garden<br>is waiting.</h2>
+    </div>
+    <div class="cta-links">
+      <a href="mailto:hello@almog.studio">Email →</a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram →</a>
+      <a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp →</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <p class="footer-credo">Let's plant.</p>
+    <img class="footer-mark" src="assets/symbol.png" alt="אלמוג" />
+    <div class="footer-links">
+      <a href="#project-01">Work</a>
+      <a href="#about">About</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> ALMOG STUDIO</p>
+  </footer>
+
+  <script src="assets/preloader.js"></script>
+  <script src="assets/script.js"></script>
+  <script src="assets/cursor.js"></script>
+  <script src="assets/magnetic.js"></script>
+  <script src="assets/animations.js"></script>
+  <script src="assets/editor.js"></script>
+</body>
+</html>

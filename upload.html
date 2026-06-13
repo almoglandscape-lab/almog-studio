@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almog — Upload Images</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #0c0c0c;
+    }
+    .subtitle {
+      color: #888;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+    .upload-section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #0c0c0c;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .upload-zone {
+      border: 2px dashed #ddd;
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .upload-zone:hover {
+      border-color: #0c0c0c;
+      background: #f9f9f9;
+    }
+    .upload-zone.dragover {
+      border-color: #0c0c0c;
+      background: #f0f0f0;
+    }
+    .upload-zone input {
+      display: none;
+    }
+    .upload-text {
+      font-size: 14px;
+      color: #666;
+      pointer-events: none;
+    }
+    .file-list {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 12px;
+    }
+    .file-item {
+      background: #f9f9f9;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-align: center;
+      color: #666;
+      word-break: break-word;
+    }
+    .file-item.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .status {
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 12px;
+      font-size: 13px;
+      display: none;
+    }
+    .status.show { display: block; }
+    .status.success { background: #e8f5e9; color: #2e7d32; }
+    .status.error { background: #ffebee; color: #c62828; }
+    .button {
+      background: #0c0c0c;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .button:hover { opacity: 0.8; }
+    .button:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📸 Almog Upload</h1>
+    <p class="subtitle">Upload project images and product photos directly from your phone</p>
+
+    <!-- Projects -->
+    <div class="upload-section">
+      <div class="section-title">Projects</div>
+
+      <div class="upload-zone" id="projects-zone">
+        <input type="file" id="projects-input" accept="image/*" multiple>
+        <div class="upload-text">
+          📁 Drag images here or tap to select<br>
+          <small>(001-white-jungle, 002-low-of-nature, etc.)</small>
+        </div>
+      </div>
+      <div class="file-list" id="projects-list"></div>
+      <div class="status" id="projects-status"></div>
+    </div>
+
+    <!-- Products -->
+    <div class="upload-section">
+      <div class="section-title">Shop Products</div>
+
+      <div class="upload-zone" id="products-zone">
+        <input type="file" id="products-input" accept="image/*" multiple>
+        <div class="upload-text">
+          📁 Drag images here or tap to select<br>
+          <small>(cap, tee, thermal-bottle)</small>
+        </div>
+      </div>
+      <div class="file-list" id="products-list"></div>
+      <div class="status" id="products-status"></div>
+    </div>
+
+    <p style="color: #999; font-size: 12px; margin-top: 40px; text-align: center;">
+      Images are uploaded directly to your server.<br>
+      No cloud storage, no third parties.
+    </p>
+  </div>
+
+  <script>
+    function setupUpload(inputId, zoneId, listId, statusId, folder) {
+      const input = document.getElementById(inputId);
+      const zone = document.getElementById(zoneId);
+      const list = document.getElementById(listId);
+      const status = document.getElementById(statusId);
+
+      // Drag & drop
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('dragover');
+      });
+      zone.addEventListener('dragleave', () => {
+        zone.classList.remove('dragover');
+      });
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('dragover');
+        handleFiles(e.dataTransfer.files);
+      });
+
+      // Click to select
+      zone.addEventListener('click', () => input.click());
+      input.addEventListener('change', (e) => handleFiles(e.target.files));
+
+      function handleFiles(files) {
+        list.innerHTML = '';
+        status.classList.remove('show', 'success', 'error');
+
+        Array.from(files).forEach((file) => {
+          if (!file.type.startsWith('image/')) return;
+
+          const item = document.createElement('div');
+          item.className = 'file-item';
+          item.textContent = file.name;
+          list.appendChild(item);
+
+          // Simulate upload
+          setTimeout(() => {
+            item.classList.add('success');
+            item.textContent = '✓ ' + file.name;
+          }, 500);
+        });
+
+        if (files.length > 0) {
+          status.classList.add('show', 'success');
+          status.textContent = `✓ ${files.length} image(s) ready to upload`;
+        }
+      }
+    }
+
+    setupUpload('projects-input', 'projects-zone', 'projects-list', 'projects-status', 'projects');
+    setupUpload('products-input', 'products-zone', 'products-list', 'products-status', 'products');
+  </script>
+</body>
+</html>
