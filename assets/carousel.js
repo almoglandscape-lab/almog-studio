@@ -1,27 +1,38 @@
-/* Carousel pager — native scroll-snap; we only update the dot indicator */
+/* ============================================================
+   ALMOG STUDIO — reel pager
+   Native scroll-snap does the scrolling; this just lights the dots.
+   ============================================================ */
 (function () {
-  var car = document.getElementById('proj-carousel');
-  var pager = document.getElementById('pager');
-  if (!car || !pager) return;
-  var dots = pager.querySelectorAll('.dot');
-  var cards = car.querySelectorAll('.card');
-  if (!cards.length) return;
+  var reel = document.getElementById("reel");
+  var pager = document.getElementById("pager");
+  if (!reel || !pager) return;
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting && e.intersectionRatio > 0.55) {
-        var i = Array.prototype.indexOf.call(cards, e.target);
-        dots.forEach(function (d, di) { d.classList.toggle('is-active', di === i); });
-      }
+  var cards = reel.querySelectorAll(".card");
+  var dots = pager.querySelectorAll(".dot");
+  if (!cards.length || !dots.length) return;
+
+  var tick;
+  var update = function () {
+    var edge = reel.scrollLeft + reel.clientWidth * 0.25;
+    var active = 0, best = Infinity;
+    cards.forEach(function (card, i) {
+      var d = Math.abs(card.offsetLeft - edge);
+      if (d < best) { best = d; active = i; }
     });
-  }, { root: car, threshold: [0.5, 0.65, 0.8] });
+    dots.forEach(function (dot, i) { dot.classList.toggle("is-active", i === active); });
+  };
 
-  cards.forEach(function (c) { io.observe(c); });
+  reel.addEventListener("scroll", function () {
+    if (tick) cancelAnimationFrame(tick);
+    tick = requestAnimationFrame(update);
+  }, { passive: true });
 
-  // Keyboard support on the carousel
-  car.addEventListener('keydown', function (ev) {
-    var step = car.clientWidth * 0.85;
-    if (ev.key === 'ArrowRight') { car.scrollBy({ left: step, behavior: 'smooth' }); ev.preventDefault(); }
-    if (ev.key === 'ArrowLeft')  { car.scrollBy({ left: -step, behavior: 'smooth' }); ev.preventDefault(); }
+  dots.forEach(function (dot, i) {
+    dot.style.cursor = "pointer";
+    dot.addEventListener("click", function () {
+      if (cards[i]) reel.scrollTo({ left: cards[i].offsetLeft - reel.offsetLeft, behavior: "smooth" });
+    });
   });
+
+  update();
 })();

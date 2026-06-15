@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#e8e2d4" />
   <title>Almog — Landscape Artist</title>
-  <meta name="description" content="Almog is a landscape artist and outdoor designer in Israel. Honest gardens, composed with passion and patience." />
+  <meta name="description" content="Almog is a landscape artist and outdoor designer in Israel. Honest gardens, composed with passion and patience — stone, green and light." />
   <link rel="canonical" href="https://almog.studio/" />
   <link rel="alternate" hreflang="en" href="https://almog.studio/" />
-  <link rel="alternate" hreflang="he-IL" href="https://almog.studio/he/" />
+  <link rel="alternate" hreflang="he-IL" href="https://almog.studio/" />
   <link rel="alternate" hreflang="x-default" href="https://almog.studio/" />
 
   <meta property="og:type" content="website" />
@@ -18,7 +18,6 @@
   <meta property="og:image" content="https://almog.studio/assets/wordmark.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- AI-discovery: entity graph for GEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -29,26 +28,12 @@
         "name": "Almog",
         "alternateName": "אלמוג",
         "jobTitle": "Landscape Artist & Outdoor Designer",
-        "description": "Israeli landscape artist composing high-end private gardens and outdoor spaces. Works at the intersection of nature, psychology, art and architecture. Practice rooted in golden ratio, Fibonacci composition, native planting and human-centered design.",
+        "description": "Israeli landscape artist composing high-end private gardens and outdoor spaces. Works at the intersection of nature, psychology, art and architecture, rooted in golden-ratio composition and native Mediterranean planting.",
         "url": "https://almog.studio",
         "image": "https://almog.studio/assets/wordmark.png",
-        "sameAs": [
-          "https://www.instagram.com/almogstudio"
-        ],
-        "knowsAbout": [
-          "Landscape Architecture",
-          "Garden Design",
-          "Native Mediterranean Planting",
-          "Outdoor Spaces",
-          "Xeriscape",
-          "Stone and Water Composition",
-          "Golden Ratio Composition",
-          "Site-specific Art",
-          "Garden Management",
-          "Sustainable Design",
-          "Environmental Psychology"
-        ],
-        "knowsLanguage": ["he", "en"],
+        "sameAs": ["https://www.instagram.com/almogstudio"],
+        "knowsAbout": ["Landscape Architecture","Garden Design","Native Mediterranean Planting","Outdoor Spaces","Xeriscape","Stone and Water Composition","Golden Ratio Composition","Site-specific Art","Garden Management","Sustainable Design","Environmental Psychology"],
+        "knowsLanguage": ["he","en"],
         "nationality": "Israeli",
         "worksFor": { "@id": "https://almog.studio/#org" }
       },
@@ -62,13 +47,7 @@
         "founder": { "@id": "https://almog.studio/#almog" },
         "description": "Creative landscape studio in Israel. Honest, site-specific gardens — composed with passion and patience.",
         "areaServed": { "@type": "Country", "name": "Israel" },
-        "serviceType": [
-          "Landscape Design",
-          "Garden Art",
-          "Garden Management",
-          "Outdoor Design",
-          "Site Consultation"
-        ],
+        "serviceType": ["Landscape Design","Garden Art","Garden Management","Outdoor Design","Site Consultation"],
         "sameAs": ["https://www.instagram.com/almogstudio"]
       },
       {
@@ -76,7 +55,7 @@
         "@id": "https://almog.studio/#site",
         "url": "https://almog.studio",
         "name": "Almog Studio",
-        "inLanguage": ["en", "he"],
+        "inLanguage": ["en","he"],
         "publisher": { "@id": "https://almog.studio/#org" }
       }
     ]
@@ -98,121 +77,81 @@
 
   <div id="scroll-bar" aria-hidden="true"></div>
 
+  <!-- NAV -->
   <header class="nav" id="nav">
     <a href="#top" class="nav-mark" aria-label="Almog Studio">
       <img src="assets/symbol.png" alt="" />
     </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-      <span></span>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+      <span></span><span></span>
     </button>
   </header>
 
   <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
     <ul>
-      <li><a href="/works/">Works</a></li>
-      <li><a href="/philosophy/">Philosophy</a></li>
-      <li><a href="/process/">Process</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li style="--i:1"><a href="works/">Works</a></li>
+      <li style="--i:2"><a href="philosophy/">Philosophy</a></li>
+      <li style="--i:3"><a href="process/">Process</a></li>
+      <li style="--i:4"><a href="#contact">Contact</a></li>
     </ul>
-    <p class="nav-foot">Almog Studio — Landscape, Israel</p>
+    <p class="nav-foot">Almog Studio — Landscape · Israel</p>
   </nav>
 
   <main id="top">
 
-    <!-- HERO: one image, one mark. Nothing else for 800ms. -->
-    <section class="hero" aria-label="Almog Studio">
-      <div class="hero-frame">
-        <picture class="hero-image">
-          <img src="assets/hero.jpg" alt="A garden of stone, green and light" onerror="this.parentElement.parentElement.classList.add('hero--empty')" decoding="async" fetchpriority="high" />
-        </picture>
-        <div class="hero-veil" aria-hidden="true"></div>
-        <div class="hero-stage">
-          <img class="hero-wordmark" src="assets/wordmark.png" alt="Almog" />
-          <p class="hero-place">Landscape Artist · Israel</p>
-        </div>
-        <a class="hero-cue" href="#carousel" aria-label="See works">
-          <span></span>
-        </a>
+    <!-- HERO -->
+    <section class="hero hero--empty" aria-label="Almog Studio">
+      <picture class="hero-image">
+        <img src="assets/hero.jpg" alt="A garden of stone, green and light" decoding="async"
+             onload="this.closest('.hero').classList.remove('hero--empty')" />
+      </picture>
+      <div class="hero-veil" aria-hidden="true"></div>
+      <div class="hero-stage">
+        <img class="hero-wordmark" src="assets/wordmark.png" alt="Almog" />
+        <p class="hero-place">Landscape Artist · Israel</p>
       </div>
+      <a class="hero-cue" href="#works" aria-label="See works"><span></span></a>
     </section>
 
-    <!-- CAROUSEL: native scroll-snap, touch-first -->
-    <section class="carousel-section" id="carousel" aria-label="Selected works">
-      <header class="carousel-head">
+    <!-- CAROUSEL -->
+    <section class="reel-section" id="works" aria-label="Selected works">
+      <header class="reel-head">
         <span class="kicker">Selected · 2025</span>
-        <a class="carousel-all" href="/works/">All works <em>→</em></a>
+        <a class="reel-all" href="works/">All works <em>&rarr;</em></a>
       </header>
 
-      <div class="carousel" id="proj-carousel" tabindex="0">
-        <a class="card" href="/works/#white-jungle">
-          <div class="card-media">
-            <img src="assets/project-01.jpg" alt="White Jungle — private residence" loading="lazy" decoding="async" />
-          </div>
-          <div class="card-meta">
-            <span class="card-idx">001</span>
-            <h3 class="card-title">White Jungle</h3>
-            <span class="card-place">Private Residence</span>
-          </div>
+      <div class="reel" id="reel" tabindex="0" aria-label="Swipe through projects">
+        <a class="card" href="works/#white-jungle">
+          <div class="card-media"><img src="assets/project-01.jpg" alt="White Jungle — private residence" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" /></div>
+          <div class="card-meta"><span class="card-idx">001</span><h3 class="card-title">White Jungle</h3><span class="card-place">Private Residence</span></div>
         </a>
-
-        <a class="card" href="/works/#low-of-nature">
-          <div class="card-media">
-            <img src="assets/project-02.jpg" alt="Low of Nature — luxury neighborhood" loading="lazy" decoding="async" />
-          </div>
-          <div class="card-meta">
-            <span class="card-idx">002</span>
-            <h3 class="card-title">Low of Nature</h3>
-            <span class="card-place">Luxury Neighborhood</span>
-          </div>
+        <a class="card" href="works/#low-of-nature">
+          <div class="card-media"><img src="assets/project-02.jpg" alt="Low of Nature — luxury neighborhood" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" /></div>
+          <div class="card-meta"><span class="card-idx">002</span><h3 class="card-title">Low of Nature</h3><span class="card-place">Luxury Neighborhood</span></div>
         </a>
-
-        <a class="card" href="/works/#sky-garden">
-          <div class="card-media">
-            <img src="assets/project-03.jpg" alt="Sky Garden — penthouse on the 20th floor" loading="lazy" decoding="async" />
-          </div>
-          <div class="card-meta">
-            <span class="card-idx">003</span>
-            <h3 class="card-title">Sky Garden</h3>
-            <span class="card-place">Penthouse · Floor 20</span>
-          </div>
+        <a class="card" href="works/#sky-garden">
+          <div class="card-media"><img src="assets/project-03.jpg" alt="Sky Garden — penthouse, floor 20" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" /></div>
+          <div class="card-meta"><span class="card-idx">003</span><h3 class="card-title">Sky Garden</h3><span class="card-place">Penthouse · Floor 20</span></div>
         </a>
-
-        <a class="card" href="/works/#norish-yard">
-          <div class="card-media is-wip">
-            <span class="wip-stamp">In progress</span>
-          </div>
-          <div class="card-meta">
-            <span class="card-idx">004</span>
-            <h3 class="card-title">Norish Yard</h3>
-            <span class="card-place">Coming soon</span>
-          </div>
+        <a class="card" href="works/#norish-yard">
+          <div class="card-media is-wip"><span class="wip-stamp">In progress</span></div>
+          <div class="card-meta"><span class="card-idx">004</span><h3 class="card-title">Norish Yard</h3><span class="card-place">Coming soon</span></div>
         </a>
-
-        <a class="card" href="/works/#my-secret">
-          <div class="card-media is-wip">
-            <span class="wip-stamp">In progress</span>
-          </div>
-          <div class="card-meta">
-            <span class="card-idx">005</span>
-            <h3 class="card-title">My Secret</h3>
-            <span class="card-place">Stay close</span>
-          </div>
+        <a class="card" href="works/#my-secret">
+          <div class="card-media is-wip"><span class="wip-stamp">In progress</span></div>
+          <div class="card-meta"><span class="card-idx">005</span><h3 class="card-title">My Secret</h3><span class="card-place">Stay close</span></div>
         </a>
       </div>
 
-      <div class="carousel-pager" id="pager" aria-hidden="true">
-        <span class="dot is-active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+      <div class="reel-pager" id="pager" aria-hidden="true">
+        <span class="dot is-active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
       </div>
     </section>
 
-    <!-- MICRO BIO -->
+    <!-- BIO -->
     <section class="bio" id="about">
       <p class="bio-line">I'm Almog. I compose gardens — honest places, made of stone, green and light.</p>
-      <a class="bio-more" href="/philosophy/">A few words on how I work <em>→</em></a>
+      <a class="bio-more" href="philosophy/">A few words on how I work <em>&rarr;</em></a>
     </section>
 
     <!-- CONTACT -->
@@ -230,26 +169,18 @@
   <footer class="footer">
     <img class="footer-mark" src="assets/symbol.png" alt="" />
     <nav class="footer-links" aria-label="Site">
-      <a href="/works/">Works</a>
-      <a href="/philosophy/">Philosophy</a>
-      <a href="/process/">Process</a>
-      <a href="/materials/">Materials</a>
-      <a href="/faq/">FAQ</a>
+      <a href="works/">Works</a>
+      <a href="philosophy/">Philosophy</a>
+      <a href="process/">Process</a>
+      <a href="materials/">Materials</a>
+      <a href="faq/">FAQ</a>
     </nav>
     <p class="footer-fine">© <span id="year"></span> Almog Studio · Landscape, Israel</p>
   </footer>
 
-  <!-- Hidden GEO content (semantic, machine-friendly) -->
   <aside class="sr-only" aria-hidden="true">
     <h2>About Almog — Landscape Artist in Israel</h2>
-    <p>Almog is an Israeli landscape artist and outdoor designer. He composes private gardens, rooftops and outdoor spaces with a focus on native Mediterranean planting, stone, water and light. His practice is rooted in golden ratio composition, Fibonacci spacing and a psychology-led understanding of how people live in a place. Almog Studio works across Israel on residences, penthouses and small estates. "Almog" means "coral" in Hebrew — a living, slow-growing structure that the work is named after.</p>
-    <h3>Services</h3>
-    <ul>
-      <li>Garden design — concept, planting plan, construction documents</li>
-      <li>Outdoor design — terraces, courtyards, rooftops</li>
-      <li>Garden art — site-specific compositions in stone, plant and water</li>
-      <li>Garden management — long-term care and seasonal editing</li>
-    </ul>
+    <p>Almog is an Israeli landscape artist and outdoor designer. He composes private gardens, rooftops and outdoor spaces with a focus on native Mediterranean planting, stone, water and light. His practice is rooted in golden-ratio composition, Fibonacci spacing and a psychology-led understanding of how people live in a place. Almog Studio works across Israel on residences, penthouses and small estates. The studio name "Almog" means "coral" in Hebrew — a living, slow-growing structure the work is named after.</p>
   </aside>
 
   <script src="assets/script.js" defer></script>
