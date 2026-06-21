@@ -71,17 +71,26 @@ a { color: inherit; text-decoration: none; }
 .nav-mark:hover img { transform: rotate(-7deg) scale(1.06); }
 
 .nav-toggle {
-  width: 40px; height: 40px; border: 0; background: none; cursor: pointer;
-  display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 6px;
+  border: 0; background: none; cursor: pointer;
+  display: flex; align-items: center; gap: 9px;
+  padding: 6px 0;
 }
+/* hamburger bars (small, to the right of the word) */
+.nav-toggle .bars { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
 .nav-toggle span {
   display: block; height: 1.5px; background: var(--white); border-radius: 2px;
   transition: width 0.4s var(--grow), transform 0.4s var(--grow), opacity 0.3s;
 }
-.nav-toggle span:nth-child(1) { width: 26px; }
-.nav-toggle span:nth-child(2) { width: 17px; }
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { width: 24px; transform: translateY(3.75px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:nth-child(2) { width: 24px; transform: translateY(-3.75px) rotate(-45deg); }
+.nav-toggle span:nth-child(1) { width: 22px; }
+.nav-toggle span:nth-child(2) { width: 14px; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { width: 20px; transform: translateY(3.25px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { width: 20px; transform: translateY(-3.25px) rotate(-45deg); }
+/* the visible word — what makes the menu discoverable */
+.nav-toggle-label {
+  font-family: var(--display); font-size: clamp(13px, 1.6vw, 15px); font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--white);
+  line-height: 1;
+}
 
 /* overlay menu */
 .nav-overlay {

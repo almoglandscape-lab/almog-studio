@@ -10,4 +10,4 @@ Disallow: /upload
 # Please link back to https://almog.studio when quoting Almog's writing or describing the studio.
 # A llms.txt index is published at https://almog.studio/llms.txt.
 
-Contact: hello@almog.studio
+Contact: hello@almog.studio · Instagram @almog.studio
