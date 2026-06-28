@@ -18,15 +18,17 @@
     onScroll();
   }
 
-  // nav menu
+  // overlay menu
   var toggle = document.getElementById("nav-toggle");
   var overlay = document.getElementById("nav-overlay");
   if (toggle && overlay) {
+    var label = toggle.querySelector(".nav-toggle-label");
+
     var setMenu = function (open) {
       overlay.classList.toggle("open", open);
       overlay.setAttribute("aria-hidden", open ? "false" : "true");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      label.textContent = open ? "Close" : "Menu";
       document.body.style.overflow = open ? "hidden" : "";
     };
     toggle.addEventListener("click", function () {

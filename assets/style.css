@@ -72,19 +72,23 @@ a { color: inherit; text-decoration: none; }
 
 .nav-toggle {
   border: 0; background: none; cursor: pointer;
-  display: flex; flex-direction: column; justify-content: center;
-  gap: 6px; padding: 8px; width: 44px; height: 44px;
+  display: flex; align-items: center; gap: 9px;
+  padding: 6px 0;
 }
-.nav-toggle span {
-  display: block; height: 1.5px; background: var(--white);
-  border-radius: 2px; transition: transform 0.35s ease, opacity 0.25s ease, width 0.35s ease;
+.nav-toggle-label {
+  font-family: var(--display); font-size: clamp(13px, 1.6vw, 15px); font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--white);
+  line-height: 1;
 }
-.nav-toggle span:nth-child(1) { width: 24px; }
-.nav-toggle span:nth-child(2) { width: 16px; }
-.nav-toggle span:nth-child(3) { width: 20px; }
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); width: 22px; }
-.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); width: 22px; }
+.nav-toggle .bars { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.nav-toggle .bars span {
+  display: block; height: 1.5px; background: var(--white); border-radius: 2px;
+  transition: width 0.4s var(--grow), transform 0.4s var(--grow), opacity 0.3s;
+}
+.nav-toggle .bars span:nth-child(1) { width: 22px; }
+.nav-toggle .bars span:nth-child(2) { width: 14px; }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(1) { width: 20px; transform: translateY(3.25px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(2) { width: 20px; transform: translateY(-3.25px) rotate(-45deg); }
 
 /* overlay menu */
 .nav-overlay {
@@ -131,9 +135,7 @@ a { color: inherit; text-decoration: none; }
   filter: brightness(0.45) contrast(1.08);
 }
 @media (min-width: 900px) {
-  .hero { height: 100svh; overflow: hidden; }
-  .hero-image { background: var(--ink); display: flex; align-items: center; justify-content: center; }
-  .hero-image video { width: auto; height: 100%; object-fit: unset; }
+  .hero { max-height: 90vh; }
 }
 @keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 
