@@ -131,6 +131,9 @@ a { color: inherit; text-decoration: none; }
   width: 100%; height: 100%; object-fit: cover;
   animation: slow-zoom 16s var(--soft) both;
 }
+.hero-image video {
+  width: 100%; height: 100%; object-fit: cover;
+}
 @keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 
 /* before the real photo lands: a living gradient, not a void */

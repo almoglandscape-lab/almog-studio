@@ -101,10 +101,12 @@
 
     <!-- HERO -->
     <section class="hero hero--empty" aria-label="Almog Studio">
-      <picture class="hero-image">
-        <img src="assets/hero.jpg" alt="A garden of stone, green and light" decoding="async"
-             onload="this.closest('.hero').classList.remove('hero--empty')" />
-      </picture>
+      <div class="hero-image">
+        <video autoplay muted loop playsinline
+               oncanplay="this.closest('.hero').classList.remove('hero--empty')">
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="hero-veil" aria-hidden="true"></div>
       <div class="hero-stage">
         <img class="hero-wordmark" src="assets/wordmark.png" alt="Almog" />
