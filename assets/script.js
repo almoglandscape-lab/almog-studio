@@ -22,15 +22,7 @@
   var toggle = document.getElementById("nav-toggle");
   var overlay = document.getElementById("nav-overlay");
   if (toggle && overlay) {
-    // make the menu discoverable: a visible word + grouped bars
-    var bars = document.createElement("span");
-    bars.className = "bars";
-    toggle.querySelectorAll("span").forEach(function (s) { bars.appendChild(s); });
-    var label = document.createElement("span");
-    label.className = "nav-toggle-label";
-    label.textContent = "Menu";
-    toggle.appendChild(label);
-    toggle.appendChild(bars);
+    var label = toggle.querySelector(".nav-toggle-label");
 
     var setMenu = function (open) {
       overlay.classList.toggle("open", open);
