@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 762" fill="none" stroke="#3a352c" stroke-linecap="round" stroke-linejoin="round">
+  <rect width="600" height="762" fill="#f4f1ea" stroke="none"/>
+
+  <!-- Horizon -->
+  <path d="M0 335 Q100 318 200 328 Q350 342 500 318 Q560 310 600 322" stroke-width="1"/>
+
+  <!-- Terrain layers -->
+  <path d="M0 418 Q80 402 180 412 Q280 424 380 406 Q480 390 600 400" stroke-width="1.2"/>
+  <path d="M0 498 Q65 484 155 492 Q265 502 380 488 Q482 474 600 482" stroke-width="1.3"/>
+  <path d="M0 578 Q100 566 205 572 Q325 580 445 565 Q522 555 600 562" stroke-width="1.4"/>
+
+  <!-- Ground -->
+  <path d="M0 648 Q200 636 300 642 Q450 650 600 638" stroke-width="1.6"/>
+
+  <!-- Stone wall -->
+  <g stroke-width="0.9">
+    <path d="M375 492 L545 492 L545 578 L375 578 Z"/>
+    <line x1="375" y1="520" x2="545" y2="520"/>
+    <line x1="375" y1="548" x2="545" y2="548"/>
+    <line x1="408" y1="492" x2="408" y2="520"/>
+    <line x1="442" y1="492" x2="442" y2="520"/>
+    <line x1="476" y1="492" x2="476" y2="520"/>
+    <line x1="510" y1="492" x2="510" y2="520"/>
+    <line x1="392" y1="520" x2="392" y2="548"/>
+    <line x1="426" y1="520" x2="426" y2="548"/>
+    <line x1="460" y1="520" x2="460" y2="548"/>
+    <line x1="494" y1="520" x2="494" y2="548"/>
+    <line x1="528" y1="520" x2="528" y2="548"/>
+    <line x1="408" y1="548" x2="408" y2="578"/>
+    <line x1="450" y1="548" x2="450" y2="578"/>
+    <line x1="492" y1="548" x2="492" y2="578"/>
+  </g>
+
+  <!-- Olive tree trunk (gnarled) -->
+  <path d="M205 648 C202 618 210 592 198 565 C190 544 195 520 192 498" stroke-width="1.6"/>
+  <path d="M192 498 C188 478 192 458 188 438" stroke-width="1.5"/>
+  <!-- Canopy -->
+  <path d="M188 438 C172 412 146 408 138 382 C131 360 148 340 165 350 C180 358 182 382 192 390 C200 398 215 390 218 374 C222 354 212 332 226 320 C238 310 258 320 260 338 C262 354 248 366 250 382 C252 398 266 404 264 420 C260 440 244 444 236 430 C228 416 235 398 226 390 C218 382 204 390 202 406 C200 420 208 436 204 450 C200 464 188 466 186 452" stroke-width="1.2"/>
+  <!-- Small leaves -->
+  <path d="M143 390 C132 376 128 360 136 350" stroke-width="0.9"/>
+  <path d="M252 338 C264 322 272 308 265 298" stroke-width="0.9"/>
+  <path d="M170 356 C158 340 155 326 162 314" stroke-width="0.9"/>
+
+  <!-- Lavender / grass bunches -->
+  <g stroke-width="1">
+    <path d="M0 566 C16 546 20 532 26 518"/>
+    <path d="M32 568 C45 548 48 534 52 520"/>
+    <path d="M58 567 C70 548 73 535 77 522"/>
+    <path d="M82 570 C93 552 96 538 100 526"/>
+    <path d="M106 568 C115 550 118 538 122 525"/>
+    <path d="M128 566 C137 550 140 538 144 526"/>
+    <path d="M308 576 C320 558 323 545 328 532"/>
+    <path d="M338 578 C348 560 350 548 355 534"/>
+    <path d="M362 580 C372 562 374 550 378 538"/>
+  </g>
+
+  <!-- Disappearing path (dashed) -->
+  <path d="M300 648 Q297 610 294 578 Q291 542 294 508 Q296 484 298 452" stroke-width="0.9" stroke-dasharray="4 9"/>
+
+  <!-- Distant tree (right bg) -->
+  <path d="M480 418 L480 338" stroke-width="1" opacity="0.4"/>
+  <path d="M480 338 C468 318 452 314 448 296 C444 280 458 268 468 276 C478 284 478 300 484 308 C490 316 498 310 498 296 C498 280 488 266 498 256 C506 248 520 256 520 270 C520 284 508 292 510 306 C512 320 524 322 520 336 C516 350 502 352 498 340 C494 330 498 318 490 312" stroke-width="1" opacity="0.4"/>
+
+  <text x="300" y="745" font-family="Georgia, serif" font-size="9.5" fill="#9a958b" text-anchor="middle" letter-spacing="5" stroke="none">LOW OF NATURE</text>
+</svg>
