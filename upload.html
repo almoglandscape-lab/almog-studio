@@ -2,208 +2,421 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Almog — Upload Images</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Almog — Upload</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --ink: #16140f;
+      --card: #1f1d17;
+      --paper: #f4f1ea;
+      --linen: #e9e3d6;
+      --stone: #9a958b;
+      --bark: #3a352c;
+      --line: #2e2b23;
+      --green: #3d6b4a;
+      --red: #7a2a2a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f5f5f5;
-      padding: 40px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--ink);
+      color: var(--paper);
+      min-height: 100%;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    .screen { display: none; min-height: 100vh; flex-direction: column; padding: 40px 24px 60px; }
+    .screen.active { display: flex; }
+
+    /* ── TOKEN SCREEN ── */
+    #s-token { justify-content: center; gap: 32px; }
+    .logo { font-size: 22px; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: var(--linen); text-align: center; }
+    .token-title { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; text-align: center; }
+    .token-desc { font-size: 14px; color: var(--stone); line-height: 1.6; text-align: center; max-width: 340px; margin: 0 auto; }
+    .token-desc a { color: var(--linen); text-decoration: underline; }
+    .field { display: flex; flex-direction: column; gap: 10px; }
+    .field label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); }
+    .field input {
+      background: var(--card); border: 1px solid var(--line);
+      color: var(--paper); padding: 14px 16px; border-radius: 8px;
+      font-size: 14px; font-family: monospace; letter-spacing: 0.04em;
+      outline: none; transition: border-color 0.2s;
+      -webkit-appearance: none;
     }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: #0c0c0c;
+    .field input:focus { border-color: var(--stone); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      padding: 16px; border-radius: 10px; border: none; font-size: 16px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s; width: 100%; -webkit-appearance: none;
     }
-    .subtitle {
-      color: #888;
-      margin-bottom: 40px;
-      font-size: 14px;
+    .btn-primary { background: var(--paper); color: var(--ink); }
+    .btn-ghost { background: transparent; color: var(--stone); border: 1px solid var(--line); margin-top: 8px; font-weight: 400; font-size: 14px; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn:active:not(:disabled) { opacity: 0.75; }
+
+    /* ── UPLOAD SCREEN ── */
+    #s-upload { gap: 28px; }
+    .upload-header { display: flex; align-items: center; justify-content: space-between; }
+    .upload-header .logo { font-size: 16px; }
+    .signout { font-size: 12px; color: var(--stone); background: none; border: none; cursor: pointer; letter-spacing: 0.06em; color: var(--stone); }
+
+    .section-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); }
+
+    /* slot grid */
+    .slots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .slot {
+      background: var(--card); border: 1.5px solid var(--line);
+      border-radius: 10px; padding: 14px 12px; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s; position: relative;
     }
-    .upload-section {
-      margin-bottom: 40px;
+    .slot.selected { border-color: var(--linen); background: #2a2720; }
+    .slot input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .slot-name { font-size: 13px; font-weight: 600; color: var(--paper); }
+    .slot-sub { font-size: 11px; color: var(--stone); margin-top: 3px; }
+    .slot-check { position: absolute; top: 10px; right: 10px; width: 18px; height: 18px; border-radius: 50%; background: var(--linen); display: none; align-items: center; justify-content: center; }
+    .slot.selected .slot-check { display: flex; }
+    .slot-check svg { width: 10px; height: 10px; }
+
+    /* drop zone */
+    .drop-zone {
+      border: 2px dashed var(--line); border-radius: 12px;
+      padding: 40px 24px; text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s; position: relative;
     }
-    .section-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: #0c0c0c;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .upload-zone {
-      border: 2px dashed #ddd;
-      border-radius: 8px;
-      padding: 32px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .upload-zone:hover {
-      border-color: #0c0c0c;
-      background: #f9f9f9;
-    }
-    .upload-zone.dragover {
-      border-color: #0c0c0c;
-      background: #f0f0f0;
-    }
-    .upload-zone input {
-      display: none;
-    }
-    .upload-text {
-      font-size: 14px;
-      color: #666;
-      pointer-events: none;
-    }
-    .file-list {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 12px;
-    }
-    .file-item {
-      background: #f9f9f9;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      text-align: center;
-      color: #666;
-      word-break: break-word;
-    }
-    .file-item.success {
-      background: #e8f5e9;
-      color: #2e7d32;
-    }
-    .status {
-      padding: 12px;
-      border-radius: 6px;
-      margin-top: 12px;
-      font-size: 13px;
-      display: none;
-    }
-    .status.show { display: block; }
-    .status.success { background: #e8f5e9; color: #2e7d32; }
-    .status.error { background: #ffebee; color: #c62828; }
-    .button {
-      background: #0c0c0c;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.3s;
-      width: 100%;
-      margin-top: 16px;
-    }
-    .button:hover { opacity: 0.8; }
-    .button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .drop-zone.has-file { border-color: var(--stone); border-style: solid; padding: 0; overflow: hidden; }
+    .drop-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .drop-text { font-size: 15px; color: var(--stone); pointer-events: none; }
+    .drop-text span { display: block; font-size: 36px; margin-bottom: 10px; }
+    .preview-img { width: 100%; aspect-ratio: 1/1.2; object-fit: cover; display: block; }
+    .preview-name { padding: 10px 14px; font-size: 12px; color: var(--stone); text-align: left; background: var(--card); }
+
+    /* compress toggle */
+    .compress-row { display: flex; align-items: center; justify-content: space-between; }
+    .compress-label { font-size: 13px; color: var(--stone); }
+    .toggle { position: relative; width: 44px; height: 26px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-track { position: absolute; inset: 0; background: var(--line); border-radius: 13px; cursor: pointer; transition: background 0.2s; }
+    .toggle input:checked + .toggle-track { background: var(--stone); }
+    .toggle-thumb { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: var(--paper); border-radius: 50%; transition: transform 0.2s; pointer-events: none; }
+    .toggle input:checked ~ .toggle-thumb { transform: translateX(18px); }
+
+    /* status */
+    .status-msg { padding: 12px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .status-msg.show { display: block; }
+    .status-msg.error { background: #2d1010; color: #f18080; }
+    .status-msg.success { background: #0e2416; color: #6fcf97; }
+    .status-msg.info { background: var(--card); color: var(--stone); }
+
+    /* ── SUCCESS SCREEN ── */
+    #s-success { align-items: center; justify-content: center; gap: 28px; text-align: center; }
+    .success-icon { width: 72px; height: 72px; background: #0e2416; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .success-title { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; }
+    .success-sub { font-size: 14px; color: var(--stone); line-height: 1.6; max-width: 300px; }
+
+    .progress-wrap { width: 100%; background: var(--line); border-radius: 4px; overflow: hidden; height: 4px; }
+    .progress-bar { height: 100%; background: var(--linen); width: 0; transition: width 0.3s ease; border-radius: 4px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>📸 Almog Upload</h1>
-    <p class="subtitle">Upload project images and product photos directly from your phone</p>
 
-    <!-- Projects -->
-    <div class="upload-section">
-      <div class="section-title">Projects</div>
-
-      <div class="upload-zone" id="projects-zone">
-        <input type="file" id="projects-input" accept="image/*" multiple>
-        <div class="upload-text">
-          📁 Drag images here or tap to select<br>
-          <small>(001-white-jungle, 002-low-of-nature, etc.)</small>
-        </div>
-      </div>
-      <div class="file-list" id="projects-list"></div>
-      <div class="status" id="projects-status"></div>
+  <!-- ── SCREEN 1: TOKEN ── -->
+  <div class="screen active" id="s-token">
+    <div class="logo">Almog Studio</div>
+    <div>
+      <div class="token-title">Connect to site</div>
     </div>
-
-    <!-- Products -->
-    <div class="upload-section">
-      <div class="section-title">Shop Products</div>
-
-      <div class="upload-zone" id="products-zone">
-        <input type="file" id="products-input" accept="image/*" multiple>
-        <div class="upload-text">
-          📁 Drag images here or tap to select<br>
-          <small>(cap, tee, thermal-bottle)</small>
-        </div>
-      </div>
-      <div class="file-list" id="products-list"></div>
-      <div class="status" id="products-status"></div>
-    </div>
-
-    <p style="color: #999; font-size: 12px; margin-top: 40px; text-align: center;">
-      Images are uploaded directly to your server.<br>
-      No cloud storage, no third parties.
+    <p class="token-desc">
+      Enter your GitHub token to upload images directly to the live site.
+      <br><br>
+      <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Create one here</a> — choose <strong>Fine-grained token</strong>, select the <strong>almog-studio</strong> repo, and enable <strong>Contents → Read &amp; write</strong>.
     </p>
+    <div class="field">
+      <label>GitHub Token</label>
+      <input type="password" id="token-input" placeholder="github_pat_..." autocomplete="off" autocorrect="off" spellcheck="false">
+    </div>
+    <div>
+      <button class="btn btn-primary" id="token-save-btn">Save & Continue →</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 2: UPLOAD ── -->
+  <div class="screen" id="s-upload">
+    <div class="upload-header">
+      <div class="logo">Almog Upload</div>
+      <button class="signout" id="signout-btn">Change token</button>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:12px">Choose slot</div>
+      <div class="slots" id="slots">
+        <label class="slot selected" data-path="assets/hero.jpg">
+          <input type="radio" name="slot" value="assets/hero.jpg" checked>
+          <div class="slot-name">Hero</div>
+          <div class="slot-sub">Landing image</div>
+          <div class="slot-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#16140f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </label>
+        <label class="slot" data-path="assets/project-01.jpg">
+          <input type="radio" name="slot" value="assets/project-01.jpg">
+          <div class="slot-name">001</div>
+          <div class="slot-sub">White Jungle</div>
+          <div class="slot-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#16140f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </label>
+        <label class="slot" data-path="assets/project-02.jpg">
+          <input type="radio" name="slot" value="assets/project-02.jpg">
+          <div class="slot-name">002</div>
+          <div class="slot-sub">Low of Nature</div>
+          <div class="slot-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#16140f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </label>
+        <label class="slot" data-path="assets/project-03.jpg">
+          <input type="radio" name="slot" value="assets/project-03.jpg">
+          <div class="slot-name">003</div>
+          <div class="slot-sub">Sky Garden</div>
+          <div class="slot-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#16140f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:12px">Image</div>
+      <div class="drop-zone" id="drop-zone">
+        <input type="file" id="file-input" accept="image/*">
+        <div class="drop-text"><span>📷</span>Tap to choose from camera roll</div>
+      </div>
+    </div>
+
+    <div class="compress-row">
+      <span class="compress-label">Compress for web (recommended)</span>
+      <label class="toggle">
+        <input type="checkbox" id="compress-toggle" checked>
+        <div class="toggle-track"></div>
+        <div class="toggle-thumb"></div>
+      </label>
+    </div>
+
+    <div class="progress-wrap" id="progress-wrap" style="display:none">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="status-msg" id="status"></div>
+
+    <div>
+      <button class="btn btn-primary" id="upload-btn" disabled>Upload to site</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 3: SUCCESS ── -->
+  <div class="screen" id="s-success">
+    <div class="success-icon">✓</div>
+    <div class="success-title">Uploaded.</div>
+    <p class="success-sub">Live at <strong>almog.studio</strong> in about 30 seconds.</p>
+    <button class="btn btn-primary" id="again-btn">Upload another →</button>
+    <button class="btn btn-ghost" onclick="window.open('https://almog.studio','_blank')">Open site</button>
   </div>
 
   <script>
-    function setupUpload(inputId, zoneId, listId, statusId, folder) {
-      const input = document.getElementById(inputId);
-      const zone = document.getElementById(zoneId);
-      const list = document.getElementById(listId);
-      const status = document.getElementById(statusId);
+    const REPO = 'almoglandscape-lab/almog-studio';
+    const API  = 'https://api.github.com';
 
-      // Drag & drop
-      zone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        zone.classList.add('dragover');
-      });
-      zone.addEventListener('dragleave', () => {
-        zone.classList.remove('dragover');
-      });
-      zone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        zone.classList.remove('dragover');
-        handleFiles(e.dataTransfer.files);
-      });
+    // ── helpers ──
+    const $ = id => document.getElementById(id);
+    const show = id => { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); $(id).classList.add('active'); };
 
-      // Click to select
-      zone.addEventListener('click', () => input.click());
-      input.addEventListener('change', (e) => handleFiles(e.target.files));
+    function getToken() { return localStorage.getItem('almog_gh_token'); }
+    function saveToken(t) { localStorage.setItem('almog_gh_token', t); }
+    function clearToken() { localStorage.removeItem('almog_gh_token'); }
 
-      function handleFiles(files) {
-        list.innerHTML = '';
-        status.classList.remove('show', 'success', 'error');
+    // ── init ──
+    if (getToken()) show('s-upload');
 
-        Array.from(files).forEach((file) => {
-          if (!file.type.startsWith('image/')) return;
-
-          const item = document.createElement('div');
-          item.className = 'file-item';
-          item.textContent = file.name;
-          list.appendChild(item);
-
-          // Simulate upload
-          setTimeout(() => {
-            item.classList.add('success');
-            item.textContent = '✓ ' + file.name;
-          }, 500);
-        });
-
-        if (files.length > 0) {
-          status.classList.add('show', 'success');
-          status.textContent = `✓ ${files.length} image(s) ready to upload`;
-        }
+    // ── token screen ──
+    $('token-save-btn').addEventListener('click', async () => {
+      const t = $('token-input').value.trim();
+      if (!t) return;
+      $('token-save-btn').disabled = true;
+      $('token-save-btn').textContent = 'Checking…';
+      const ok = await testToken(t);
+      if (ok) { saveToken(t); show('s-upload'); }
+      else {
+        $('token-save-btn').disabled = false;
+        $('token-save-btn').textContent = 'Save & Continue →';
+        alert('❌ Token invalid or no access to repo. Check permissions.');
       }
+    });
+    $('token-input').addEventListener('keydown', e => { if (e.key === 'Enter') $('token-save-btn').click(); });
+
+    async function testToken(t) {
+      try {
+        const r = await fetch(`${API}/repos/${REPO}`, { headers: { Authorization: `Bearer ${t}` } });
+        return r.ok;
+      } catch { return false; }
     }
 
-    setupUpload('projects-input', 'projects-zone', 'projects-list', 'projects-status', 'projects');
-    setupUpload('products-input', 'products-zone', 'products-list', 'products-status', 'products');
+    // ── upload screen ──
+    $('signout-btn').addEventListener('click', () => { clearToken(); show('s-token'); });
+
+    // slot selection
+    document.querySelectorAll('.slot').forEach(slot => {
+      slot.addEventListener('click', () => {
+        document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+      });
+    });
+
+    // file selection
+    let selectedFile = null;
+    $('file-input').addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (!f) return;
+      selectedFile = f;
+      const zone = $('drop-zone');
+      zone.classList.add('has-file');
+      zone.innerHTML = '';
+      const img = document.createElement('img');
+      img.className = 'preview-img';
+      img.src = URL.createObjectURL(f);
+      const name = document.createElement('div');
+      name.className = 'preview-name';
+      name.textContent = `${f.name}  ·  ${(f.size / 1024 / 1024).toFixed(1)} MB`;
+      zone.appendChild(img);
+      zone.appendChild(name);
+      // re-attach input so user can change
+      const input = document.createElement('input');
+      input.type = 'file'; input.accept = 'image/*';
+      input.style.cssText = 'position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;';
+      input.addEventListener('change', e => { $('file-input').dispatchEvent; selectedFile = e.target.files[0]; input.dispatchEvent(new Event('change')); });
+      zone.style.position = 'relative';
+      zone.appendChild(input);
+      input.addEventListener('change', e2 => {
+        selectedFile = e2.target.files[0];
+        if (!selectedFile) return;
+        img.src = URL.createObjectURL(selectedFile);
+        name.textContent = `${selectedFile.name}  ·  ${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`;
+      });
+      $('upload-btn').disabled = false;
+    });
+
+    // upload
+    $('upload-btn').addEventListener('click', async () => {
+      if (!selectedFile) return;
+      const token = getToken();
+      const slot  = document.querySelector('input[name="slot"]:checked').value;
+      const compress = $('compress-toggle').checked;
+
+      $('upload-btn').disabled = true;
+      $('upload-btn').textContent = 'Uploading…';
+      setStatus('info', 'Preparing image…');
+      showProgress(10);
+
+      try {
+        const base64 = compress
+          ? await compressAndEncode(selectedFile, 2000, 0.88)
+          : await fileToBase64(selectedFile);
+
+        showProgress(30);
+        setStatus('info', 'Checking existing file…');
+
+        // get existing SHA if file already exists
+        let sha = null;
+        const getRes = await fetch(`${API}/repos/${REPO}/contents/${slot}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+
+        showProgress(55);
+        setStatus('info', 'Uploading to GitHub…');
+
+        const body = { message: `Upload ${slot}`, content: base64 };
+        if (sha) body.sha = sha;
+
+        const res = await fetch(`${API}/repos/${REPO}/contents/${slot}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        showProgress(100);
+
+        if (res.ok) {
+          setTimeout(() => show('s-success'), 400);
+        } else {
+          const err = await res.json();
+          throw new Error(err.message || 'Upload failed');
+        }
+      } catch (e) {
+        setStatus('error', '❌ ' + e.message);
+        $('upload-btn').disabled = false;
+        $('upload-btn').textContent = 'Upload to site';
+        showProgress(0);
+      }
+    });
+
+    $('again-btn').addEventListener('click', () => {
+      selectedFile = null;
+      const zone = $('drop-zone');
+      zone.className = 'drop-zone';
+      zone.innerHTML = `<input type="file" id="file-input" accept="image/*"><div class="drop-text"><span>📷</span>Tap to choose from camera roll</div>`;
+      $('file-input').addEventListener('change', e => $('file-input').dispatchEvent(new Event('change')));
+      // re-bind
+      $('file-input').addEventListener('change', e => {
+        const f = e.target.files[0]; if (!f) return;
+        selectedFile = f; zone.classList.add('has-file');
+        const img2 = document.createElement('img'); img2.className = 'preview-img'; img2.src = URL.createObjectURL(f);
+        const nm = document.createElement('div'); nm.className = 'preview-name'; nm.textContent = `${f.name}  ·  ${(f.size/1024/1024).toFixed(1)} MB`;
+        zone.innerHTML = ''; zone.appendChild(img2); zone.appendChild(nm);
+        $('upload-btn').disabled = false;
+      });
+      $('upload-btn').disabled = true;
+      $('upload-btn').textContent = 'Upload to site';
+      setStatus('', '');
+      showProgress(0);
+      show('s-upload');
+    });
+
+    // ── utils ──
+    function showProgress(pct) {
+      const w = $('progress-wrap'), b = $('progress-bar');
+      w.style.display = pct > 0 ? 'block' : 'none';
+      b.style.width = pct + '%';
+    }
+
+    function setStatus(type, msg) {
+      const el = $('status');
+      el.className = 'status-msg' + (type ? ' show ' + type : '');
+      el.textContent = msg;
+    }
+
+    function fileToBase64(file) {
+      return new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result.split(',')[1]);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+    }
+
+    function compressAndEncode(file, maxPx, quality) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          URL.revokeObjectURL(url);
+          let w = img.width, h = img.height;
+          if (w > maxPx || h > maxPx) {
+            if (w > h) { h = Math.round(h * maxPx / w); w = maxPx; }
+            else { w = Math.round(w * maxPx / h); h = maxPx; }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl.split(',')[1]);
+        };
+        img.onerror = reject;
+        img.src = url;
+      });
+    }
   </script>
 </body>
 </html>
