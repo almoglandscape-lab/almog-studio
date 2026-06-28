@@ -1,5 +1,5 @@
 # שרת סטטי מינימלי ב-PowerShell טהור (HttpListener) — ללא תלויות
-$root = "C:\Users\almog\Desktop\almog-studio"
+$root = "C:\Users\almog\iCloudDrive\Desktop\Work\almog-studio"
 $prefix = "http://localhost:4321/"
 
 $mime = @{

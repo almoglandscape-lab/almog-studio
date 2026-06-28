@@ -182,11 +182,13 @@
   </div>
 
   <script>
-    const CORRECT_PASSWORD = "almog2025";
+    const HASH = "bc878c42cb4d9cddb2bcda2eaec433585b97fa4099b447692c93653e16c4a929";
 
-    function login() {
+    async function login() {
       const pass = document.getElementById('passwordInput').value;
-      if (pass === CORRECT_PASSWORD) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pass));
+      const hex = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      if (hex === HASH) {
         localStorage.setItem('almogAdmin', 'true');
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('adminPanel').classList.remove('hidden');
@@ -197,6 +199,12 @@
         document.getElementById('passwordInput').value = '';
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('passwordInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') login();
+      });
+    });
 
     function logout() {
       localStorage.removeItem('almogAdmin');
