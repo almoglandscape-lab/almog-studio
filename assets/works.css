@@ -59,7 +59,7 @@
 }
 
 /* ===================== PROSE (philosophy / process / materials / faq) ===================== */
-.prose { max-width: 720px; margin: 0 auto; padding: clamp(120px, 20vh, 220px) clamp(20px, 5vw, 40px) clamp(80px, 14vh, 160px); }
+.prose { max-width: 610px; margin: 0 auto; padding: clamp(120px, 20vh, 220px) clamp(20px, 5vw, 40px) clamp(80px, 14vh, 160px); }
 .prose .kicker { display: block; margin-bottom: var(--f3); }
 .prose h1 {
   font-family: var(--display); font-weight: 500;
