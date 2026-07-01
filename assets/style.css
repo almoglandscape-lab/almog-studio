@@ -321,9 +321,7 @@ a { color: inherit; text-decoration: none; }
   .ticker-track:hover { animation-play-state: paused; -webkit-animation-play-state: paused; }
 }
 @media (max-width: 600px) {
-  .ticker-item { font-size: 9px; letter-spacing: 0.18em; }
-  .ticker-sep { padding: 0 12px; }
-  .ticker-track { animation-duration: 22s; -webkit-animation-duration: 22s; }
+  .ticker { display: none; }
 }
 .ticker-item {
   white-space: nowrap; padding: 13px 0;
