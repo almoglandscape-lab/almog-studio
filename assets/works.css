@@ -60,6 +60,7 @@
 }
 .w-gallery img.is-loaded { opacity: 1; }
 .w-gallery img:hover { transform: scale(1.02); }
+.w-gallery img.w-wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
 
 .w-cta { padding: clamp(60px, 12vh, 140px) 0; border-top: 1px solid var(--line); text-align: center; }
 .w-cta .bio-more { font-size: clamp(18px, 2.4vw, 26px); font-family: var(--display); color: var(--ink); }
