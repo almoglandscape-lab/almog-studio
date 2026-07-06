@@ -47,20 +47,24 @@
 .w-facts dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
 .w-facts dd { font-family: var(--display); font-size: 15px; color: var(--ink); }
 
+/* masonry — every photo keeps its natural aspect, no cropping */
 .w-gallery {
   grid-column: 1 / -1;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(14px, 2vw, 26px);
+  columns: 2;
+  column-gap: clamp(14px, 2vw, 26px);
   margin-top: clamp(21px, 4vh, 34px);
 }
 .w-gallery img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  width: 100%; height: auto; display: block;
+  break-inside: avoid;
+  margin-bottom: clamp(14px, 2vw, 26px);
   background: var(--linen); border-radius: 2px;
-  opacity: 0; transition: opacity 0.8s ease, transform 1.4s var(--soft);
+  opacity: 0; transition: opacity 0.8s ease;
 }
 .w-gallery img.is-loaded { opacity: 1; }
-.w-gallery img:hover { transform: scale(1.02); }
-.w-gallery img.w-wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+@media (max-width: 720px) {
+  .w-gallery { columns: 1; }
+}
 
 .w-cta { padding: clamp(60px, 12vh, 140px) 0; border-top: 1px solid var(--line); text-align: center; }
 .w-cta .bio-more { font-size: clamp(18px, 2.4vw, 26px); font-family: var(--display); color: var(--ink); }
