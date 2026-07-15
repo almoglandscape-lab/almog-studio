@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f1ea" />
+  <title>Almog Studio FC — תיק מותג</title>
+  <meta name="description" content="Almog Studio FC — מועדון כדורגל בדוי. תיק מותג: זהות, ערכים, סמל, צבעים וסגל. Ex Radice Lux — מהשורש, אור." />
+
+  <link rel="icon" href="../assets/symbol.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@300,400,500&display=swap" rel="stylesheet" />
+
+  <style>
+  :root{
+    /* --- studio base (inherited from assets/style.css) --- */
+    --ink:#16140f; --bark:#3a352c; --stone:#9a958b; --lichen:#cfc8b8;
+    --linen:#e9e3d6; --paper:#f4f1ea; --line:#e4dfd3; --olive:#706835; --white:#fff;
+
+    /* --- club extension: mediterranean / levantine accents --- */
+    --coral:#c8532f;      /* אלמוג · מספר 10 · הים */
+    --coral-deep:#a23d20;
+    --indigo:#1d4a52;     /* אריחים פרסיים · תימני · יווני */
+    --brass:#b28a3d;      /* פיליגרן · מנורה · פרטים */
+    --wine:#5c2b34;       /* גפן · יין · עומק */
+
+    --phi:1.618;
+    --f1:8px; --f2:13px; --f3:21px; --f4:34px; --f5:55px; --f6:89px; --f7:144px;
+    --grow:cubic-bezier(0.22,1,0.36,1);
+
+    --display:"Clash Display","Assistant",system-ui,sans-serif;
+    --sans:"Assistant","Satoshi",system-ui,sans-serif;
+    --mono:"Courier New",ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{
+    font-family:var(--sans); background:var(--paper); color:var(--ink);
+    line-height:1.65; overflow-x:hidden;
+    background-image:
+      radial-gradient(var(--line) 1px, transparent 1px);
+    background-size:22px 22px; background-position:0 0;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--coral);color:var(--paper);}
+
+  .wrap{max-width:920px;margin-inline:auto;padding-inline:clamp(20px,5vw,40px);}
+
+  /* ---------- eyebrow / section frame ---------- */
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--coral); direction:ltr;
+    display:flex; align-items:center; gap:12px; justify-content:flex-end;
+  }
+  .eyebrow::before{content:"";flex:1;height:1px;background:var(--line);}
+  section{padding-block:clamp(46px,8vw,90px); border-bottom:1px solid var(--line);}
+  .s-title{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(26px,5vw,40px); line-height:1.08; margin-block:16px 8px;
+    text-wrap:balance; letter-spacing:-.01em;
+  }
+  .lead{font-size:clamp(16px,2.2vw,19px);color:var(--bark);max-width:60ch;}
+  p{max-width:62ch;}
+  .muted{color:var(--stone);}
+
+  /* ---------- cover ---------- */
+  .cover{
+    min-height:96vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    gap:clamp(18px,3vw,30px); border-bottom:1px solid var(--line);
+    padding:clamp(40px,8vw,80px) 20px;
+  }
+  .crest{width:clamp(150px,34vw,220px);height:auto;filter:drop-shadow(0 8px 24px rgba(22,20,15,.10));}
+  .cover-name{
+    font-family:var(--display); font-weight:600; direction:ltr;
+    font-size:clamp(30px,7vw,58px); letter-spacing:.02em; line-height:1;
+  }
+  .cover-motto{
+    font-family:var(--mono); direction:ltr; text-transform:uppercase;
+    letter-spacing:.34em; font-size:clamp(11px,2vw,14px); color:var(--coral);
+  }
+  .cover-est{
+    font-family:var(--mono); direction:ltr; letter-spacing:.2em;
+    font-size:12px; color:var(--stone);
+    display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center;
+  }
+  .cover-est span{white-space:nowrap;}
+  .cover-tag{
+    max-width:38ch; font-size:clamp(15px,2.4vw,18px); color:var(--bark);
+    font-style:italic; margin-top:6px; direction:ltr;
+  }
+
+  /* ---------- values ---------- */
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--f3);margin-top:var(--f4);}
+  .card{border:1px solid var(--line);background:rgba(255,255,255,.5);padding:var(--f3) var(--f3) var(--f4);border-radius:2px;}
+  .card h3{font-family:var(--display);font-weight:500;font-size:20px;margin-bottom:6px;}
+  .card .en{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--brass);text-transform:uppercase;direction:ltr;}
+  .card p{font-size:15px;color:var(--bark);margin-top:8px;}
+
+  /* ---------- world word field ---------- */
+  .world{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:var(--f4);direction:ltr;justify-content:flex-start;}
+  .world span{
+    font-family:var(--display);font-weight:400;border:1px solid var(--line);
+    padding:6px 12px;border-radius:100px;font-size:14px;color:var(--bark);
+    transition:.4s var(--grow);
+  }
+  .world span:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-2px);}
+  .world span.hot{background:var(--olive);color:var(--paper);border-color:var(--olive);}
+
+  /* ---------- crest symbolism ---------- */
+  .split{display:grid;grid-template-columns:1fr;gap:var(--f4);align-items:center;margin-top:var(--f3);}
+  @media(min-width:720px){.split{grid-template-columns:230px 1fr;}}
+  .split .crest{width:100%;max-width:230px;margin-inline:auto;}
+  .sym{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .sym li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--bark);}
+  .sym b{color:var(--ink);font-weight:600;}
+  .sym .dot{flex:none;width:9px;height:9px;margin-top:7px;border-radius:2px;transform:rotate(45deg);background:var(--brass);}
+
+  /* ---------- colors ---------- */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--f2);margin-top:var(--f4);}
+  .sw{border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--white);}
+  .sw-chip{height:88px;}
+  .sw-body{padding:12px 14px;}
+  .sw-name{font-family:var(--display);font-weight:500;font-size:16px;}
+  .sw-en{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);direction:ltr;}
+  .sw-hex{font-family:var(--mono);font-size:12px;color:var(--bark);direction:ltr;margin-top:4px;}
+  .sw-note{font-size:12.5px;color:var(--stone);margin-top:6px;}
+
+  .kits{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--f2);margin-top:var(--f3);}
+  .kit{text-align:center;font-size:13px;}
+  .kit-bar{height:12px;border-radius:100px;margin-bottom:8px;border:1px solid rgba(0,0,0,.06);}
+  .kit b{font-family:var(--display);font-weight:500;display:block;font-size:14px;}
+  .kit span{color:var(--stone);font-family:var(--mono);font-size:10px;letter-spacing:.12em;direction:ltr;text-transform:uppercase;}
+
+  /* ---------- squad table ---------- */
+  .tbl-scroll{overflow-x:auto;margin-top:var(--f4);border:1px solid var(--line);border-radius:3px;}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px;background:var(--white);}
+  th,td{padding:11px 14px;text-align:right;border-bottom:1px solid var(--line);}
+  thead th{
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--stone);font-weight:400;background:var(--linen);position:sticky;top:0;
+  }
+  tbody tr:last-child td{border-bottom:0;}
+  .num{font-family:var(--display);font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;width:52px;text-align:center;color:var(--ink);}
+  .name-he{font-weight:600;}
+  .name-en{font-family:var(--mono);font-size:11px;color:var(--stone);letter-spacing:.08em;direction:ltr;text-transform:uppercase;}
+  tr.captain{background:linear-gradient(90deg,rgba(200,83,47,.10),transparent);}
+  tr.captain .num{color:var(--coral);}
+  .badge-c{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--paper);background:var(--coral);padding:2px 6px;border-radius:100px;margin-inline-start:6px;vertical-align:middle;}
+  .pos{font-family:var(--mono);font-size:11px;color:var(--brass);letter-spacing:.08em;direction:ltr;}
+
+  /* ---------- checklist / roadmap ---------- */
+  .check{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px 18px;margin-top:var(--f3);}
+  .check li{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--bark);}
+  .check .box{flex:none;width:16px;height:16px;border:1.5px solid var(--stone);border-radius:3px;}
+
+  .steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:2px;margin-top:var(--f3);}
+  .steps li{
+    display:flex;gap:16px;align-items:baseline;padding:14px 4px;border-bottom:1px solid var(--line);
+    counter-increment:s;
+  }
+  .steps li::before{
+    content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:12px;
+    color:var(--stone);flex:none;width:28px;direction:ltr;
+  }
+  .steps li .t{font-family:var(--display);font-weight:500;font-size:16px;}
+  .steps li.done{color:var(--stone);}
+  .steps li.done .t{color:var(--olive);}
+  .steps li.done::after{content:"✓";color:var(--olive);margin-inline-start:auto;font-weight:700;}
+  .steps li.now{background:linear-gradient(90deg,rgba(200,83,47,.08),transparent);}
+  .steps li.now .t{color:var(--coral);}
+  .steps li.now::after{content:"אנחנו כאן";font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--coral);margin-inline-start:auto;}
+  .steps li .t small{font-family:var(--sans);font-weight:400;color:var(--stone);font-size:13px;margin-inline-start:8px;}
+
+  /* ---------- footer ---------- */
+  footer{text-align:center;padding:var(--f6) 20px var(--f5);}
+  footer .fmotto{font-family:var(--mono);letter-spacing:.3em;font-size:12px;color:var(--coral);direction:ltr;text-transform:uppercase;}
+  footer .ffine{color:var(--stone);font-size:12px;margin-top:14px;}
+  footer a{color:var(--olive);border-bottom:1px solid var(--line);}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+  a:focus-visible,span:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  </style>
+</head>
+<body>
+
+  <!-- ===================== COVER ===================== -->
+  <header class="cover">
+    <!-- CREST -->
+    <svg class="crest" viewBox="0 0 200 216" role="img" aria-label="Almog Studio FC crest">
+      <defs>
+        <clipPath id="hexClip">
+          <path d="M100 8 L176 52 L176 140 L100 184 L24 140 L24 52 Z"/>
+        </clipPath>
+      </defs>
+      <!-- outer hexagon -->
+      <path d="M100 8 L176 52 L176 140 L100 184 L24 140 L24 52 Z"
+            fill="#f4f1ea" stroke="#16140f" stroke-width="3"/>
+      <!-- inner ring -->
+      <path d="M100 20 L165 58 L165 134 L100 172 L35 134 L35 58 Z"
+            fill="none" stroke="#b28a3d" stroke-width="1.2"/>
+      <!-- light / flame at top (Lux) -->
+      <g stroke="#c8532f" stroke-width="2.2" stroke-linecap="round">
+        <line x1="100" y1="34" x2="100" y2="46"/>
+        <line x1="90" y1="38" x2="94" y2="47"/>
+        <line x1="110" y1="38" x2="106" y2="47"/>
+      </g>
+      <circle cx="100" cy="33" r="3.4" fill="#c8532f"/>
+      <!-- monogram A (echo of the Hebrew א) -->
+      <text x="100" y="122" text-anchor="middle" font-family="Clash Display, Georgia, serif"
+            font-weight="600" font-size="74" fill="#16140f">A</text>
+      <!-- olive wreath -->
+      <g stroke="#706835" stroke-width="2" fill="#706835" stroke-linecap="round">
+        <path d="M100 162 Q86 156 84 144" fill="none"/>
+        <path d="M100 162 Q114 156 116 144" fill="none"/>
+        <ellipse cx="88" cy="152" rx="6" ry="2.8" transform="rotate(40 88 152)"/>
+        <ellipse cx="84" cy="145" rx="6" ry="2.8" transform="rotate(15 84 145)"/>
+        <ellipse cx="112" cy="152" rx="6" ry="2.8" transform="rotate(-40 112 152)"/>
+        <ellipse cx="116" cy="145" rx="6" ry="2.8" transform="rotate(-15 116 145)"/>
+      </g>
+      <circle cx="100" cy="163" r="3.2" fill="#c8532f"/>
+      <!-- banner -->
+      <path d="M40 172 L160 172 L150 190 L50 190 Z" fill="#706835"/>
+      <text x="100" y="185" text-anchor="middle" font-family="Courier New, monospace"
+            font-size="10" letter-spacing="4" fill="#f4f1ea">EST. 1996</text>
+    </svg>
+
+    <div class="cover-name">ALMOG STUDIO FC</div>
+    <div class="cover-motto">Ex Radice Lux</div>
+    <div class="cover-est">
+      <span>EST. 1996</span><span>·</span><span>FOUNDED 10 · 10</span><span>·</span><span>№ 10 — ALMOG</span>
+    </div>
+    <p class="cover-tag">"Don't design a football shirt. Design a football culture."</p>
+  </header>
+
+  <main>
+
+    <!-- ===================== 01 · IDEA ===================== -->
+    <section id="idea"><div class="wrap">
+      <p class="eyebrow">01 — The Idea</p>
+      <h2 class="s-title">לא קולקציית חולצות.<br>מועדון.</h2>
+      <p class="lead">החולצות הן רק התוצר של העולם הזה. המטרה: שמי שיראה את החולצה ישאל
+        “איזו קבוצה זאת?” — ולא “איזה מותג עשה חולצת כדורגל.”</p>
+      <p style="margin-top:22px">המועדון צריך להרגיש אמיתי. כזה שקיים כבר עשורים, עם היסטוריה, ערכים,
+        שפה וזהות. הסטודיו הוא המועדון. הצוות הוא הסגל. כל פרויקט הוא משחק.
+        כל גינה היא אצטדיון. כל צמח הוא שחקן. כל עונה היא קולקציה.</p>
+    </div></section>
+
+    <!-- ===================== 02 · IDENTITY ===================== -->
+    <section id="identity"><div class="wrap">
+      <p class="eyebrow">02 — Identity</p>
+      <h2 class="s-title">הזהות</h2>
+      <p class="lead">שם אחד, שקיים כבר 30 שנה. הסטודיו במרכז — כי הוא המקור.</p>
+      <ul class="sym" style="margin-top:26px">
+        <li><span class="dot"></span><span><b>השם:</b> ALMOG STUDIO FC — הסטודיו הוא המועדון. אין הפרדה.</span></li>
+        <li><span class="dot"></span><span><b>נוסד:</b> 1996 — שנת הלידה. המועדון והמייסד נולדו יחד.</span></li>
+        <li><span class="dot"></span><span><b>תאריך הייסוד:</b> 10.10 — היום שבו נולד מספר 10.</span></li>
+        <li><span class="dot"></span><span><b>המסגרת:</b> ים־תיכוני · לבנטיני. לא אירופאי מרוחק — חם, קרוב, מהאדמה הזאת.</span></li>
+        <li><span class="dot"></span><span><b>העדות:</b> פרסי · תימני · יווני — שלוש נשמות שנפגשות בכלי אחד. פיליגרן, אריחים, אבן, אור.</span></li>
+      </ul>
+    </div></section>
+
+    <!-- ===================== 03 · VALUES ===================== -->
+    <section id="values"><div class="wrap">
+      <p class="eyebrow">03 — Values &amp; Motto</p>
+      <h2 class="s-title">Ex Radice Lux</h2>
+      <p class="lead">לטינית: מהשורש, אור. השורש בחושך — הפרי באור. זה כל הסיפור, בשלוש מילים.</p>
+      <div class="grid3">
+        <div class="card"><span class="en">Roots</span><h3>שורשים</h3><p>צמיחה איטית, סבלנות, זיכרון של מאיפה באנו. מה שלא רואים מחזיק את מה שרואים.</p></div>
+        <div class="card"><span class="en">Process</span><h3>תהליך</h3><p>היופי בדרך, לא רק בתוצאה. עונה נבנית משחק־משחק, לא בבת אחת.</p></div>
+        <div class="card"><span class="en">Composition</span><h3>קומפוזיציה</h3><p>שום דבר מקרי. כל אלמנט על החולצה יושב במקום שלו ביחס זהב, כמו בגינה.</p></div>
+      </div>
+    </div></section>
+
+    <!-- ===================== 04 · WORLD ===================== -->
+    <section id="world"><div class="wrap">
+      <p class="eyebrow">04 — The World</p>
+      <h2 class="s-title">העולם</h2>
+      <p class="lead">הצמחים הם לא הנושא — הם חלק מעולם גדול הרבה יותר. זה מאגר החומרים
+        שממנו נולדים השחקנים, הסיפורים והחולצות.</p>
+      <div class="world">
+        <span class="hot">Plants</span><span>Art</span><span>Nature</span><span>Food</span>
+        <span class="hot">Wine</span><span>Fire</span><span>Water</span><span>Stone</span>
+        <span>Concrete</span><span>Steel</span><span>Wood</span><span class="hot">Shadow</span>
+        <span class="hot">Light</span><span>Travel</span><span>Italy</span><span>Sketching</span>
+        <span>Human Anatomy</span><span>Outdoor Living</span><span>Craft</span><span>Process</span>
+        <span>Composition</span><span class="hot">Love</span><span>People</span>
+      </div>
+    </div></section>
+
+    <!-- ===================== 05 · CREST ===================== -->
+    <section id="crest"><div class="wrap">
+      <p class="eyebrow">05 — The Crest</p>
+      <h2 class="s-title">הסמל</h2>
+      <p class="lead">משושה — הצורה של המזרח התיכון: אריח, כוורת, מגן. בפנים, סיפור שלם
+        שאפשר לקרוא רק אם עוצרים להסתכל.</p>
+      <div class="split">
+        <svg class="crest" viewBox="0 0 200 216" role="img" aria-label="Almog Studio FC crest — detail">
+          <path d="M100 8 L176 52 L176 140 L100 184 L24 140 L24 52 Z" fill="#fff" stroke="#16140f" stroke-width="3"/>
+          <path d="M100 20 L165 58 L165 134 L100 172 L35 134 L35 58 Z" fill="none" stroke="#b28a3d" stroke-width="1.2"/>
+          <g stroke="#c8532f" stroke-width="2.2" stroke-linecap="round">
+            <line x1="100" y1="34" x2="100" y2="46"/><line x1="90" y1="38" x2="94" y2="47"/><line x1="110" y1="38" x2="106" y2="47"/>
+          </g>
+          <circle cx="100" cy="33" r="3.4" fill="#c8532f"/>
+          <text x="100" y="122" text-anchor="middle" font-family="Clash Display, Georgia, serif" font-weight="600" font-size="74" fill="#16140f">A</text>
+          <g stroke="#706835" stroke-width="2" fill="#706835" stroke-linecap="round">
+            <path d="M100 162 Q86 156 84 144" fill="none"/>
+            <path d="M100 162 Q114 156 116 144" fill="none"/>
+            <ellipse cx="88" cy="152" rx="6" ry="2.8" transform="rotate(40 88 152)"/>
+            <ellipse cx="84" cy="145" rx="6" ry="2.8" transform="rotate(15 84 145)"/>
+            <ellipse cx="112" cy="152" rx="6" ry="2.8" transform="rotate(-40 112 152)"/>
+            <ellipse cx="116" cy="145" rx="6" ry="2.8" transform="rotate(-15 116 145)"/>
+          </g>
+          <circle cx="100" cy="163" r="3.2" fill="#c8532f"/>
+          <path d="M40 172 L160 172 L150 190 L50 190 Z" fill="#706835"/>
+          <text x="100" y="185" text-anchor="middle" font-family="Courier New, monospace" font-size="10" letter-spacing="4" fill="#f4f1ea">EST. 1996</text>
+        </svg>
+        <ul class="sym">
+          <li><span class="dot"></span><span><b>המשושה</b> — אריח לבנטיני, כוורת, ורמז שקט למגן דוד. שש צלעות, בלי לצעוק.</span></li>
+          <li><span class="dot"></span><span><b>האות A</b> — אלמוג. הצורה מהדהדת את הא׳ מהלוגו הקיים שלך.</span></li>
+          <li><span class="dot"></span><span><b>ענף הזית</b> — שורשים, שלום, שמן. השמן הזה הוא גם האור של המנורה.</span></li>
+          <li><span class="dot"></span><span><b>הלהבה / האור</b> — <em>Lux</em>. נר תמיד. מה שנשאר דולק אחרי כולם.</span></li>
+          <li><span class="dot"></span><span><b>הזית האדום</b> — נגיעת אלמוג. הפרט האחד שצבעוני, כמו מספר 10.</span></li>
+          <li><span class="dot"></span><span><b>הסמלים היהודיים</b> נכנסים <em>בעקיפין</em> — זית, אור, שש, שבעת המינים — לא באופן דתי ישיר.</span></li>
+        </ul>
+      </div>
+    </div></section>
+
+    <!-- ===================== 06 · COLORS ===================== -->
+    <section id="colors"><div class="wrap">
+      <p class="eyebrow">06 — Colours</p>
+      <h2 class="s-title">הצבעים</h2>
+      <p class="lead">בסיס הסטודיו — קרם, שחור חם, זית — נשמר. עליו נוספת פלטה ים־תיכונית:
+        אלמוג, אינדיגו פרסי ופליז. אותה משפחה, יותר חום.</p>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#706835"></div><div class="sw-body"><div class="sw-name">זית</div><div class="sw-en">Olive · Primary</div><div class="sw-hex">#706835</div><div class="sw-note">הצבע הראשי. שורשים, שמן, אור המנורה.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#f4f1ea;border-bottom:1px solid var(--line)"></div><div class="sw-body"><div class="sw-name">אבן גיר</div><div class="sw-en">Limestone · Base</div><div class="sw-hex">#f4f1ea</div><div class="sw-note">קרם ירושלמי. הבד, הנייר, האור.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#c8532f"></div><div class="sw-body"><div class="sw-name">אלמוג</div><div class="sw-en">Coral · Accent</div><div class="sw-hex">#c8532f</div><div class="sw-note">מספר 10. הים, החום, הנגיעה האחת.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1d4a52"></div><div class="sw-body"><div class="sw-name">אינדיגו פרסי</div><div class="sw-en">Persian Indigo</div><div class="sw-hex">#1d4a52</div><div class="sw-note">אריחים, עומק, לילה ים־תיכוני.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#b28a3d"></div><div class="sw-body"><div class="sw-name">פליז</div><div class="sw-en">Brass · Detail</div><div class="sw-hex">#b28a3d</div><div class="sw-note">פיליגרן תימני, מנורה, קווי פרט.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#5c2b34"></div><div class="sw-body"><div class="sw-name">יין</div><div class="sw-en">Wine · Deep</div><div class="sw-hex">#5c2b34</div><div class="sw-note">גפן. עומק לערכת השלישית.</div></div></div>
+      </div>
+
+      <h3 style="font-family:var(--display);font-weight:500;margin-top:var(--f5);font-size:18px">שלוש הערכות</h3>
+      <div class="kits">
+        <div class="kit"><div class="kit-bar" style="background:linear-gradient(90deg,#706835 70%,#f4f1ea 70%)"></div><b>בית</b><span>Home</span></div>
+        <div class="kit"><div class="kit-bar" style="background:linear-gradient(90deg,#f4f1ea 70%,#706835 70%)"></div><b>חוץ</b><span>Away</span></div>
+        <div class="kit"><div class="kit-bar" style="background:linear-gradient(90deg,#1d4a52 60%,#c8532f 60%)"></div><b>שלישית</b><span>Third</span></div>
+      </div>
+    </div></section>
+
+    <!-- ===================== 07 · SQUAD ===================== -->
+    <section id="squad"><div class="wrap">
+      <p class="eyebrow">07 — The Squad</p>
+      <h2 class="s-title">הסגל</h2>
+      <p class="lead">הרכב פתיחה — טיוטה. השדרה בנויה על <b>שבעת המינים</b> (הצמחים של הארץ)
+        והחומרים של העולם. כל שחקן: מספר, שם, אישיות, סיפור. תמלא ותשנה בחופשיות.</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th class="num">№</th><th>שם</th><th>שם לועזי</th><th>עמדה</th><th>הסיפור בקצרה</th></tr>
+          </thead>
+          <tbody>
+            <tr class="captain">
+              <td class="num">10</td>
+              <td><span class="name-he">אלמוג</span><span class="badge-c">CAPTAIN</span></td>
+              <td class="name-en">Coral</td><td class="pos">Playmaker</td>
+              <td>הפליימייקר. רואה את המהלך לפני שהוא קורה. נולד 10.10.</td>
+            </tr>
+            <tr><td class="num">9</td><td class="name-he">תמר</td><td class="name-en">Date Palm</td><td class="pos">Striker</td><td>גבוה, מתוק, שמש. סוגר כל עונה בשער.</td></tr>
+            <tr><td class="num">7</td><td class="name-he">גפן</td><td class="name-en">Vine</td><td class="pos">Winger</td><td>יין וקסם. בורח בקו, מגיש מהאגף.</td></tr>
+            <tr><td class="num">11</td><td class="name-he">רימון</td><td class="name-en">Pomegranate</td><td class="pos">Winger</td><td>שפע — שש מאות שלוש עשרה סיבות לתקוף.</td></tr>
+            <tr><td class="num">8</td><td class="name-he">חיטה</td><td class="name-en">Wheat</td><td class="pos">Midfield</td><td>הלחם של הקבוצה. רץ בלי סוף, מזין את כולם.</td></tr>
+            <tr><td class="num">6</td><td class="name-he">זית</td><td class="name-en">Olive</td><td class="pos">Anchor</td><td>עוגן. שמן שנהיה אור. שקט, נצחי, לא זז.</td></tr>
+            <tr><td class="num">4</td><td class="name-he">אבן</td><td class="name-en">Stone</td><td class="pos">Centre-back</td><td>היסוד. עליו נשען כל השאר.</td></tr>
+            <tr><td class="num">5</td><td class="name-he">בטון</td><td class="name-en">Concrete</td><td class="pos">Centre-back</td><td>כוח מודרני. גס, כן, בלתי חדיר.</td></tr>
+            <tr><td class="num">3</td><td class="name-he">מים</td><td class="name-en">Water</td><td class="pos">Full-back</td><td>זורם, מסתגל, ממלא כל חלל.</td></tr>
+            <tr><td class="num">2</td><td class="name-he">אש</td><td class="name-en">Fire</td><td class="pos">Full-back</td><td>אנרגיה שלא נגמרת. עולה ויורד כל המשחק.</td></tr>
+            <tr><td class="num">1</td><td class="name-he">אור</td><td class="name-en">Light</td><td class="pos">Goalkeeper</td><td>האור האחרון. <em>Lux</em>. שומר מאחור על הכל.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:16px;font-size:13.5px">ספסל / מאגר: שעורה · תאנה · אלון (Oak) · פלדה (Steel) · צל (Shadow) · מוס (Moss) · שורש (Root) · מונסטרה.</p>
+    </div></section>
+
+    <!-- ===================== 08 · LANGUAGE ===================== -->
+    <section id="language"><div class="wrap">
+      <p class="eyebrow">08 — Language &amp; Type</p>
+      <h2 class="s-title">השפה</h2>
+      <p class="lead">אותה טיפוגרפיה של הסטודיו — כדי שהמועדון יישב באותה משפחה.</p>
+      <div class="grid3">
+        <div class="card"><span class="en">Display</span><h3 style="font-family:var(--display)">Clash Display</h3><p>כותרות, שם המועדון, מספרי גב. חזק, מודרני, נקי.</p></div>
+        <div class="card"><span class="en">Text · עברית</span><h3>Assistant</h3><p>גוף הטקסט, עברית ולועזית. שקט וקריא.</p></div>
+        <div class="card"><span class="en">Data · Labels</span><h3 style="font-family:var(--mono)">Mono</h3><p>מספרים, תאריכים, תוויות ארכיון. ‎EST. 1996‎.</p></div>
+      </div>
+      <p style="margin-top:24px"><b>A / א</b> — האות היא הציר. הלוגו הקיים הוא א׳; המונוגרם הלועזי הוא A.
+        השתיים מהדהדות זו את זו — עברית ולבנט מצד אחד, כדורגל אירופאי מהצד השני.</p>
+    </div></section>
+
+    <!-- ===================== 09 · ASSETS ===================== -->
+    <section id="assets"><div class="wrap">
+      <p class="eyebrow">09 — Brand Assets</p>
+      <h2 class="s-title">נכסי המותג</h2>
+      <p class="lead">מה שצריך כדי שהמועדון ירגיש אמיתי — לא רק חולצה, אלא עולם שלם.</p>
+      <ul class="check">
+        <li><span class="box"></span>Crest / סמל</li>
+        <li><span class="box"></span>Badges / תגים</li>
+        <li><span class="box"></span>Patches / פאצ'ים</li>
+        <li><span class="box"></span>Typography / טיפוגרפיה</li>
+        <li><span class="box"></span>Numbers / מספרים</li>
+        <li><span class="box"></span>Motto / מוטו</li>
+        <li><span class="box"></span>Seasons / עונות</li>
+        <li><span class="box"></span>Tags / תוויות</li>
+        <li><span class="box"></span>Care labels / הוראות כביסה</li>
+        <li><span class="box"></span>Membership / חברות</li>
+        <li><span class="box"></span>Archive / ארכיון</li>
+      </ul>
+    </div></section>
+
+    <!-- ===================== 10 · ROADMAP ===================== -->
+    <section id="road"><div class="wrap">
+      <p class="eyebrow">10 — The Path</p>
+      <h2 class="s-title">הדרך</h2>
+      <p class="lead">קודם המועדון, רק בסוף החולצה. זה הסדר — וזה איפה שאנחנו.</p>
+      <ul class="steps">
+        <li class="done"><span class="t">זהות המועדון <small>שם · נוסד · מסגרת</small></span></li>
+        <li class="done"><span class="t">ערכים ומוטו <small>Ex Radice Lux</small></span></li>
+        <li class="done"><span class="t">השפה <small>טיפוגרפיה · צבעים</small></span></li>
+        <li class="now"><span class="t">הסמל <small>משושה · לחדד ולנקות</small></span></li>
+        <li><span class="t">הצבעים הסופיים <small>לנעול ערכות בית/חוץ/שלישית</small></span></li>
+        <li><span class="t">הסגל <small>למלא כל שחקן: אישיות + סיפור</small></span></li>
+        <li><span class="t">לעצב חולצות <small>ורק אז</small></span></li>
+      </ul>
+    </div></section>
+
+  </main>
+
+  <footer>
+    <div class="fmotto">Ex Radice Lux</div>
+    <p class="ffine">ALMOG STUDIO FC · Est. 1996 · תיק מותג — טיוטה חיה</p>
+    <p class="ffine">Instagram נפרד למועדון — <a href="#">@almog.studio.fc</a> (רעיון, לא מחייב)</p>
+  </footer>
+
+</body>
+</html>
