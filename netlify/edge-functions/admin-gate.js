@@ -116,4 +116,4 @@ export default async (request, context) => {
   return html(loginPage(""), 401);
 };
 
-export const config = { path: ["/admin", "/admin/*"] };
+// Path is declared in netlify.toml ([[edge_functions]]).
