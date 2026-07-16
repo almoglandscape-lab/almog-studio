@@ -1,0 +1,10 @@
+# Netlify configuration — Almog Studio
+
+# Gate the Backstage admin behind the edge auth function.
+[[edge_functions]]
+  path = "/admin"
+  function = "admin-gate"
+
+[[edge_functions]]
+  path = "/admin/*"
+  function = "admin-gate"
