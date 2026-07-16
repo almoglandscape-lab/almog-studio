@@ -2,6 +2,19 @@
    ALMOG STUDIO — core interactions
    ============================================================ */
 (function () {
+  // language: first visit with a Hebrew browser lands on /he/
+  try {
+    var hePages = ["/", "/works/", "/philosophy/", "/process/", "/materials/"];
+    var path = location.pathname;
+    var isHe = path.indexOf("/he/") === 0 || path === "/he";
+    if (!localStorage.getItem("lang") && !isHe && hePages.indexOf(path) !== -1 &&
+        (navigator.language || "").toLowerCase().indexOf("he") === 0) {
+      localStorage.setItem("lang", "he");
+      location.replace("/he" + path);
+      return;
+    }
+  } catch (e) {}
+
   // year
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
@@ -23,12 +36,15 @@
   var overlay = document.getElementById("nav-overlay");
   if (toggle && overlay) {
     var label = toggle.querySelector(".nav-toggle-label");
+    var heUI = document.documentElement.lang === "he";
+    var txtOpen = heUI ? "תפריט" : "Menu";
+    var txtClose = heUI ? "סגירה" : "Close";
 
     var setMenu = function (open) {
       overlay.classList.toggle("open", open);
       overlay.setAttribute("aria-hidden", open ? "false" : "true");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      label.textContent = open ? "Close" : "Menu";
+      label.textContent = open ? txtClose : txtOpen;
       document.body.style.overflow = open ? "hidden" : "";
     };
     toggle.addEventListener("click", function () {

@@ -7,6 +7,9 @@
   <title>Works · Almog Studio</title>
   <meta name="description" content="Selected gardens and outdoor spaces by Almog, landscape artist. White Jungle, Low of Nature, Sky Garden and more." />
   <link rel="canonical" href="https://almog.studio/works/" />
+  <link rel="alternate" hreflang="en" href="https://almog.studio/works/" />
+  <link rel="alternate" hreflang="he" href="https://almog.studio/he/works/" />
+  <link rel="alternate" hreflang="x-default" href="https://almog.studio/works/" />
 
   <script type="application/ld+json">
   {
@@ -65,9 +68,12 @@
 
   <header class="nav nav--solid" id="nav">
     <a href="../" class="nav-mark" aria-label="Almog Studio"><img src="../assets/symbol.png" alt="" /></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+    <div class="nav-right">
+      <a class="lang-switch" href="../he/works/" onclick="localStorage.setItem('lang','he')" lang="he">עב</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
       <span class="nav-toggle-label">Menu</span><span class="bars"><span></span><span></span></span>
     </button>
+    </div>
   </header>
 
   <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">

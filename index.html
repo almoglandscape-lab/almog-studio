@@ -8,7 +8,7 @@
   <meta name="description" content="Almog is a landscape artist and outdoor designer. Honest gardens of stone, green and light, composed with passion and patience." />
   <link rel="canonical" href="https://almog.studio/" />
   <link rel="alternate" hreflang="en" href="https://almog.studio/" />
-  <link rel="alternate" hreflang="he-IL" href="https://almog.studio/" />
+  <link rel="alternate" hreflang="he" href="https://almog.studio/he/" />
   <link rel="alternate" hreflang="x-default" href="https://almog.studio/" />
 
   <meta property="og:type" content="website" />
@@ -110,10 +110,13 @@
     <a href="#top" class="nav-mark" aria-label="Almog Studio">
       <img src="assets/symbol.png" alt="" />
     </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+    <div class="nav-right">
+      <a class="lang-switch" href="he/" onclick="localStorage.setItem('lang','he')" lang="he">עב</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
       <span class="nav-toggle-label">Menu</span>
       <span class="bars"><span></span><span></span></span>
     </button>
+    </div>
   </header>
 
   <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
