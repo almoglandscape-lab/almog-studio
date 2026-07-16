@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>המדריך לתכנון גינה · אלמוג</title>
+  <meta name="description" content="השיטה שבה אני מתכנן גינות פרטיות שנראות כמו יצירה. פלטות צבע, יחס הזהב, והעין של אמן, מרוכזים לראשונה במדריך אחד." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="המדריך לתכנון גינה · אלמוג" />
+  <meta property="og:description" content="לתכנן גינה שנראית כמו יצירה. השיטה, לראשונה בכתב." />
+  <meta property="og:image" content="https://almog.studio/assets/wordmark.png" />
+
+  <link rel="icon" type="image/png" href="../assets/symbol.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1038215691786700');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {content_name: 'Garden Guide', content_category: 'Digital Product'});
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1038215691786700&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel -->
+
+  <style>
+  :root{
+    --ink:#1d1d1f;        /* apple near black */
+    --grey:#6e6e73;       /* apple secondary text */
+    --hair:#d2d2d7;       /* apple hairline */
+    --mist:#f5f5f7;       /* apple light section */
+    --white:#ffffff;
+    --accent:#6b7a3d;     /* single warm accent, garden olive */
+    --accent-dk:#59662f;
+    --max:980px;
+    --grow:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{font-family:"Heebo",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--white);color:var(--ink);line-height:1.5;overflow-x:hidden;font-weight:400;}
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#fff;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(22px,5vw,40px);}
+
+  /* ===== STICKY BUY BAR ===== */
+  .buybar{position:fixed;inset:0 0 auto 0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair);
+    transform:translateY(-100%);transition:transform .5s var(--grow);}
+  .buybar.show{transform:none;}
+  .buybar .in{max-width:var(--max);margin:0 auto;padding:11px clamp(22px,5vw,40px);display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .buybar .btxt{display:flex;flex-direction:column;line-height:1.25;}
+  .buybar .btxt b{font-weight:600;font-size:15px;}
+  .buybar .btxt span{font-size:12px;color:var(--grey);}
+  .buybar .bcta{background:var(--accent);color:#fff;font-weight:600;font-size:14px;padding:9px 22px;border-radius:980px;white-space:nowrap;transition:background .3s;}
+  .buybar .bcta:hover{background:var(--accent-dk);}
+  @media(max-width:480px){.buybar .btxt span{display:none;}}
+
+  /* ===== BUTTONS ===== */
+  .cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;font-weight:600;
+    font-size:clamp(16px,2vw,19px);padding:15px 34px;border-radius:980px;cursor:pointer;border:0;transition:background .3s,transform .3s var(--grow);}
+  .cta-fill{background:var(--accent);color:#fff;}
+  .cta-fill:hover{background:var(--accent-dk);transform:scale(1.02);}
+  .cta-line{background:transparent;color:var(--accent);border:1px solid var(--accent);}
+  .cta-line:hover{background:var(--accent);color:#fff;}
+  .plink{display:inline-block;margin-top:16px;color:var(--accent);font-weight:500;font-size:clamp(15px,1.8vw,18px);}
+  .plink:hover{text-decoration:underline;}
+
+  /* ===== SECTION RHYTHM ===== */
+  section{padding:clamp(72px,13vh,132px) 0;text-align:center;}
+  .mist{background:var(--mist);}
+  .dark{background:var(--ink);color:var(--white);}
+  .kick{font-weight:600;font-size:clamp(14px,1.7vw,19px);color:var(--accent);letter-spacing:.01em;margin-bottom:14px;}
+  .dark .kick{color:#a9b67e;}
+  h1,h2{font-weight:800;letter-spacing:-0.02em;line-height:1.06;}
+  h1{font-size:clamp(40px,8vw,88px);}
+  h2{font-size:clamp(32px,5.6vw,64px);}
+  .sub{font-weight:400;color:var(--grey);font-size:clamp(19px,2.6vw,28px);line-height:1.4;max-width:24ch;margin:22px auto 0;}
+  .dark .sub{color:#c7c7cc;}
+  p.body{font-weight:400;color:var(--grey);font-size:clamp(17px,2.1vw,21px);line-height:1.55;max-width:52ch;margin:20px auto 0;}
+  .dark p.body{color:#c7c7cc;}
+  strong{font-weight:700;color:var(--ink);}
+  .dark strong{color:#fff;}
+
+  /* ===== HERO ===== */
+  .hero{padding:clamp(120px,20vh,190px) 0 clamp(60px,10vh,90px);}
+  .hero .cover{margin:clamp(44px,7vh,72px) auto 0;width:min(320px,74vw);aspect-ratio:1/1.34;border-radius:14px;
+    background:linear-gradient(160deg,#f0ede4 0%,#e4ddcf 100%);box-shadow:0 40px 80px -30px rgba(29,29,31,.4);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px 30px;position:relative;overflow:hidden;}
+  .cover::before{content:"";position:absolute;inset:14px;border:1px solid rgba(29,29,31,.14);border-radius:6px;}
+  .cover img{width:52px;opacity:.9;}
+  .cover .ct{font-weight:800;font-size:clamp(21px,3vw,26px);line-height:1.15;letter-spacing:-0.01em;}
+  .cover .cs{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);}
+
+  /* ===== FEATURE (one message per screen) ===== */
+  .feat h2{max-width:16ch;margin:0 auto;}
+
+  /* ===== COMPACT LIST ===== */
+  .rows{max-width:720px;margin:clamp(40px,7vh,64px) auto 0;text-align:right;}
+  .row{display:flex;gap:22px;align-items:flex-start;padding:26px 0;border-top:1px solid var(--hair);}
+  .row:last-child{border-bottom:1px solid var(--hair);}
+  .row .num{font-weight:700;color:var(--accent);font-size:19px;flex:0 0 auto;width:34px;}
+  .row .rt h3{font-weight:700;font-size:clamp(19px,2.3vw,24px);margin-bottom:6px;}
+  .row .rt p{font-weight:400;color:var(--grey);font-size:clamp(15px,1.8vw,18px);line-height:1.5;}
+
+  /* ===== WHO ===== */
+  .who ul{list-style:none;max-width:640px;margin:clamp(36px,6vh,56px) auto 0;text-align:right;}
+  .who li{padding:20px 0;border-top:1px solid var(--hair);font-size:clamp(17px,2vw,20px);color:var(--ink);font-weight:400;display:flex;gap:16px;align-items:flex-start;}
+  .who li:last-child{border-bottom:1px solid var(--hair);}
+  .who li::before{content:"✓";color:var(--accent);font-weight:800;flex:0 0 auto;}
+
+  /* ===== PRICING ===== */
+  .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:860px;margin:clamp(44px,7vh,64px) auto 0;text-align:right;}
+  .tier{background:var(--white);border:1px solid var(--hair);border-radius:20px;padding:clamp(28px,4vw,42px);display:flex;flex-direction:column;}
+  .tier.best{border:2px solid var(--accent);position:relative;}
+  .tier .tag{position:absolute;top:-14px;inset-inline-start:32px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;padding:5px 15px;border-radius:980px;}
+  .tier .tn{font-weight:700;font-size:clamp(21px,2.5vw,26px);}
+  .tier .tnote{color:var(--grey);font-size:15px;margin-top:5px;}
+  .tier .amt{font-weight:800;font-size:clamp(42px,7vw,58px);letter-spacing:-0.02em;margin:22px 0 2px;}
+  .tier .was{color:var(--grey);font-size:15px;margin-bottom:26px;}
+  .tier ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:30px;flex:1;}
+  .tier li{display:flex;gap:11px;align-items:flex-start;font-size:clamp(15px,1.7vw,17px);color:var(--ink);font-weight:400;}
+  .tier li b{font-weight:600;}
+  .tier li::before{content:"✓";color:var(--accent);font-weight:800;flex:0 0 auto;}
+  .tier .cta{width:100%;}
+  @media(max-width:640px){.tiers{grid-template-columns:1fr;}}
+
+  .guar{max-width:52ch;margin:clamp(40px,7vh,60px) auto 0;}
+  .guar .seal{font-weight:700;color:var(--accent);font-size:15px;letter-spacing:.02em;}
+  .guar p{color:var(--grey);font-size:clamp(16px,1.9vw,19px);margin-top:10px;line-height:1.55;}
+  .guar strong{color:var(--ink);}
+
+  /* ===== FAQ ===== */
+  .faq{text-align:right;}
+  .faq h2{text-align:center;}
+  .faq .list{max-width:760px;margin:clamp(40px,7vh,60px) auto 0;}
+  details{border-top:1px solid var(--hair);padding:24px 4px;}
+  details:last-child{border-bottom:1px solid var(--hair);}
+  summary{cursor:pointer;list-style:none;font-weight:600;font-size:clamp(17px,2vw,21px);display:flex;justify-content:space-between;gap:20px;align-items:center;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";color:var(--accent);font-size:1.5em;font-weight:400;transition:transform .3s var(--grow);}
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{color:var(--grey);font-size:clamp(15px,1.8vw,18px);margin-top:14px;line-height:1.6;max-width:64ch;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--mist);text-align:center;padding:clamp(40px,7vh,56px) 20px;}
+  footer img{height:26px;margin:0 auto 16px;opacity:.7;}
+  footer .fine{font-size:12px;color:var(--grey);}
+  footer a{color:var(--accent);}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--grow),transform .8s var(--grow);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.reveal{opacity:1;transform:none;}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  </style>
+</head>
+<body>
+
+  <!-- STICKY BUY BAR -->
+  <div class="buybar" id="buybar">
+    <div class="in">
+      <div class="btxt"><b>המדריך לתכנון גינה</b><span>מחיר השקה, החל מ 97 ש"ח</span></div>
+      <a href="#pricing" class="bcta" onclick="fbq('track','InitiateCheckout')">לרכישה</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="kick">Almog Studio · המהדורה הראשונה</p>
+      <h1>גינה יפה זה מקרה.<br>גינה שנראית כמו יצירה זו שיטה.</h1>
+      <p class="sub">השיטה שבה אני מתכנן גינות פרטיות, לראשונה בכתב.</p>
+      <div style="margin-top:34px;">
+        <a href="#pricing" class="cta cta-fill" onclick="fbq('track','InitiateCheckout')">לרכישת המדריך</a>
+        <a href="#method" class="plink">לגלות מה בפנים</a>
+      </div>
+      <div class="cover">
+        <img src="../assets/symbol.png" alt="" />
+        <div class="ct">המדריך לתכנון גינה</div>
+        <div class="cs">השיטה של אלמוג</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="mist reveal">
+    <div class="wrap">
+      <p class="kick">האמת שאף אחד לא אומר לך</p>
+      <h2>אפשר להוציא הון על גינה, ועדיין להרגיש שמשהו בה לא יושב.</h2>
+      <p class="body">צמח יפה, ועוד צמח יפה, וכשמסתכלים על הכול ביחד זה מרגיש אקראי. חסר קו, חסר קצב, חסר היגיון פנימי. זו הטעות שאי אפשר לתקן בשנה, כי צריך לחכות שהשתילים יגדלו, שהעונה תתחלף, שהכסף יחזור. <strong>גינה יפה אינה אוסף של צמחים יפים. היא קומפוזיציה.</strong> וקומפוזיציה אפשר ללמוד.</p>
+    </div>
+  </section>
+
+  <!-- METHOD INTRO -->
+  <section id="method" class="feat reveal">
+    <div class="wrap">
+      <p class="kick">השיטה</p>
+      <h2>אני לא מתחיל מצמחים. אני מתחיל מרגש, מקו, ומפלטת צבע.</h2>
+      <p class="body">בדיוק כמו שצייר בונה תמונה. במדריך הזה אני פותח בפניך את דרך המחשבה שלי, אותם עקרונות שאני עובד לפיהם בגינות של לקוחות פרטיים, ומסדר אותם לצעדים שגם אתה יכול ליישם.</p>
+    </div>
+  </section>
+
+  <!-- FEATURE A -->
+  <section class="mist feat reveal">
+    <div class="wrap">
+      <p class="kick">פרק ראשון</p>
+      <h2>הכול מתחיל בפלטת צבעים.</h2>
+      <p class="body">אני בונה גינה כמו ציור. צבעים משלימים, גוונים שקטים, ונקודת דגש אחת שמחזיקה את כל התמונה. זה ההבדל בין גינה שנראית מסודרת לבין גינה שנראית מעוצבת.</p>
+    </div>
+  </section>
+
+  <!-- FEATURE B -->
+  <section class="feat reveal">
+    <div class="wrap">
+      <p class="kick">פרק שני</p>
+      <h2>הפרופורציה שגורמת למרחב פשוט להרגיש נכון.</h2>
+      <p class="body">יחס הזהב ופיבונאצ'י. אותם יחסים שחוזרים בטבע, בציור ובאדריכלות, מסודרים לך לכללים פשוטים שאפשר למדוד ולהחיל על כל גינה, בכל גודל.</p>
+    </div>
+  </section>
+
+  <!-- FEATURE C -->
+  <section class="mist feat reveal">
+    <div class="wrap">
+      <p class="kick">פרק שלישי</p>
+      <h2>ללמוד מכל הגדולים, ולהישאר אתה.</h2>
+      <p class="body">מאיפה אני שואב השראה, מגנים, מאמנות ומאדריכלות, ואיך הופכים השראה לשפה אישית במקום לחיקוי. זו האמנות שמעטים מלמדים.</p>
+    </div>
+  </section>
+
+  <!-- MORE (compact) -->
+  <section class="reveal">
+    <div class="wrap">
+      <p class="kick">ובנוסף</p>
+      <h2>עוד שלושה פרקים, ומפה לדרך.</h2>
+      <div class="rows">
+        <div class="row"><span class="num">04</span><div class="rt"><h3>שכבות ועומק</h3><p>איך גורמים לחצר או מרפסת קטנה להרגיש מלאה, עמוקה וגדולה בהרבה ממה שהיא.</p></div></div>
+        <div class="row"><span class="num">05</span><div class="rt"><h3>אבן, מים ותאורה</h3><p>החומרים שמשנים גינה מבוקר לערב, ואיך לבחור אותם נכון בדיוק לתקציב שלך.</p></div></div>
+        <div class="row"><span class="num">06</span><div class="rt"><h3>מדף ריק לתכנית שלמה</h3><p>צ'קליסט תכנון צעד אחר צעד, ועשר הטעויות שיעלו לך ביוקר אם תפספס אותן.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="mist who reveal">
+    <div class="wrap">
+      <p class="kick">בשביל מי</p>
+      <h2>זה בשבילך אם</h2>
+      <ul>
+        <li>אתה לפני תכנון או שיפוץ של גינה, חצר או מרפסת, ורוצה לעשות את זה פעם אחת, נכון.</li>
+        <li>אתה עובד עם גנן או קבלן, ורוצה לדעת לבקש בדיוק את מה שנכון לך.</li>
+        <li>אתה אוהב עיצוב, ורוצה להבין איך אמן חושב על מרחב, צבע ופרופורציה.</li>
+        <li>אתה מעדיף להשקיע מאה שקלים בידע, לפני עשרות אלפים באדמה שאי אפשר להחזיר.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section class="dark reveal">
+    <div class="wrap">
+      <p class="kick">מי אני</p>
+      <h2>אני אלמוג, ואני מלחין גינות.</h2>
+      <p class="body">מקומות כנים, עשויים אבן, ירוק ואור. אני מתכנן גינות פרטיות ומרחבים בחוץ, על הצומת שבין טבע, פסיכולוגיה, אמנות ואדריכלות. את כל מה שלמדתי מהעבודה, ומכל הגדולים שאני מסתכל עליהם, ריכזתי כאן בשבילך.</p>
+      <a class="plink" style="color:#a9b67e;" href="https://instagram.com/almog.studio" target="_blank" rel="noopener">לראות את העבודות באינסטגרם</a>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="reveal">
+    <div class="wrap">
+      <p class="kick">מחיר השקה, למהדורה הראשונה בלבד</p>
+      <h2>בחר, והתחל היום.</h2>
+      <div class="tiers">
+        <div class="tier">
+          <div class="tn">המדריך</div>
+          <div class="tnote">כל מה שצריך כדי להתחיל נכון</div>
+          <div class="amt">97 ש"ח</div>
+          <div class="was">במקום 149 ש"ח</div>
+          <ul>
+            <li>המדריך הדיגיטלי המלא <b>(PDF)</b></li>
+            <li>ששת הפרקים, מפלטת צבע ועד הצ'קליסט</li>
+            <li>הורדה מיידית לכל מכשיר, לתמיד</li>
+            <li>קבלה אוטומטית</li>
+          </ul>
+          <a href="#" data-sumit="basic" class="cta cta-line" onclick="fbq('track','InitiateCheckout',{value:97,currency:'ILS'})">קנייה מהירה, 97 ש"ח</a>
+        </div>
+        <div class="tier best">
+          <span class="tag">הבחירה של רוב הקונים</span>
+          <div class="tn">החבילה המלאה</div>
+          <div class="tnote">המדריך, וגם כלי העבודה שלי</div>
+          <div class="amt">197 ש"ח</div>
+          <div class="was">במקום 319 ש"ח</div>
+          <ul>
+            <li>כל מה שיש במדריך</li>
+            <li><b>פלטות צבע וצמחייה</b> מוכנות להדפסה</li>
+            <li>צ'קליסט מורחב <b>וטבלת תקציב</b></li>
+            <li>מדריך תאורת גינה נפרד</li>
+            <li>כל עדכון עתידי של המהדורה, חינם</li>
+          </ul>
+          <a href="#" data-sumit="premium" class="cta cta-fill" onclick="fbq('track','InitiateCheckout',{value:197,currency:'ILS'})">כן, אני רוצה הכול, 197 ש"ח</a>
+        </div>
+      </div>
+      <div class="guar">
+        <div class="seal">האחריות שלי אליך</div>
+        <p><strong>נסה ארבעה עשר יום.</strong> אם המדריך לא נותן לך ערך אמיתי, שלח לי הודעה אחת ואחזיר לך כל שקל, בלי שאלות. הסיכון כולו עליי.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mist faq reveal">
+    <div class="wrap">
+      <p class="kick" style="text-align:center;">לפני שמתחילים</p>
+      <h2>שאלות אחרונות.</h2>
+      <div class="list">
+        <details open><summary>מה בדיוק אני מקבל?</summary><p>קובץ PDF מעוצב שנשלח אליך מיד אחרי התשלום, יחד עם קבלה. בחבילה המלאה מצורפים גם פלטות הצבע והצמחייה, הצ'קליסט המורחב עם טבלת התקציב, ומדריך התאורה.</p></details>
+        <details><summary>אני לא מבין כלום בגינון, זה בשבילי?</summary><p>דווקא בשבילך. הכול כתוב בשפה פשוטה, בלי מונחים מקצועיים, כדי שתדע לחשוב נכון עוד לפני שאתה שם אבן אחת.</p></details>
+        <details><summary>למה שאשלם, אם יש המון סרטונים בחינם?</summary><p>כי סרטונים נותנים טיפים בודדים. כאן אתה מקבל שיטה שלמה, סדר מחשבה שמתחבר לתכנית אחת. זה ההבדל בין לדעת עובדות לבין לדעת לתכנן.</p></details>
+        <details><summary>איך משלמים ומקבלים קבלה?</summary><p>תשלום מאובטח בכרטיס אשראי. הקבלה מונפקת אוטומטית ונשלחת למייל שלך יחד עם הקובץ, תוך שניות.</p></details>
+        <details><summary>ואם זה לא מתאים לי?</summary><p>יש אחריות מלאה לארבעה עשר יום. הודעה אחת, וכל הכסף חוזר. אין לך מה להפסיד.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="dark reveal">
+    <div class="wrap">
+      <h2>גינה יפה מתחילה בהחלטה אחת.</h2>
+      <p class="sub">מאה שקלים של ידע, לפני עשרות אלפים של אדמה.</p>
+      <div style="margin-top:36px;">
+        <a href="#pricing" class="cta cta-fill" onclick="fbq('track','InitiateCheckout')">אני מתחיל עכשיו</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="../"><img src="../assets/symbol.png" alt="Almog Studio" /></a>
+    <p class="fine">© <span id="y"></span> Almog Studio · <a href="https://wa.me/972509572882">וואטסאפ</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const io = new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    // sticky buy bar appears after hero
+    const bar = document.getElementById('buybar');
+    const onScroll = () => { if(window.scrollY > window.innerHeight*0.9){ bar.classList.add('show'); } else { bar.classList.remove('show'); } };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  </script>
+</body>
+</html>
