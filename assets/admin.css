@@ -17,6 +17,7 @@
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}   /* ensure JS toggle actually hides */
 body{font-family:var(--sans);background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
