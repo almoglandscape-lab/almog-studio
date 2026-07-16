@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    ALMOG STUDIO — works page
    ============================================================ */
 .works-page { background: var(--paper); }
@@ -39,12 +39,12 @@
 .w-media.is-wip { display: flex; align-items: center; justify-content: center; }
 
 .w-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--f3); }
-.w-idx { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); }
+.w-idx { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stoned); }
 .w-name { font-family: var(--display); font-weight: 500; font-size: clamp(34px, 5.2vw, 64px); line-height: 0.98; letter-spacing: -0.02em; }
 .w-text p { font-size: clamp(15px, 1.1vw, 17px); line-height: 1.64; color: var(--bark); max-width: 46ch; }
 
 .w-facts { display: flex; gap: var(--f5); flex-wrap: wrap; margin-top: var(--f1); }
-.w-facts dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
+.w-facts dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stoned); margin-bottom: 4px; }
 .w-facts dd { font-family: var(--display); font-size: 15px; color: var(--ink); }
 
 /* masonry — every photo keeps its natural aspect, no cropping */
@@ -101,3 +101,4 @@
 .prose .qa p { margin-bottom: 0; }
 .prose .back { display: inline-flex; gap: 8px; align-items: center; margin-top: var(--f5); font-size: 14px; color: var(--olive); transition: gap 0.3s var(--grow); }
 .prose .back:hover { gap: 13px; }
+
