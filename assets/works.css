@@ -6,7 +6,9 @@
 /* solid nav (no image behind it here) */
 .nav--solid { mix-blend-mode: normal; }
 .nav--solid .nav-mark img { filter: none; }
-.nav--solid .nav-toggle span { background: var(--ink); }
+.nav--solid .nav-toggle-label { color: var(--ink); background: none; }
+.nav--solid .nav-toggle .bars { background: none; }
+.nav--solid .nav-toggle .bars span { background: var(--ink); }
 
 .w-main { max-width: var(--max); margin: 0 auto; padding: 0 clamp(16px, 4vw, 44px); }
 
