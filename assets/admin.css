@@ -61,7 +61,7 @@ input,select,button{font-family:inherit}
 .nav-item svg{width:19px;height:19px;stroke-width:1.7}
 .nav-item:hover{background:rgba(255,255,255,.05);color:var(--side-txt)}
 .nav-item.is-active{background:rgba(255,255,255,.09);color:#fff}
-.nav-item .badge{margin-left:auto;background:var(--gold);color:#fff;font-size:11px;font-weight:700;font-style:normal;padding:1px 7px;border-radius:20px}
+.nav-item .badge{margin-inline-start:auto;background:var(--gold);color:#fff;font-size:11px;font-weight:700;font-style:normal;padding:1px 7px;border-radius:20px}
 
 .side-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
 .user{display:flex;align-items:center;gap:10px;min-width:0}
@@ -83,11 +83,11 @@ input,select,button{font-family:inherit}
 .menu-btn{display:none}
 .icon-btn{position:relative;width:40px;height:40px;border:1px solid var(--line);background:var(--card);border-radius:10px;display:grid;place-items:center;color:var(--muted);cursor:pointer;transition:border-color .2s,color .2s}
 .icon-btn:hover{border-color:var(--faint);color:var(--text)}
-.icon-btn .dot{position:absolute;top:9px;right:10px;width:7px;height:7px;background:var(--gold);border-radius:50%;border:2px solid var(--card)}
+.icon-btn .dot{position:absolute;top:9px;inset-inline-end:10px;width:7px;height:7px;background:var(--gold);border-radius:50%;border:2px solid var(--card)}
 .search{flex:1;max-width:440px;display:flex;align-items:center;gap:9px;padding:0 14px;height:40px;background:var(--card);border:1px solid var(--line);border-radius:10px}
 .search svg{width:17px;height:17px;color:var(--faint)}
 .search input{border:none;background:none;outline:none;font-size:14px;width:100%;color:var(--text)}
-.top-actions{display:flex;align-items:center;gap:12px;margin-left:auto}
+.top-actions{display:flex;align-items:center;gap:12px;margin-inline-start:auto}
 
 .views{padding:clamp(20px,3vw,34px) clamp(16px,3vw,32px) 60px}
 .view{display:none;animation:fade .4s var(--ease)}
@@ -176,4 +176,9 @@ input,select,button{font-family:inherit}
   .stats{grid-template-columns:1fr}
   .quick{grid-template-columns:1fr}
   .search{display:none}
+}
+/* RTL: mobile drawer slides from the right */
+@media(max-width:720px){
+  [dir=rtl] .sidebar{left:auto;right:0;transform:translateX(100%)}
+  [dir=rtl] .app.nav-open .sidebar{transform:none}
 }
