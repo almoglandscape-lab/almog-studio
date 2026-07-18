@@ -48,12 +48,13 @@ function shell(inner) {
 <link rel="stylesheet" href="/assets/admin.css?v=3"/></head><body>${inner}</body></html>`;
 }
 
-function loginPage(error) {
+function loginPage(error, area) {
+  const isHq = area === "hq";
   return shell(`<div class="login" style="display:flex"><div class="login-card">
     <img class="login-mark" src="/assets/symbol.png" alt=""/>
-    <h1>Backstage</h1>
+    <h1>${isHq ? "מרכז שליטה" : "Backstage"}</h1>
     <p class="login-sub">סטודיו אלמוג · הכניסה שלך</p>
-    <form method="post" action="/admin/" autocomplete="off">
+    <form method="post" action="${isHq ? "/hq/" : "/admin/"}" autocomplete="off">
       <label class="field"><span>שם משתמש</span><input type="text" name="username" placeholder="אלמוג"/></label>
       <label class="field"><span>סיסמה</span><input type="password" name="password" placeholder="••••••••" autofocus/></label>
       ${error ? `<p style="color:#b23b3b;font-size:13px;margin:-4px 0 12px">${error}</p>` : ``}
@@ -82,6 +83,7 @@ function setupPage() {
 
 export default async (request, context) => {
   const url = new URL(request.url);
+  const area = url.pathname.startsWith("/hq") ? "hq" : "admin";
   const USER = Netlify.env.get("ADMIN_USER") || "";
   const PASS = Netlify.env.get("ADMIN_PASS") || "";
   const SECRET = Netlify.env.get("ADMIN_SECRET") || "";
@@ -89,9 +91,9 @@ export default async (request, context) => {
   // not configured yet → safe setup notice (dashboard stays hidden)
   if (!PASS || !SECRET) return html(setupPage());
 
-  // logout
+  // logout (Path=/ so one login covers /admin + /hq; also clear legacy /admin cookie)
   if (url.searchParams.get("logout") === "1") {
-    return html(loginPage(""), 200, `${COOKIE}=; Path=/admin; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);
+    return html(loginPage("", area), 200, `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);
   }
 
   // login attempt
@@ -102,18 +104,18 @@ export default async (request, context) => {
       const token = await makeToken(SECRET);
       return new Response(null, {
         status: 303,
-        headers: { location: "/admin/", "cache-control": "no-store",
-          "set-cookie": `${COOKIE}=${token}; Path=/admin; Max-Age=${MAXAGE}; HttpOnly; Secure; SameSite=Lax` },
+        headers: { location: area === "hq" ? "/hq/" : "/admin/", "cache-control": "no-store",
+          "set-cookie": `${COOKIE}=${token}; Path=/; Max-Age=${MAXAGE}; HttpOnly; Secure; SameSite=Lax` },
       });
     }
-    return html(loginPage("שם משתמש או סיסמה שגויים"), 401);
+    return html(loginPage("שם משתמש או סיסמה שגויים", area), 401);
   }
 
-  // authenticated GET → serve the dashboard file
+  // authenticated GET → serve the requested file
   if (await validToken(SECRET, getCookie(request, COOKIE))) return context.next();
 
   // otherwise → login screen
-  return html(loginPage(""), 401);
+  return html(loginPage("", area), 401);
 };
 
 // Path is declared in netlify.toml ([[edge_functions]]).

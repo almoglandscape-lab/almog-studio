@@ -13,6 +13,24 @@
 </head>
 <body>
 
+<div class="lock" id="lock">
+  <div class="lock-card">
+    <img class="lock-mark" src="../assets/symbol.png" alt="" />
+    <h1>מרכז שליטה</h1>
+    <p class="lock-sub" id="lock-sub">נעול · הכניסה עם זיהוי פנים</p>
+    <button class="btn lock-btn" id="lock-btn">
+      <svg viewBox="0 0 24 24"><path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"/><path d="M9 10v.5M15 10v.5"/><path d="M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>
+      <span id="lock-btn-txt">כניסה עם זיהוי פנים</span>
+    </button>
+    <p class="lock-status" id="lock-status"></p>
+    <button class="lock-reset" id="lock-reset" hidden>הגדר זיהוי מחדש במכשיר הזה</button>
+  </div>
+</div>
+<script>
+  if (sessionStorage.getItem("hq_unlocked") === "1") { document.getElementById("lock").hidden = true; }
+  else { document.documentElement.classList.add("locked"); }
+</script>
+
 <div class="app" id="app">
 
   <!-- ================= SIDEBAR ================= -->
@@ -447,6 +465,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
+<script src="../assets/hq-lock.js?v=1" defer></script>
 <script src="../assets/hq.js?v=1" defer></script>
 </body>
 </html>

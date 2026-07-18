@@ -8,3 +8,12 @@
 [[edge_functions]]
   path = "/admin/*"
   function = "admin-gate"
+
+# Gate the control center (מרכז שליטה) behind the same auth.
+[[edge_functions]]
+  path = "/hq"
+  function = "admin-gate"
+
+[[edge_functions]]
+  path = "/hq/*"
+  function = "admin-gate"
