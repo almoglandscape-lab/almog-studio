@@ -21,6 +21,7 @@ while ($listener.IsListening) {
     $path = $ctx.Request.Url.LocalPath.TrimStart("/")
     if ([string]::IsNullOrEmpty($path)) { $path = "index.html" }
     $file = Join-Path $root $path
+    if (Test-Path $file -PathType Container) { $file = Join-Path $file "index.html" }
     if (Test-Path $file -PathType Leaf) {
       $bytes = [System.IO.File]::ReadAllBytes($file)
       $ext = [System.IO.Path]::GetExtension($file).ToLower()

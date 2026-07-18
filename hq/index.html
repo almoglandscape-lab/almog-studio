@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#16140f" />
+  <title>מרכז שליטה — סטודיו אלמוג</title>
+  <link rel="icon" type="image/png" href="../assets/symbol.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/hq.css?v=1" />
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="../assets/symbol.png" alt="" />
+      <div class="brand-txt"><b>מרכז שליטה</b><span>Studio OS</span></div>
+    </div>
+
+    <nav class="nav" id="side-nav">
+      <a class="nav-item is-active" data-view="today" href="#today">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <span>היום</span>
+      </a>
+
+      <div class="nav-sec">עסקי</div>
+      <a class="nav-item" data-view="clients" href="#clients">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>לקוחות</span>
+      </a>
+      <a class="nav-item" data-view="projects" href="#projects">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span>פרויקטים</span>
+      </a>
+      <a class="nav-item" data-view="money" href="#money">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>כספים</span>
+      </a>
+      <a class="nav-item" data-view="docs" href="#docs">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+        <span>מסמכים</span>
+      </a>
+      <a class="nav-item" data-view="calendar" href="#calendar">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span>יומן</span>
+      </a>
+
+      <div class="nav-sec">אישי</div>
+      <a class="nav-item" data-view="pmoney" href="#pmoney">
+        <svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+        <span>כספים אישיים</span>
+      </a>
+      <a class="nav-item" data-view="goals" href="#goals">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <span>מטרות</span>
+      </a>
+      <a class="nav-item" data-view="home" href="#home">
+        <svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        <span>דירה ורכב</span>
+      </a>
+      <a class="nav-item" data-view="life" href="#life">
+        <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        <span>בריאות ואנשים</span>
+      </a>
+
+      <div class="nav-sec">מערכת</div>
+      <a class="nav-item" data-view="agents" href="#agents">
+        <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M8 4h8"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+        <span>הסוכנים שלי</span>
+        <em class="soon">בקרוב</em>
+      </a>
+    </nav>
+
+    <div class="side-bottom">
+      <a class="back-link" href="/admin/">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5L5 20"/></svg>
+        <span>Backstage — ניהול האתר</span>
+      </a>
+      <div class="user">
+        <div class="avatar">א</div>
+        <div class="user-txt"><b>אלמוג</b><span>almog.studio</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sidebar-scrim" id="scrim"></div>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menu-btn" aria-label="תפריט">
+        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <div class="cmd">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="cmd-input" placeholder="חיפוש בכל דבר — לקוח, חוב, פגישה, מסמך…" />
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" data-soon aria-label="התראות">
+          <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <em class="dot"></em>
+        </button>
+        <div class="avatar sm">א</div>
+      </div>
+    </header>
+
+    <main class="views" id="views">
+
+      <!-- ============ היום ============ -->
+      <section class="view is-active" data-view="today">
+        <div class="agent">
+          <span class="eyebrow">הסוכן הראשי</span>
+          <h1 id="greeting">ערב טוב, אלמוג. מה מסדרים עכשיו?</h1>
+          <div class="agent-input">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M5 8v8M19 8v8M2 11v2M22 11v2M8.5 5.5v13M15.5 5.5v13"/></svg>
+            <input type="text" id="agent-input" placeholder="״תרשום ששרון שילמה״ · ״מי חייב לי כסף?״ · ״קבע פגישה לרביעי״" />
+            <button class="agent-send" id="agent-send" aria-label="שלח">
+              <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            </button>
+          </div>
+          <div class="chips">
+            <button class="chip" data-soon>מה בוער היום?</button>
+            <button class="chip" data-soon>מי חייב לי כסף?</button>
+            <button class="chip" data-soon>מה הפגישה הבאה?</button>
+            <button class="chip" data-soon>אילו לקוחות מחכים לי?</button>
+          </div>
+        </div>
+
+        <div class="section-label">
+          <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h0"/><circle cx="12" cy="12" r="10"/></svg>
+          דורש את תשומת הלב שלך — במבט אחד
+        </div>
+        <div class="attention">
+          <article class="att" data-jump="money">
+            <div class="att-top">
+              <div class="att-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <span class="att-num">—</span>
+            </div>
+            <b>כסף שמחכה לך</b>
+            <small>חובות פתוחים של לקוחות — ייכנסו בשלב התוכן</small>
+          </article>
+          <article class="att" data-jump="clients">
+            <div class="att-top">
+              <div class="att-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <span class="att-num">—</span>
+            </div>
+            <b>לקוחות שמחכים לתשובה</b>
+            <small>כדי שאף ליד לא יתפספס יותר</small>
+          </article>
+          <article class="att" data-jump="calendar">
+            <div class="att-top">
+              <div class="att-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+              <span class="att-num">—</span>
+            </div>
+            <b>היום ביומן</b>
+            <small>פגישות ותזכורות — אחרי חיבור היומן</small>
+          </article>
+          <article class="att" data-jump="docs">
+            <div class="att-top">
+              <div class="att-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <span class="att-num">—</span>
+            </div>
+            <b>מסמכים לטיפול</b>
+            <small>חשבוניות להוציא, מסמכים לתקן</small>
+          </article>
+        </div>
+
+        <div class="section-label">
+          <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M8 4h8"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+          צוות הסוכנים — כל אחד מנהל בשבילך תחום
+        </div>
+        <div class="agent-grid">
+          <button class="tile" data-jump="money">
+            <div class="tile-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <b>סוכן הכספים</b>
+            <span>גובה, עוקב, מזכיר — שקל לא הולך לאיבוד</span>
+            <em class="state">שלד מוכן · ממתין לתוכן</em>
+          </button>
+          <button class="tile" data-jump="clients">
+            <div class="tile-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <b>סוכן הלקוחות</b>
+            <span>כל ליד נתפס, כל לקוח מלווה עד הסוף</span>
+            <em class="state">שלד מוכן · ממתין לתוכן</em>
+          </button>
+          <button class="tile" data-jump="calendar">
+            <div class="tile-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+            <b>סוכן היומן</b>
+            <span>מסדר את הזמן — פגישות, תזכורות, זימונים</span>
+            <em class="state">שלד מוכן · ממתין לחיבור</em>
+          </button>
+          <button class="tile" data-jump="docs">
+            <div class="tile-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/></svg></div>
+            <b>סוכן המסמכים</b>
+            <span>חשבוניות, הצעות מחיר, חוזים — הכל מסודר</span>
+            <em class="state">שלד מוכן · ממתין לתוכן</em>
+          </button>
+          <button class="tile" data-jump="life">
+            <div class="tile-ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+            <b>הסוכן האישי</b>
+            <span>בריאות, אנשים, בית — החיים שמחוץ לעבודה</span>
+            <em class="state">שלד מוכן · ממתין לתוכן</em>
+          </button>
+          <button class="tile" data-soon>
+            <div class="tile-ico"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8z"/></svg></div>
+            <b>סוכן השיווק</b>
+            <span>וואטסאפ ללקוחות, מעקב לידים, קמפיינים</span>
+            <em class="state">שלב הבא · אחרי התוכן</em>
+          </button>
+        </div>
+
+        <div class="principles">
+          <div class="pr"><b>מבט אחד — 3 שניות</b><span>נכנסת, ראית מה בוער, המשכת ביום שלך.</span></div>
+          <div class="pr"><b>פעולה אחת בכל מסך</b><span>בלי רעש. כל מסך אומר לך מה הדבר הבא.</span></div>
+          <div class="pr"><b>שום דבר לא נופל</b><span>כל שקל, ליד ופגישה — נתפסים במערכת.</span></div>
+          <div class="pr"><b>אתה מדבר, המערכת עובדת</b><span>שורה אחת לסוכן — והוא כבר מסדר.</span></div>
+        </div>
+      </section>
+
+      <!-- ============ לקוחות ============ -->
+      <section class="view" data-view="clients">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">עסקי · CRM</span>
+            <h2>לקוחות</h2>
+            <p>כל לקוח עובר מסלול קבוע — מליד ראשון ועד תחזוקה. ככה כלום לא מתפספס: תמיד רואים איפה כל אחד עומד ומה הצעד הבא.</p>
+          </div>
+        </div>
+
+        <div class="section-label">המסלול שכל לקוח עובר</div>
+        <div class="pipeline">
+          <div class="stage"><div class="stage-head"><b>ליד חדש</b><span>0</span></div><div class="stage-slot">ייבוא לידים — בשלב הבא</div></div>
+          <div class="stage"><div class="stage-head"><b>שיחה ראשונה</b><span>0</span></div><div class="stage-slot">—</div></div>
+          <div class="stage"><div class="stage-head"><b>הצעת מחיר</b><span>0</span></div><div class="stage-slot">—</div></div>
+          <div class="stage"><div class="stage-head"><b>בעבודה</b><span>0</span></div><div class="stage-slot">—</div></div>
+          <div class="stage"><div class="stage-head"><b>תחזוקה</b><span>0</span></div><div class="stage-slot">—</div></div>
+          <div class="stage"><div class="stage-head"><b>הושלם</b><span>0</span></div><div class="stage-slot">—</div></div>
+        </div>
+
+        <div class="ghost">
+          <div class="ghost-title"><b>כרטיס לקוח — מה יהיה על כל אחד</b><span>מבנה · עוד בלי תוכן</span></div>
+          <div class="ghost-head" style="grid-template-columns:1.4fr 1fr 1fr 1fr .8fr"><span>שם מלא</span><span>שלב במסלול</span><span>סטטוס תשלום</span><span>התקדמות פרויקט</span><span>וואטסאפ</span></div>
+          <div class="ghost-row" style="grid-template-columns:1.4fr 1fr 1fr 1fr .8fr"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ghost-row" style="grid-template-columns:1.4fr 1fr 1fr 1fr .8fr"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ghost-row" style="grid-template-columns:1.4fr 1fr 1fr 1fr .8fr"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </section>
+
+      <!-- ============ פרויקטים ============ -->
+      <section class="view" data-view="projects">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">עסקי</span>
+            <h2>פרויקטים</h2>
+            <p>כל פרויקט מחובר ללקוח, לכסף וליומן שלו. תמונות ההתקדמות יעלו ישירות לכאן.</p>
+          </div>
+        </div>
+        <div class="empty">
+          <div class="em-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+          <b>כאן יחיו הפרויקטים</b>
+          <p>סטטוס, שלבים, תמונות לפני־אחרי, ומה הצעד הבא בכל אחד. נטען אותם בשלב התוכן — פרויקט אחרי פרויקט.</p>
+          <span class="hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2.5 2.5"/></svg>השלב הבא: מילוי תוכן</span>
+        </div>
+      </section>
+
+      <!-- ============ כספים ============ -->
+      <section class="view" data-view="money">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">עסקי · שליטה יומית</span>
+            <h2>כספים</h2>
+            <p>שני צדדים, תמונה אחת: מה חייבים לך ומה אתה חייב. כל שורה עם תאריך, מסמך וסטטוס — והסוכן מזכיר למי שצריך.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="money-head in">
+              <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+              <b>חייבים לי</b>
+            </div>
+            <div class="ghost">
+              <div class="ghost-head" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><span>מי</span><span>כמה</span><span>על מה</span><span>סטטוס</span></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div>
+            <div class="money-head out">
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+              <b>אני חייב</b>
+            </div>
+            <div class="ghost">
+              <div class="ghost-head" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><span>למי</span><span>כמה</span><span>על מה</span><span>סטטוס</span></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+              <div class="ghost-row" style="grid-template-columns:1.3fr .8fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="empty" style="margin-top:16px">
+          <b>הרשימה שכבר בנינו ביחד — תיכנס לכאן</b>
+          <p>נוריש, אמיר, ירין, פאולה, אביטל, חיטמן · אליאסי, ניב, אמא, נוח, מס הכנסה, ביטוח לאומי — הכל שמור ומחכה לשלב התוכן.</p>
+        </div>
+      </section>
+
+      <!-- ============ מסמכים ============ -->
+      <section class="view" data-view="docs">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">עסקי</span>
+            <h2>מסמכים</h2>
+            <p>חשבוניות, חשבונות עסקה, הצעות מחיר וחוזים — לכל מסמך יש לקוח, תאריך וסטטוס. מה שצריך תיקון מסומן, מה שיצא מתויק.</p>
+          </div>
+        </div>
+        <div class="ghost">
+          <div class="ghost-title"><b>תור המסמכים</b><span>מבנה · עוד בלי תוכן</span></div>
+          <div class="ghost-head" style="grid-template-columns:1.2fr 1fr .9fr .9fr"><span>מסמך</span><span>לקוח</span><span>סוג</span><span>סטטוס</span></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr .9fr"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </section>
+
+      <!-- ============ יומן ============ -->
+      <section class="view" data-view="calendar">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">עסקי + אישי</span>
+            <h2>יומן</h2>
+            <p>שבוע אחד במבט אחד — פגישות לקוחות, אימונים וזמן משפחה באותו מקום. יתחבר ליומן גוגל הקיים שלך.</p>
+          </div>
+        </div>
+        <div class="week" id="week"></div>
+        <div class="empty" style="margin-top:16px">
+          <b>החיבור ליומן גוגל — בשלב החיבורים</b>
+          <p>עד אז, השלד מוכן: קביעת פגישה, זימון ללקוח ותזכורות — הכל יעבור מכאן.</p>
+        </div>
+      </section>
+
+      <!-- ============ כספים אישיים ============ -->
+      <section class="view" data-view="pmoney">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">אישי</span>
+            <h2>כספים אישיים</h2>
+            <p>חובות מול חברים ומשפחה, מנויים וחיובים קבועים — סוגרים אחד־אחד, בשקט ובסדר.</p>
+          </div>
+        </div>
+        <div class="ghost">
+          <div class="ghost-title"><b>לסגור מול אנשים קרובים</b><span>מבנה · עוד בלי תוכן</span></div>
+          <div class="ghost-head" style="grid-template-columns:1.2fr .8fr 1fr .9fr"><span>מי</span><span>כמה</span><span>על מה</span><span>מתי סוגרים</span></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr .8fr 1fr .9fr"><i></i><i></i><i></i><i></i></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr .8fr 1fr .9fr"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="ghost">
+          <div class="ghost-title"><b>חיובים קבועים ומנויים</b><span>כולל מה שמסתתר באשראי</span></div>
+          <div class="ghost-head" style="grid-template-columns:1.2fr .8fr 1fr .9fr"><span>שירות</span><span>סכום</span><span>תדירות</span><span>שווה להשאיר?</span></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr .8fr 1fr .9fr"><i></i><i></i><i></i><i></i></div>
+          <div class="ghost-row" style="grid-template-columns:1.2fr .8fr 1fr .9fr"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </section>
+
+      <!-- ============ מטרות ============ -->
+      <section class="view" data-view="goals">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">אישי</span>
+            <h2>מטרות</h2>
+            <p>הדברים הגדולים שאתה בונה לקראתם — כל מטרה עם צעד הבא אחד ברור. לא רשימות ענק, התקדמות אמיתית.</p>
+          </div>
+        </div>
+        <div class="goal-grid">
+          <div class="goal"><b>מטרה ראשונה</b><div class="bar"><i></i></div><small>תיכנס בשלב התוכן</small></div>
+          <div class="goal"><b>מטרה שנייה</b><div class="bar"><i></i></div><small>תיכנס בשלב התוכן</small></div>
+          <div class="goal"><b>מטרה שלישית</b><div class="bar"><i></i></div><small>תיכנס בשלב התוכן</small></div>
+        </div>
+      </section>
+
+      <!-- ============ דירה ורכב ============ -->
+      <section class="view" data-view="home">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">אישי</span>
+            <h2>דירה ורכב</h2>
+            <p>טסט, ביטוח, טיפולים, שכירות וחשבונות — עם תאריכים ותזכורות, כדי ששום דדליין לא יפתיע אותך.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="ghost">
+            <div class="ghost-title"><b>הרכב</b><span>טסט · ביטוח · טיפולים</span></div>
+            <div class="ghost-head" style="grid-template-columns:1.2fr 1fr .9fr"><span>מה</span><span>מתי</span><span>סטטוס</span></div>
+            <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr"><i></i><i></i><i></i></div>
+            <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr"><i></i><i></i><i></i></div>
+          </div>
+          <div class="ghost">
+            <div class="ghost-title"><b>הדירה</b><span>שכירות · חשבונות · תחזוקה</span></div>
+            <div class="ghost-head" style="grid-template-columns:1.2fr 1fr .9fr"><span>מה</span><span>מתי</span><span>סטטוס</span></div>
+            <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr"><i></i><i></i><i></i></div>
+            <div class="ghost-row" style="grid-template-columns:1.2fr 1fr .9fr"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ בריאות ואנשים ============ -->
+      <section class="view" data-view="life">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">אישי</span>
+            <h2>בריאות ואנשים</h2>
+            <p>אימונים, אוכל, לימודים — והאנשים שחשובים לך. גם קשר צריך תזכורת לפעמים.</p>
+          </div>
+        </div>
+        <div class="empty">
+          <div class="em-ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <b>הצד השקט של החיים</b>
+          <p>אימונים קבועים, ימי הולדת, "מתי דיברתי עם…", זמן משפחה. נבנה את זה יחד אחרי שהעסקי נושם.</p>
+          <span class="hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2.5 2.5"/></svg>שלב שני — אחרי העסקי</span>
+        </div>
+      </section>
+
+      <!-- ============ הסוכנים ============ -->
+      <section class="view" data-view="agents">
+        <div class="view-head">
+          <div>
+            <span class="eyebrow">מערכת</span>
+            <h2>הסוכנים שלי</h2>
+            <p>כאן תנהל את צוות הסוכנים: מה כל אחד מורשה לעשות, על מה הוא מדווח, ומתי הוא פונה אליך. שקיפות מלאה — תמיד תדע מי עשה מה.</p>
+          </div>
+        </div>
+        <div class="empty">
+          <div class="em-ico"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M8 4h8"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+          <b>חדר הבקרה של הצוות</b>
+          <p>יופעל בשלב החיבורים — אחרי שהמבנה מלא בתוכן ואתה מרגיש בבית.</p>
+          <span class="hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2.5 2.5"/></svg>שלב שלישי — חיבורים</span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="../assets/hq.js?v=1" defer></script>
+</body>
+</html>
