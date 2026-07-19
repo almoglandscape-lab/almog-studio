@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f1ea" />
+  <title>המפה · עשר דלתות — Almog Studio</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../../assets/symbol.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1038215691786700');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {content_name: 'Ten Doors Map', content_category: 'Gift'});
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1038215691786700&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel -->
+
+  <style>
+  /* המפה — אותה שפה של ספרי עשר דלתות: גיליונות נייר, Assistant + Clash, זית */
+  :root {
+    --ink: #16140f; --bark: #3a352c; --stone: #9a958b;
+    --linen: #e9e3d6; --paper: #f4f1ea; --line: #e4dfd3;
+    --olive: #706835; --white: #ffffff;
+    --display: "Clash Display", "Assistant", system-ui, sans-serif;
+    --hebrew: "Assistant", system-ui, sans-serif;
+    --grow: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { font-family: var(--hebrew); background: var(--paper); color: var(--ink); line-height: 1.85; }
+  ::selection { background: var(--olive); color: var(--paper); }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  #bar { position: fixed; top: 0; right: 0; height: 2px; background: var(--olive); width: 0; z-index: 10; }
+
+  .book { max-width: 760px; margin: 0 auto; padding: clamp(20px, 4vw, 48px) clamp(14px, 3vw, 24px) 80px; display: flex; flex-direction: column; gap: clamp(26px, 4vh, 44px); }
+
+  .sheet {
+    background: var(--white); border: 1px solid var(--line); border-radius: 2px;
+    box-shadow: 0 24px 50px -38px rgba(22, 20, 15, .35);
+    padding: clamp(34px, 7vw, 78px) clamp(24px, 6vw, 72px);
+    min-height: 74svh; display: flex; flex-direction: column; position: relative;
+  }
+  .sheet-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .pageno {
+    margin-top: 34px; text-align: center; direction: ltr;
+    font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: .3em; color: var(--stone);
+  }
+
+  .kick { font-family: var(--display); font-size: clamp(11px, 1.4vw, 13px); font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--olive); display: block; margin-bottom: 16px; }
+  h1 { font-weight: 800; font-size: clamp(56px, 14vw, 116px); line-height: .95; letter-spacing: -0.02em; }
+  h2 { font-weight: 800; font-size: clamp(40px, 9vw, 72px); line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .motto { font-family: var(--display); font-weight: 500; font-size: clamp(13px, 1.7vw, 15px); letter-spacing: .18em; text-transform: uppercase; color: var(--stone); margin-bottom: 26px; }
+  p { font-weight: 300; font-size: clamp(16.5px, 2vw, 19px); color: var(--bark); margin-bottom: 1.2em; }
+  p b, p strong { font-weight: 700; color: var(--ink); }
+  .center { text-align: center; }
+
+  .gate-symbol { width: 46px; margin: 0 auto 30px; opacity: .9; }
+  .gate-hint { font-weight: 300; font-size: clamp(15px, 1.8vw, 17px); color: var(--stone); max-width: 36ch; margin: 26px auto 0; line-height: 1.8; }
+
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: var(--hebrew); font-weight: 700; font-size: clamp(15px, 1.8vw, 17px);
+    background: var(--olive); color: var(--paper);
+    padding: 14px 34px; border-radius: 2px; border: 0; cursor: pointer;
+    transition: background 0.3s, transform 0.4s var(--grow); margin-top: 18px;
+  }
+  .cta:hover { background: #837a3e; transform: translateY(-2px); }
+
+  .divider { text-align: center; color: var(--stone); letter-spacing: .5em; margin: 22px 0; font-size: 14px; }
+  .sig { font-family: var(--display); font-size: 12px; letter-spacing: .22em; color: var(--stone); text-transform: uppercase; }
+
+  @media (max-width: 560px) { .sheet { min-height: auto; } }
+  </style>
+</head>
+<body>
+  <div id="bar"></div>
+
+  <main class="book">
+
+    <!-- שער -->
+    <section class="sheet">
+      <div class="sheet-inner center">
+        <img class="gate-symbol" src="../../assets/symbol.png" alt="" />
+        <span class="kick">עשר דלתות · מתנה</span>
+        <h1>המפה</h1>
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="margin: 34px auto 0;">
+          <circle cx="60" cy="60" r="44" stroke="#16140f" stroke-opacity=".18" stroke-width="1"/>
+          <circle cx="60" cy="60" r="28" stroke="#16140f" stroke-opacity=".1" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="60" cy="60" r="3.5" fill="#706835"/>
+        </svg>
+        <p class="gate-hint">עשרה עקרונות של דרך אחרת לראות, עמוד לכל אחד.<br>מאת אלמוג, אמן נוף. הגינות הן רק התירוץ.</p>
+      </div>
+      <div class="pageno">המפה</div>
+    </section>
+
+    <!-- 01 קשב -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת הראשונה</span>
+        <h2>קשב</h2>
+        <p class="motto">חומר הגלם של הכול</p>
+        <p>כל יצירה טובה מתחילה ברגע שקט אחד, שבו עומדים מול מקום ונותנים לו לדבר ראשון. הדבר הראשון שאני עושה בכל גינה חדשה הוא לשבת בה, שעה שלמה, ולהקשיב: לאור, לרוח, לדרך שהרגליים בוחרות לבד.</p>
+        <p>מאחורי הדלת הזאת מחכים הסיפור של הכיסא המתקפל, שש השאלות שאני שואל בכל מקום, ותרגול של עשר דקות שמחדד את העיניים מיום ליום. זו הדלת שכל השאר נשענות עליה, ולכן היא נפתחת ראשונה.</p>
+      </div>
+      <div class="pageno">01 / 10</div>
+    </section>
+
+    <!-- 02 גבול -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת השנייה</span>
+        <h2>גבול</h2>
+        <p class="motto">הגוף של היצירה</p>
+        <p>מסגרת נכונה היא לא הגבלה. היא הצורה שבה דבר נהיה הוא עצמו. קו מדויק אחד, גדר חיה, החלטה שקטה מה נשאר בחוץ, ופתאום כל מה שבפנים מקבל משמעות.</p>
+        <p>הדלת הזאת עוסקת באמנות של לתחום: איך גבול טוב משחרר, איך שער הופך מעבר לרגע, ולמה דווקא ההחלטות על הקצוות הן שנותנות למרחב, וליום, ולחיים, את צורתם.</p>
+      </div>
+      <div class="pageno">02 / 10</div>
+    </section>
+
+    <!-- 03 קצב -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת השלישית</span>
+        <h2>קצב</h2>
+        <p class="motto">רעש או מוזיקה</p>
+        <p>ההבדל בין אוסף של דברים יפים לבין מנגינה הוא הקצב: חזרה, מרווח, ואז, בדיוק בזמן הנכון, הפתעה אחת. ככה עובד גן, ככה עובד שיר, ככה עובד יום טוב.</p>
+        <p>מאחורי הדלת הזאת לומדים לשמוע את המקצב של מרחב: מתי לחזור על אותו צמח שוב ושוב, מתי לשתוק, ואיפה לשים את הצליל היחיד שיגרום לכל השאר להתחבר.</p>
+      </div>
+      <div class="pageno">03 / 10</div>
+    </section>
+
+    <!-- 04 אור וצל -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת הרביעית</span>
+        <h2>אור וצל</h2>
+        <p class="motto">בלי צל אין עומק</p>
+        <p>אור הוא החומר הכי זול והכי יקר שיש: הוא מגיע כל בוקר בחינם, ומשנה כל מה שהוא נוגע בו. והצל, שרבים ממהרים לפנות לו מקום, הוא בדיוק מה שנותן לאור את העומק.</p>
+        <p>הדלת הזאת מלמדת לקרוא את מסלול השמש של מקום, לתכנן לשעה הרכה של הערב, ולהבין איך משחק אחד של אור וצל הופך פינה פשוטה לפינה שאי אפשר לעזוב.</p>
+      </div>
+      <div class="pageno">04 / 10</div>
+    </section>
+
+    <!-- 05 זמן -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת החמישית</span>
+        <h2>זמן</h2>
+        <p class="motto">השורש עובד בחושך</p>
+        <p>גינה היא אחת היצירות היחידות שממשיכות להיווצר גם כשאף אחד לא מסתכל. השורש מעמיק בחושך, העונה מתחלפת, והיופי האמיתי מבשיל לאט, בדיוק בקצב שלו.</p>
+        <p>זו דלת על סבלנות ועל אמון: איך מתכננים למה שיהיה בעוד חמש שנים, איך לומדים לאהוב את שלב הביניים, ולמה הדברים הטובים באמת, בגינה ובחיים, גדלים לאט.</p>
+      </div>
+      <div class="pageno">05 / 10</div>
+    </section>
+
+    <!-- 06 ריק -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת השישית</span>
+        <h2>ריק</h2>
+        <p class="motto">המקום לנשום</p>
+        <p>הרווח הוא לא מה שנשאר אחרי שגמרנו לתכנן. הוא חלק מהיצירה, ולפעמים הוא החלק החשוב בה. משטח דשא פתוח, קיר נקי, שקט בין שני משפטים.</p>
+        <p>הדלת הזאת עוסקת באומץ השקט להשאיר מקום: איך ריק נכון נותן לכל השאר לנשום, ואיך המרחבים הפנויים ביותר הם אלה שאנשים נמשכים אליהם הכי הרבה.</p>
+      </div>
+      <div class="pageno">06 / 10</div>
+    </section>
+
+    <!-- 07 חומר -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת השביעית</span>
+        <h2>חומר</h2>
+        <p class="motto">אבן לא משקרת</p>
+        <p>יש חומרים שמזדקנים יפה. אבן שמתעגלת, עץ שמאפיר בכבוד, ברזל שמקבל גוון של זמן. חומר כן הוא חומר שנהיה יפה יותר ככל שחיים איתו.</p>
+        <p>מאחורי הדלת הזאת נמצאת שיטת הבחירה שלי: איך מרגישים חומר לפני שבוחרים בו, איך מרכיבים פלטה של שלושה חומרים שמדברים ביניהם, ואיך הכנות של החומר הופכת לכנות של המקום כולו.</p>
+      </div>
+      <div class="pageno">07 / 10</div>
+    </section>
+
+    <!-- 08 אנשים -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת השמינית</span>
+        <h2>אנשים</h2>
+        <p class="motto">כל מקום הוא דיוקן</p>
+        <p>גינה טובה היא דיוקן של האנשים שחיים בה: איפה הם שותים קפה בבוקר, לאן הילדים רצים, איפה נעים להם להיות לבד. המרחב מספר עליהם עוד לפני שהם מדברים.</p>
+        <p>הדלת הזאת מלמדת להקשיב לאנשים כמו שמקשיבים למקום: לשאול את השאלות הנכונות, לראות את ההרגלים הקטנים, ולתכנן סביב החיים האמיתיים, אלה שקורים כל יום.</p>
+      </div>
+      <div class="pageno">08 / 10</div>
+    </section>
+
+    <!-- 09 טעם -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת התשיעית</span>
+        <h2>טעם</h2>
+        <p class="motto">לדעת מה שלך</p>
+        <p>השראה נמצאת בכל מקום: בגנים גדולים, בציורים, בבתים ישנים, ברחוב. והאמנות האמיתית היא לזקק מתוך כל היופי הזה שפה אחת, אישית, שאפשר לזהות ממרחק.</p>
+        <p>זו דלת על בניית עין: איך אוספים השראות בלי ללכת לאיבוד בתוכן, איך מזהים מה באמת מדבר אלינו, ואיך טעם אישי הופך, לאט ובביטחון, לחתימה.</p>
+      </div>
+      <div class="pageno">09 / 10</div>
+    </section>
+
+    <!-- 10 חיים -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הדלת העשירית</span>
+        <h2>חיים</h2>
+        <p class="motto">העולם הוא הספר</p>
+        <p>הדלת האחרונה נפתחת החוצה. אחרי הקשב, הגבול, הקצב והזמן, מגלים שכל מקום הוא שיעור, שכל בוקר הוא סקיצה חדשה, ושאפשר לחיות את היום־יום עצמו כמו יצירה.</p>
+        <p>זו הדלת שסוגרת את המעגל ומחזירה אותנו לרגע הראשון: לעמוד מול העולם בעיניים פתוחות, ולראות אותו כאילו בפעם הראשונה. משם הכול מתחיל, כל פעם מחדש.</p>
+      </div>
+      <div class="pageno">10 / 10</div>
+    </section>
+
+    <!-- סיום -->
+    <section class="sheet">
+      <div class="sheet-inner center">
+        <span class="kick">וזו כל המפה</span>
+        <h2 style="font-size:clamp(30px,6vw,52px);line-height:1.15;">עשר הדלתות מחכות.<br>הראשונה כבר פתוחה.</h2>
+        <div class="divider">· · ·</div>
+        <p style="max-width:44ch;margin-inline:auto;">כל דלת היא ספר קטן של עשרה עמודים: סיפור מהסטודיו, עיקרון אחד עד הסוף, ותרגול שנשאר לחיים. הדלתות נפתחות אחת לחודש, לפי הסדר, וקשב היא הראשונה.</p>
+        <a class="cta" href="../#pricing" onclick="fbq('track','InitiateCheckout')">לפתוח את הדלת הראשונה</a>
+        <div class="divider">· · ·</div>
+        <p class="sig">אלמוג · Almog Studio</p>
+      </div>
+      <div class="pageno">עשר דלתות</div>
+    </section>
+
+  </main>
+
+  <script>
+    const bar = document.getElementById('bar');
+    addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    }, { passive: true });
+  </script>
+</body>
+</html>

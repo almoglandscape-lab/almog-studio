@@ -316,6 +316,38 @@
   .footer-links a:hover { opacity: 1; }
   .footer-fine { font-size: 10px; letter-spacing: 0.18em; color: var(--stone); }
 
+  /* ===== EMBEDDED CHECKOUT ===== */
+  .paywrap {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(22, 20, 15, 0.72);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(0px, 2vw, 24px);
+    opacity: 0; visibility: hidden; transition: opacity 0.4s var(--soft), visibility 0.4s;
+  }
+  .paywrap.open { opacity: 1; visibility: visible; }
+  .paycard {
+    position: relative; background: var(--white); border-radius: 4px;
+    width: min(560px, 100%); height: min(760px, 96svh);
+    box-shadow: 0 60px 120px -40px rgba(0,0,0,0.55);
+    overflow: hidden; display: flex; flex-direction: column;
+    transform: translateY(16px); transition: transform 0.45s var(--grow);
+  }
+  .paywrap.open .paycard { transform: none; }
+  .payhead {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper);
+  }
+  .payhead b { font-size: 14px; font-weight: 700; }
+  .payhead span { font-family: var(--display); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); }
+  .payclose {
+    border: 0; background: none; cursor: pointer; font-size: 22px; line-height: 1;
+    color: var(--bark); padding: 4px 8px; transition: color 0.3s;
+  }
+  .payclose:hover { color: var(--ink); }
+  .paycard iframe { flex: 1; width: 100%; border: 0; }
+  @media (max-width: 560px) { .paycard { height: 100svh; border-radius: 0; } }
+
   /* ===== ANIMATION ===== */
   .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.9s var(--grow), transform 0.9s var(--grow); }
   .reveal.in { opacity: 1; transform: none; }
@@ -347,10 +379,10 @@
   <section class="hero">
     <span class="kicker">Almog Studio · מהדורה ראשונה</span>
     <h1>עשר דלתות</h1>
-    <p class="sub">עשרה מסמכים על לראות אחרת.<br><i>גינות הן רק התירוץ.</i></p>
+    <p class="sub">עשרה מסמכים על דרך אחרת לראות.<br><i>הגינות הן רק התירוץ.</i></p>
     <div class="act">
-      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">אני נכנס</a>
-      <span class="fine"><b>PDF מיידי</b> · קבלה אוטומטית · <b>אחריות 14 יום</b></span>
+      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">כניסה</a>
+      <span class="fine"><b>קריאה מיידית באתר</b> · קבלה אוטומטית</span>
     </div>
     <span class="hero-cue" aria-hidden="true"></span>
   </section>
@@ -385,8 +417,8 @@
   <section class="promise center reveal">
     <div class="inner">
       <span class="kicker">למה זה קיים</span>
-      <h2 class="head-gap">אתה רואה את העולם.<br>אבל אתה לא באמת מסתכל.</h2>
-      <p class="lead head-gap">כולנו עוברים ליד אותם עצים, אותם קירות, אותם אנשים, ולא רואים כלום. במשך שנים למדתי להסתכל לאט, כי זו העבודה שלי. גיליתי שההתבוננות היא לא כישרון. היא מיומנות. <b>ומיומנות אפשר לפתוח, דלת אחר דלת.</b></p>
+      <h2 class="head-gap">לראות זו מיומנות.<br>ומיומנות אפשר לפתוח.</h2>
+      <p class="lead head-gap">כולנו חולפים בכל יום על פני אותם עצים, אותם קירות, אותם אנשים. במשך שנים למדתי להסתכל לאט, כי זו העבודה שלי, ובדרך גיליתי דבר משמח: התבוננות אינה כישרון שנולדים איתו. היא מיומנות שנרכשת. <b>ומיומנות אפשר לפתוח, דלת אחר דלת.</b></p>
     </div>
   </section>
 
@@ -395,7 +427,7 @@
     <div class="inner center">
       <span class="kicker">הספרייה · עשרה שערים</span>
       <h2 class="head-gap">כל דלת רומזת<br>על מה שמאחוריה.</h2>
-      <p class="lead head-gap" style="margin-inline:auto;">עבור עליהן לאט. לאחת נקודה אחת של מיקוד. לאחת קו שמפריד. לאחת טבעות של עץ. הדלתות נפתחות אחת לחודש, לפי הסדר.</p>
+      <p class="lead head-gap" style="margin-inline:auto;">אפשר לעבור עליהן לאט. באחת נקודה של מיקוד, באחרת קו שמפריד, ובשלישית טבעות של עץ. הדלתות נפתחות אחת לחודש, כסדרן.</p>
 
       <div class="grid">
         <a class="door open" href="#pricing">
@@ -448,9 +480,9 @@
       <span class="kicker">מה יש מאחורי דלת</span>
       <h2 class="head-gap">עשרה עמודים.<br>עיקרון אחד. עד הסוף.</h2>
       <div class="rows">
-        <div class="row"><span class="n">01</span><div><h3>שיחה, לא שיעור</h3><p>כתוב כמו שאני מדבר, כאילו אתה יושב לידי בסטודיו. בלי מונחים, בלי הרצאות.</p></div></div>
+        <div class="row"><span class="n">01</span><div><h3>שיחה, לא שיעור</h3><p>כתוב כמו שאני מדבר, כאילו יושבים יחד בסטודיו. בלי מונחים, בלי הרצאות.</p></div></div>
         <div class="row"><span class="n">02</span><div><h3>העיקרון עצמו</h3><p>מה אני באמת עושה כשאני עובד: איך קשב, גבול או ריק הופכים להחלטות בשטח.</p></div></div>
-        <div class="row"><span class="n">03</span><div><h3>תרגול קטן, אמיתי</h3><p>בכל מסמך תרגיל אחד שלוקח דקות, ומשנה את מה שאתה רואה כשאתה יוצא מהדלת.</p></div></div>
+        <div class="row"><span class="n">03</span><div><h3>תרגול קטן, אמיתי</h3><p>בכל מסמך תרגיל אחד שלוקח דקות, ומשנה את מה שרואים ביציאה מהדלת.</p></div></div>
         <div class="row"><span class="n">04</span><div><h3>סוף שפונה החוצה</h3><p>העמוד האחרון לא שולח אותך לפרק הבא. הוא שולח אותך החוצה, להסתכל.</p></div></div>
       </div>
     </div>
@@ -460,8 +492,8 @@
   <section class="author dark reveal">
     <div class="inner">
       <span class="kicker">מי כותב</span>
-      <h2 class="head-gap">אני אלמוג.<br>אני מלחין גינות.</h2>
-      <p class="lead">מקומות כנים, עשויים אבן, ירוק ואור. את הדרך שבה אני מסתכל, על מרחב, על אנשים, על זמן, אני פותח כאן בפעם הראשונה, דלת אחר דלת.</p>
+      <h2 class="head-gap">אני אלמוג.<br>אמן נוף.</h2>
+      <p class="lead">אני מתכנן גינות פרטיות ומרחבים פתוחים: מקומות כנים, עשויים אבן, ירוק ואור. את הדרך שבה אני מתבונן במרחב, באנשים ובזמן, אני פותח כאן לראשונה, דלת אחר דלת.</p>
       <a class="textlink" href="https://instagram.com/almog.studio" target="_blank" rel="noopener">העבודות באינסטגרם <em>&larr;</em></a>
     </div>
   </section>
@@ -469,8 +501,8 @@
   <!-- PRICING -->
   <section id="pricing" class="pricing center reveal">
     <div class="inner">
-      <span class="kicker">מחיר השקה · מהדורה ראשונה</span>
-      <h2 class="head-gap">בחר את הכניסה שלך.</h2>
+      <span class="kicker">המהדורה הראשונה</span>
+      <h2 class="head-gap">שלוש דרכים להיכנס.</h2>
       <div class="tiers">
         <div class="tier">
           <div class="tname">המפה</div>
@@ -478,26 +510,25 @@
           <div class="amt">מתנה</div>
           <div class="was">ממני, לכל מי שרוצה להציץ</div>
           <ul>
-            <li>עשר הדלתות, עמוד לכל אחת <b>(PDF)</b></li>
-            <li>13 עמודים מעוצבים</li>
-            <li>הורדה מיידית, שלך לתמיד</li>
+            <li>עשר הדלתות, עמוד לכל אחת</li>
+            <li>לקריאה כאן, באתר, מעוצב כמו ספר</li>
+            <li>שלך לתמיד</li>
           </ul>
-          <a href="map.pdf" download="עשר-דלתות-המפה.pdf" class="cta cta--ghost" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">לקבל את המפה במתנה</a>
+          <a href="map/" class="cta cta--ghost" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">לקבל את המפה במתנה</a>
         </div>
         <div class="tier best">
-          <span class="tag">המשתלם ביותר</span>
+          <span class="tag">היצירה השלמה</span>
           <div class="tname">הספרייה המלאה</div>
           <div class="tnote">כל עשר הדלתות, כולל העתידיות</div>
           <div class="amt">1,000 ₪</div>
           <div class="was">עשר דלתות · 100 ₪ לדלת</div>
           <ul>
             <li><b>כל עשרת המסמכים</b>, עשרה עמודים כל אחד</li>
-            <li>כל דלת חדשה מגיעה למייל ביום שנפתחת</li>
-            <li><b>המפה מצורפת במתנה</b></li>
-            <li>מחיר נעול, גם כשהמחיר יעלה</li>
-            <li>שלך לתמיד, בכל מכשיר</li>
+            <li>כל דלת חדשה מגיעה למייל ביום פתיחתה</li>
+            <li>הדלתות נקראות כאן, באתר, בכל מכשיר</li>
+            <li>שלך לתמיד</li>
           </ul>
-          <a href="https://pay.sumit.co.il/jco37z/zruz37/zruz38/payment/" data-sumit="library" class="cta" onclick="fbq('track','InitiateCheckout',{value:1000,currency:'ILS'})">אני נכנס לכולן · 1,000 ₪</a>
+          <a href="https://pay.sumit.co.il/jco37z/zruz37/zruz38/payment/" data-sumit="library" class="cta" onclick="fbq('track','InitiateCheckout',{value:1000,currency:'ILS'})">לפתוח את כל הדלתות · 1,000 ₪</a>
         </div>
         <div class="tier">
           <div class="tname">דלת אחת</div>
@@ -513,10 +544,6 @@
           <a href="https://pay.sumit.co.il/jco37z/zruk3r/zruk3s/payment/" data-sumit="door1" class="cta cta--ghost" onclick="fbq('track','InitiateCheckout',{value:100,currency:'ILS'})">לפתוח את קשב · 100 ₪</a>
         </div>
       </div>
-      <div class="guar">
-        <span class="kicker">האחריות שלי</span>
-        <p><b>ארבעה עשר יום.</b> אם לא הרגשת שמשהו במבט שלך זז, הודעה אחת ואני מחזיר לך כל שקל. בלי שאלות, בלי טפסים. הסיכון עליי.</p>
-      </div>
     </div>
   </section>
 
@@ -526,11 +553,11 @@
       <span class="kicker">לפני שנכנסים</span>
       <h2 class="head-gap">שאלות אחרונות.</h2>
       <div class="list">
-        <details open><summary>מה בדיוק אני מקבל?</summary><p>קובץ PDF מעוצב שמגיע למייל מיד אחרי התשלום, יחד עם קבלה. בספרייה המלאה, כל דלת חדשה נשלחת אליך אוטומטית ביום שהיא נפתחת.</p></details>
-        <details><summary>זה על גינון?</summary><p>לא. הגינות הן רק המקום שבו למדתי להסתכל. המסמכים עוסקים בקשב, בזמן, בטעם, באנשים. אם יש לך עיניים, זה בשבילך.</p></details>
-        <details><summary>למה לא הכול בבת אחת?</summary><p>כי ככה לא קוראים. דלת בחודש נותנת לכל עיקרון זמן לשקוע לפני שהבא מגיע. מי שבספרייה המלאה מקבל כל דלת ביום שנפתחת, ראשון.</p></details>
-        <details><summary>איך משלמים?</summary><p>תשלום מאובטח בכרטיס אשראי. קבלה מונפקת אוטומטית ונשלחת למייל יחד עם הקובץ, תוך שניות.</p></details>
-        <details><summary>ואם זה לא בשבילי?</summary><p>ארבעה עשר יום של אחריות מלאה. הודעה אחת, וכל הכסף חוזר.</p></details>
+        <details open><summary>מה מקבלים?</summary><p>מיד אחרי התשלום נפתח ספר אינטרנטי מעוצב, לקריאה כאן באתר, מכל מכשיר. קבלה נשלחת אוטומטית למייל. בספרייה המלאה, כל דלת חדשה מגיעה למייל ביום פתיחתה.</p></details>
+        <details><summary>זה על גינון?</summary><p>הגינות הן המקום שבו למדתי להסתכל, והמסמכים עוסקים במה שמעבר להן: קשב, זמן, טעם, אנשים. אנשים שאוהבים להסתכל ירגישו כאן בבית.</p></details>
+        <details><summary>צריך רקע כלשהו?</summary><p>ממש לא. הכול כתוב בשפה פשוטה ונעימה, כמו שיחה בסטודיו. הידע היחיד שצריך להביא הוא סקרנות.</p></details>
+        <details><summary>למה לא הכול בבת אחת?</summary><p>כי ככה קוראים באמת. דלת בחודש נותנת לכל עיקרון זמן לשקוע ולהפוך להרגל, לפני שהבא מגיע. הספרייה המלאה מקבלת כל דלת ביום פתיחתה, ראשונה.</p></details>
+        <details><summary>איך משלמים?</summary><p>תשלום מאובטח בכרטיס אשראי או ב־Apple Pay ו־Google Pay. הקבלה מונפקת אוטומטית ונשלחת למייל תוך שניות.</p></details>
       </div>
     </div>
   </section>
@@ -539,8 +566,8 @@
   <section class="final reveal">
     <div class="inner">
       <h2>הדלת הראשונה<br>כבר פתוחה.</h2>
-      <p class="lead">כניסה אחת, ואתה מתחיל לראות אחרת.</p>
-      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">אני נכנס</a>
+      <p class="lead">כניסה אחת, ומתחילים לראות אחרת.</p>
+      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">כניסה</a>
     </div>
   </section>
 
@@ -556,8 +583,32 @@
     <p class="footer-fine">© <span id="year"></span> Almog Studio</p>
   </footer>
 
+  <!-- EMBEDDED CHECKOUT OVERLAY -->
+  <div class="paywrap" id="paywrap" role="dialog" aria-modal="true" aria-label="תשלום מאובטח">
+    <div class="paycard">
+      <div class="payhead">
+        <b>תשלום מאובטח</b>
+        <span>Almog Studio</span>
+        <button class="payclose" id="payclose" aria-label="סגירה">×</button>
+      </div>
+      <iframe id="payframe" src="about:blank" allow="payment *" title="תשלום מאובטח"></iframe>
+    </div>
+  </div>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // embedded checkout: buy buttons open Sumit inside the site
+    const paywrap = document.getElementById('paywrap');
+    const payframe = document.getElementById('payframe');
+    const openPay = (url) => { payframe.src = url; paywrap.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const closePay = () => { paywrap.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => { payframe.src = 'about:blank'; }, 400); };
+    document.querySelectorAll('a[data-sumit]').forEach(a => {
+      a.addEventListener('click', (e) => { e.preventDefault(); openPay(a.href); });
+    });
+    document.getElementById('payclose').addEventListener('click', closePay);
+    paywrap.addEventListener('click', (e) => { if (e.target === paywrap) closePay(); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') closePay(); });
     const io = new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const bar = document.getElementById('buybar');
