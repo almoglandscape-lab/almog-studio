@@ -286,7 +286,7 @@
         <p style="font-weight:500;color:var(--ink);font-size:clamp(19px,2.6vw,23px);line-height:1.75;">עכשיו אפשר לסגור את המסך,<br>לצאת החוצה או להתקרב אל החלון,<br>ולמצוא דבר אחד חדש שהיה שם כל הזמן.</p>
         <div class="divider">· · ·</div>
         <p class="sig">אלמוג · Almog Studio</p>
-        <p style="font-size:14px;color:var(--stone);margin-top:10px;">הדלת הבאה, <b style="color:var(--olive);">גבול</b>, נפתחת בקרוב.</p>
+        <p style="font-size:14px;color:var(--stone);margin-top:10px;">הדלת הבאה, <b style="color:var(--olive);">גבול</b>, נפתחת בקרוב.<br><a href="../../account/" style="color:var(--olive);">הספרייה שלך</a></p>
       </div>
       <div class="pageno">10 / 10</div>
     </section>
@@ -297,7 +297,13 @@
     const bar = document.getElementById('bar');
     addEventListener('scroll', () => {
       const h = document.documentElement;
-      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      const p = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+      bar.style.width = p + '%';
+      // שמירת התקדמות קריאה למכשיר, עבור "המשך קריאה" בספרייה
+      try {
+        const prev = parseInt(localStorage.getItem('keshev_progress') || '0', 10);
+        if (p > prev) localStorage.setItem('keshev_progress', String(Math.round(p)));
+      } catch (e) {}
     }, { passive: true });
   </script>
 </body>
