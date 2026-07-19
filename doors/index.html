@@ -113,7 +113,7 @@
     padding: 14px 34px; border-radius: 2px; border: 0; cursor: pointer;
     transition: background 0.3s, transform 0.4s var(--grow);
   }
-  .cta:hover { background: #837a3e; transform: translateY(-2px); }
+  .cta:hover { background: var(--ink); transform: translateY(-2px); }
   .cta--ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
   .cta--ghost:hover { background: var(--ink); color: var(--paper); transform: none; }
   .textlink {
@@ -259,6 +259,8 @@
     max-width: 1060px; margin: clamp(44px, 7vh, 64px) auto 0; text-align: right; align-items: stretch;
   }
   @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; max-width: 480px; } }
+  .tiers.solo { grid-template-columns: 1fr; max-width: 480px; }
+  .map-line { margin-top: clamp(28px, 5vh, 44px); }
   .tier {
     background: var(--paper); border: 1px solid var(--line); border-radius: 2px;
     padding: clamp(26px, 3.4vw, 40px); display: flex; flex-direction: column; position: relative;
@@ -364,7 +366,7 @@
   <!-- STICKY BUY BAR -->
   <div class="buybar" id="buybar" aria-hidden="true">
     <div class="in">
-      <div class="t"><b>עשר דלתות</b><span>דלת · 100 ₪ &nbsp;·&nbsp; הספרייה המלאה · 1,000 ₪</span></div>
+      <div class="t"><b>עשר דלתות</b><span>הדלת הראשונה: קשב · 100 ₪</span></div>
       <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">לרכישה</a>
     </div>
   </div>
@@ -502,47 +504,25 @@
   <section id="pricing" class="pricing center reveal">
     <div class="inner">
       <span class="kicker">המהדורה הראשונה</span>
-      <h2 class="head-gap">שלוש דרכים להיכנס.</h2>
-      <div class="tiers">
-        <div class="tier">
-          <div class="tname">המפה</div>
-          <div class="tnote">ההצצה הראשונה לעולם הזה</div>
-          <div class="amt">מתנה</div>
-          <div class="was">ממני, לכל מי שרוצה להציץ</div>
-          <ul>
-            <li>עשר הדלתות, עמוד לכל אחת</li>
-            <li>לקריאה כאן, באתר, מעוצב כמו ספר</li>
-            <li>שלך לתמיד</li>
-          </ul>
-          <a href="map/" class="cta cta--ghost" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">לקבל את המפה במתנה</a>
-        </div>
+      <h2 class="head-gap">פתיחת הדלת הראשונה.</h2>
+      <div class="tiers solo">
         <div class="tier best">
-          <span class="tag">היצירה השלמה</span>
-          <div class="tname">הספרייה המלאה</div>
-          <div class="tnote">כל עשר הדלתות, כולל העתידיות</div>
-          <div class="amt">1,000 ₪</div>
-          <div class="was">עשר דלתות · 100 ₪ לדלת</div>
-          <ul>
-            <li><b>כל עשרת המסמכים</b>, עשרה עמודים כל אחד</li>
-            <li>כל דלת חדשה מגיעה למייל ביום פתיחתה</li>
-            <li>הדלתות נקראות כאן, באתר, בכל מכשיר</li>
-            <li>שלך לתמיד</li>
-          </ul>
-          <a href="https://pay.sumit.co.il/jco37z/zruz37/zruz38/payment/" data-sumit="library" class="cta" onclick="fbq('track','InitiateCheckout',{value:1000,currency:'ILS'})">לפתוח את כל הדלתות · 1,000 ₪</a>
-        </div>
-        <div class="tier">
-          <div class="tname">דלת אחת</div>
-          <div class="tnote">הדלת הפתוחה הנוכחית: קשב</div>
+          <span class="tag">נפתחת ראשונה</span>
+          <div class="tname">קשב</div>
+          <div class="tnote">חומר הגלם של הכול</div>
           <div class="amt">100 ₪</div>
-          <div class="was">מסמך אחד, שלם</div>
+          <div class="was">ספר של עשרה עמודים</div>
           <ul>
-            <li>מסמך אחד מלא, עשרה עמודים</li>
             <li>עיקרון אחד, עד הסוף</li>
-            <li>תרגול אחד שמשנה מבט</li>
-            <li>קבלה אוטומטית למייל</li>
+            <li>הסיפור מהסטודיו, השיטה, והתרגולים</li>
+            <li>נקרא כאן, באתר, בכל מכשיר</li>
+            <li>שלך לתמיד · קבלה אוטומטית למייל</li>
           </ul>
-          <a href="https://pay.sumit.co.il/jco37z/zruk3r/zruk3s/payment/" data-sumit="door1" class="cta cta--ghost" onclick="fbq('track','InitiateCheckout',{value:100,currency:'ILS'})">לפתוח את קשב · 100 ₪</a>
+          <a href="https://pay.sumit.co.il/jco37z/zruk3r/zruk3s/payment/" data-sumit="door1" class="cta" onclick="fbq('track','InitiateCheckout',{value:100,currency:'ILS'})">לפתוח את קשב · 100 ₪</a>
         </div>
+      </div>
+      <div class="map-line">
+        <a class="textlink" href="map/" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">רגע לפני? המפה, סקירה קצרה של עשר הדלתות <em>&larr;</em></a>
       </div>
     </div>
   </section>
@@ -553,10 +533,10 @@
       <span class="kicker">לפני שנכנסים</span>
       <h2 class="head-gap">שאלות אחרונות.</h2>
       <div class="list">
-        <details open><summary>מה מקבלים?</summary><p>מיד אחרי התשלום נפתח ספר אינטרנטי מעוצב, לקריאה כאן באתר, מכל מכשיר. קבלה נשלחת אוטומטית למייל. בספרייה המלאה, כל דלת חדשה מגיעה למייל ביום פתיחתה.</p></details>
+        <details open><summary>מה מקבלים?</summary><p>מיד אחרי התשלום נפתח ספר אינטרנטי מעוצב, לקריאה כאן באתר, מכל מכשיר. קבלה נשלחת אוטומטית למייל.</p></details>
         <details><summary>זה על גינון?</summary><p>הגינות הן המקום שבו למדתי להסתכל, והמסמכים עוסקים במה שמעבר להן: קשב, זמן, טעם, אנשים. אנשים שאוהבים להסתכל ירגישו כאן בבית.</p></details>
         <details><summary>צריך רקע כלשהו?</summary><p>ממש לא. הכול כתוב בשפה פשוטה ונעימה, כמו שיחה בסטודיו. הידע היחיד שצריך להביא הוא סקרנות.</p></details>
-        <details><summary>למה לא הכול בבת אחת?</summary><p>כי ככה קוראים באמת. דלת בחודש נותנת לכל עיקרון זמן לשקוע ולהפוך להרגל, לפני שהבא מגיע. הספרייה המלאה מקבלת כל דלת ביום פתיחתה, ראשונה.</p></details>
+        <details><summary>מתי נפתחות שאר הדלתות?</summary><p>אחת לחודש, כסדרן. קשב היא הראשונה, וגבול אחריה. כך לכל עיקרון יש זמן לשקוע ולהפוך להרגל, לפני שהבא מגיע. עדכון על כל פתיחה נשלח במייל.</p></details>
         <details><summary>איך משלמים?</summary><p>תשלום מאובטח בכרטיס אשראי או ב־Apple Pay ו־Google Pay. הקבלה מונפקת אוטומטית ונשלחת למייל תוך שניות.</p></details>
       </div>
     </div>
