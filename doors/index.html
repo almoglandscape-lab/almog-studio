@@ -261,6 +261,15 @@
   @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; max-width: 480px; } }
   .tiers.solo { grid-template-columns: 1fr; max-width: 480px; }
   .map-line { margin-top: clamp(28px, 5vh, 44px); }
+  .tier.quiet { justify-content: center; text-align: center; align-items: center; gap: var(--f2); }
+  .tier.quiet .tnote { margin-top: 2px; }
+  .tier.quiet ul { margin: 14px 0 22px; }
+  .tier.quiet li { justify-content: center; }
+  .soonstamp {
+    font-family: var(--hebrew); font-weight: 700; font-size: clamp(13px, 1.5vw, 15px);
+    color: var(--bark); border: 1.5px solid var(--bark); padding: 7px 16px;
+    transform: rotate(-3deg); background: var(--paper); margin: 18px auto 6px;
+  }
   .tier {
     background: var(--paper); border: 1px solid var(--line); border-radius: 2px;
     padding: clamp(26px, 3.4vw, 40px); display: flex; flex-direction: column; position: relative;
@@ -505,7 +514,16 @@
     <div class="inner">
       <span class="kicker">המהדורה הראשונה</span>
       <h2 class="head-gap">פתיחת הדלת הראשונה.</h2>
-      <div class="tiers solo">
+      <div class="tiers">
+        <div class="tier quiet">
+          <div class="tname">המפה</div>
+          <div class="tnote">סקירה של עשר הדלתות, עמוד לכל אחת</div>
+          <ul>
+            <li>ההצצה הראשונה לעולם הזה</li>
+            <li>נקראת כאן, באתר</li>
+          </ul>
+          <a href="map/" class="cta cta--ghost" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">כניסה לטעימה</a>
+        </div>
         <div class="tier best">
           <span class="tag">נפתחת ראשונה</span>
           <div class="tname">קשב</div>
@@ -520,9 +538,15 @@
           </ul>
           <a href="https://pay.sumit.co.il/jco37z/zruk3r/zruk3s/payment/" data-sumit="door1" class="cta" onclick="fbq('track','InitiateCheckout',{value:100,currency:'ILS'})">לפתוח את קשב · 100 ₪</a>
         </div>
-      </div>
-      <div class="map-line">
-        <a class="textlink" href="map/" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">רגע לפני? המפה, סקירה קצרה של עשר הדלתות <em>&larr;</em></a>
+        <div class="tier quiet">
+          <div class="tname">הספרייה המלאה</div>
+          <div class="tnote">כל עשר הדלתות</div>
+          <ul>
+            <li>הדלתות נפתחות אחת לחודש, כסדרן</li>
+            <li>עדכון על כל פתיחה נשלח במייל</li>
+          </ul>
+          <span class="soonstamp">בקרוב</span>
+        </div>
       </div>
     </div>
   </section>
