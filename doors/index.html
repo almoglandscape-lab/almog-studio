@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#e8e2d4" />
+  <title>עשר דלתות — Almog Studio</title>
+  <meta name="description" content="עשרה מסמכים על לראות אחרת. גינות הן רק התירוץ." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="עשר דלתות — Almog Studio" />
+  <meta property="og:description" content="עשרה מסמכים על לראות אחרת." />
+  <meta property="og:image" content="https://almog.studio/assets/wordmark.png" />
+
+  <link rel="icon" type="image/png" href="../assets/symbol.png" />
+  <link rel="apple-touch-icon" href="../assets/symbol.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@300,400,500&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1038215691786700');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {content_name: 'Ten Doors Library', content_category: 'Digital Product'});
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1038215691786700&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel -->
+
+  <style>
+  /* ============================================================
+     TEN DOORS — same language as almog.studio
+     palette of place · golden ratio · growth-easing
+     ============================================================ */
+  :root {
+    --ink:    #16140f;
+    --bark:   #3a352c;
+    --lichen: #cfc8b8;
+    --stone:  #9a958b;
+    --linen:  #e9e3d6;
+    --paper:  #f4f1ea;
+    --line:   #e4dfd3;
+    --olive:  #706835;
+    --white:  #ffffff;
+
+    --max: 1280px;
+    --f1: 8px; --f2: 13px; --f3: 21px; --f4: 34px;
+    --f5: 55px; --f6: 89px; --f7: 144px;
+
+    --grow: cubic-bezier(0.22, 1, 0.36, 1);
+    --soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+    --display: "Clash Display", "Assistant", system-ui, sans-serif;
+    --sans: "Satoshi", "Assistant", system-ui, sans-serif;
+    --hebrew: "Assistant", system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { font-family: var(--hebrew); background: var(--paper); color: var(--ink); line-height: 1.55; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--olive); color: var(--paper); }
+
+  /* ===== NAV (site idiom) ===== */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: clamp(16px, 3vw, 26px) clamp(16px, 4vw, 44px);
+    mix-blend-mode: difference;
+  }
+  .nav-mark img { height: clamp(28px, 4vw, 38px); width: auto; filter: invert(1); transition: transform 0.6s var(--grow); }
+  .nav-mark:hover img { transform: rotate(-7deg) scale(1.06); }
+  .nav-back {
+    font-family: var(--display); font-size: clamp(13px, 1.6vw, 15px); font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--white);
+  }
+
+  /* ===== STICKY BUY BAR ===== */
+  .buybar {
+    position: fixed; inset: 0 0 auto 0; z-index: 190;
+    background: rgba(244,241,234,0.88); backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-100%); transition: transform 0.5s var(--grow);
+  }
+  .buybar.show { transform: none; }
+  .buybar .in { max-width: var(--max); margin: 0 auto; padding: 10px clamp(16px, 4vw, 44px);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .buybar .t { display: flex; flex-direction: column; line-height: 1.25; }
+  .buybar .t b { font-weight: 700; font-size: 14.5px; }
+  .buybar .t span { font-size: 11.5px; color: var(--stone); letter-spacing: 0.06em; }
+  .buybar .cta { margin: 0; padding: 9px 22px; font-size: 14px; }
+  @media (max-width: 480px) { .buybar .t span { display: none; } }
+
+  /* ===== BUTTONS (quiet, site-toned) ===== */
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: var(--hebrew); font-weight: 700; font-size: clamp(15px, 1.8vw, 17px);
+    background: var(--olive); color: var(--paper);
+    padding: 14px 34px; border-radius: 2px; border: 0; cursor: pointer;
+    transition: background 0.3s, transform 0.4s var(--grow);
+  }
+  .cta:hover { background: #837a3e; transform: translateY(-2px); }
+  .cta--ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .cta--ghost:hover { background: var(--ink); color: var(--paper); transform: none; }
+  .textlink {
+    font-size: 14px; letter-spacing: 0.04em; color: var(--olive);
+    display: inline-flex; gap: 8px; align-items: center; transition: gap 0.3s var(--grow);
+  }
+  .textlink em { font-style: normal; }
+  .textlink:hover { gap: 13px; }
+
+  /* ===== SECTION SHELL ===== */
+  .kicker {
+    font-family: var(--display); font-size: clamp(12px, 1.4vw, 14px); font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--bark);
+  }
+  .dark .kicker { color: var(--lichen); }
+  h1, h2 { font-family: var(--hebrew); font-weight: 800; letter-spacing: -0.01em; line-height: 1.08; }
+  h2 { font-size: clamp(30px, 5.4vw, 60px); }
+  .lead { font-weight: 300; color: var(--bark); font-size: clamp(16px, 2vw, 20px); line-height: 1.7; max-width: 56ch; }
+
+  /* ===== HERO (dark, site contact idiom) ===== */
+  .hero {
+    background: var(--ink); color: var(--paper);
+    min-height: 92svh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: clamp(100px, 16vh, 160px) clamp(20px, 5vw, 44px) clamp(48px, 8vh, 80px);
+    position: relative;
+  }
+  .hero .kicker { color: var(--lichen); margin-bottom: var(--f4); }
+  .hero h1 { font-size: clamp(52px, 11vw, 130px); line-height: 0.98; letter-spacing: -0.03em; color: var(--paper); font-weight: 800; }
+  .hero .sub {
+    margin-top: var(--f4); font-weight: 300; color: var(--lichen);
+    font-size: clamp(17px, 2.4vw, 23px); line-height: 1.6; max-width: 34ch;
+  }
+  .hero .sub i { font-style: normal; color: var(--stone); }
+  .hero .act { margin-top: var(--f5); display: flex; flex-direction: column; align-items: center; gap: var(--f3); }
+  .hero .fine { font-size: 12px; letter-spacing: 0.12em; color: var(--stone); }
+  .hero .fine b { color: var(--lichen); font-weight: 600; }
+  .hero-cue {
+    position: absolute; left: 50%; bottom: clamp(24px, 5vh, 40px); transform: translateX(-50%);
+    width: 1px; height: 48px; background: linear-gradient(var(--lichen), transparent); opacity: 0.7;
+  }
+
+  /* ===== TICKER (site idiom) ===== */
+  .ticker { overflow: hidden; background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .ticker-track { display: flex; animation: ticker-scroll 32s linear infinite; will-change: transform; transform: translateZ(0); }
+  @media (hover: hover) { .ticker-track:hover { animation-play-state: paused; } }
+  .ticker-item { white-space: nowrap; padding: 13px 0; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); font-family: var(--hebrew); }
+  .ticker-sep { padding: 0 22px; color: var(--bark); }
+  @keyframes ticker-scroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(50%,0,0); } }
+  @media (max-width: 600px) { .ticker { display: none; } }
+
+  section { padding: clamp(72px, 13vh, 140px) clamp(16px, 4vw, 44px); }
+  .inner { max-width: var(--max); margin: 0 auto; }
+  .center { text-align: center; }
+  .center .lead { margin-inline: auto; }
+  .head-gap { margin-top: var(--f3); }
+
+  /* ===== PROMISE ===== */
+  .promise { background: var(--paper); }
+
+  /* ===== DOORS GRID (site card idiom, golden mat) ===== */
+  .doors-sec { background: var(--white); }
+  .grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(14px, 2vw, 26px);
+    margin-top: clamp(40px, 7vh, 64px);
+  }
+  @media (max-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
+  .door { display: flex; flex-direction: column; gap: var(--f2); }
+  .door-media {
+    position: relative; aspect-ratio: 1 / 1.272;           /* √φ — same as site cards */
+    background: var(--linen); overflow: hidden; border-radius: 2px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: transform 0.6s var(--grow);
+  }
+  .door-media::before {
+    content: ""; position: absolute; inset: 12px; z-index: 0;
+    border: 1px solid rgba(22,20,15,0.10); transition: border-color 0.5s;
+  }
+  .door:hover .door-media { transform: translateY(-4px); }
+  .door:hover .door-media::before { border-color: rgba(112,104,53,0.45); }
+  .door-motif { position: absolute; inset: 12px; opacity: 0.55; transition: opacity 0.5s; }
+  .door:hover .door-motif { opacity: 1; }
+  .door-name {
+    position: relative; z-index: 1;
+    font-family: var(--hebrew); font-weight: 800; font-size: clamp(19px, 2.4vw, 26px); line-height: 1;
+  }
+  .door-meta { display: flex; flex-direction: column; gap: 3px; padding: 0 2px; }
+  .door-idx { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: var(--stone); }
+  .door-hint { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); }
+
+  .stamp {
+    position: absolute; z-index: 1; bottom: 14px;
+    font-family: var(--hebrew); font-weight: 700; font-size: clamp(11px, 1.3vw, 13px);
+    color: var(--bark); border: 1.5px solid var(--bark); padding: 4px 10px;
+    transform: rotate(-4deg); background: var(--paper);
+  }
+  .door.open .stamp { color: var(--olive); border-color: var(--olive); }
+  .door.locked .door-media { opacity: 0.72; }
+  .door.locked:hover .door-media { transform: none; }
+
+  /* motifs — drawn in the site's quiet tones */
+  .mo-keshev  { background: radial-gradient(circle at 50% 34%, var(--olive) 3px, transparent 4.5px); }
+  .mo-gvul    { background: linear-gradient(90deg, transparent 49.3%, rgba(22,20,15,0.4) 49.3%, rgba(22,20,15,0.4) 50.7%, transparent 50.7%); }
+  .mo-ketzev  { background: repeating-linear-gradient(180deg, transparent 0 15px, rgba(22,20,15,0.14) 15px 16px); }
+  .mo-or      { background: linear-gradient(125deg, rgba(244,241,234,0.85) 0%, transparent 50%, rgba(22,20,15,0.22) 100%); }
+  .mo-zman    { background: repeating-radial-gradient(circle at 50% 40%, transparent 0 10px, rgba(22,20,15,0.13) 10px 11px); }
+  .mo-rik     { background: none; }
+  .mo-chomer  { background: repeating-linear-gradient(90deg, transparent 0 4px, rgba(22,20,15,0.08) 4px 5px); }
+  .mo-anashim { background:
+      radial-gradient(circle at 42% 36%, transparent 13px, rgba(22,20,15,0.28) 13.5px, transparent 15px),
+      radial-gradient(circle at 58% 36%, transparent 13px, rgba(22,20,15,0.28) 13.5px, transparent 15px); }
+  .mo-taam    { background:
+      radial-gradient(circle at 24% 34%, rgba(22,20,15,0.2) 2px, transparent 3px),
+      radial-gradient(circle at 37% 34%, rgba(22,20,15,0.2) 2px, transparent 3px),
+      radial-gradient(circle at 50% 34%, var(--olive) 3px, transparent 4.5px),
+      radial-gradient(circle at 63% 34%, rgba(22,20,15,0.2) 2px, transparent 3px),
+      radial-gradient(circle at 76% 34%, rgba(22,20,15,0.2) 2px, transparent 3px); }
+  .mo-chaim   { background:
+      linear-gradient(180deg, transparent 32%, var(--olive) 32%, var(--olive) 32.9%, transparent 32.9%) 50% 0 / 1.5px 100% no-repeat,
+      radial-gradient(ellipse 10px 5px at 57% 37%, rgba(112,104,53,0.75) 60%, transparent 61%),
+      radial-gradient(ellipse 10px 5px at 43% 45%, rgba(112,104,53,0.55) 60%, transparent 61%); }
+
+  /* ===== INSIDE ROWS ===== */
+  .inside { background: var(--paper); }
+  .rows { max-width: 700px; margin: clamp(36px, 6vh, 56px) auto 0; text-align: right; }
+  .row { display: flex; gap: 20px; align-items: flex-start; padding: 22px 2px; border-top: 1px solid var(--line); }
+  .row:last-child { border-bottom: 1px solid var(--line); }
+  .row .n { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; color: var(--stone); padding-top: 5px; min-width: 30px; }
+  .row h3 { font-weight: 700; font-size: clamp(16.5px, 2vw, 20px); margin-bottom: 3px; }
+  .row p { font-weight: 300; color: var(--bark); font-size: clamp(14px, 1.7vw, 16.5px); line-height: 1.6; }
+
+  /* ===== AUTHOR (dark, site contact idiom) ===== */
+  .author { background: var(--ink); color: var(--paper); text-align: center; }
+  .author h2 { color: var(--paper); font-size: clamp(34px, 7vw, 84px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 800; }
+  .author .lead { color: var(--lichen); margin: var(--f4) auto 0; max-width: 46ch; }
+  .author .textlink { margin-top: var(--f4); color: var(--lichen); }
+
+  /* ===== PRICING (classic three tiers) ===== */
+  .pricing { background: var(--white); }
+  .tiers {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 26px);
+    max-width: 1060px; margin: clamp(44px, 7vh, 64px) auto 0; text-align: right; align-items: stretch;
+  }
+  @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; max-width: 480px; } }
+  .tier {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 2px;
+    padding: clamp(26px, 3.4vw, 40px); display: flex; flex-direction: column; position: relative;
+  }
+  .tier.best { border: 1.5px solid var(--olive); background: var(--white); box-shadow: 0 34px 60px -38px rgba(112,104,53,0.5); }
+  .tier .tag {
+    position: absolute; top: -13px; inset-inline-start: 26px;
+    font-family: var(--hebrew); font-weight: 700; font-size: 12px;
+    color: var(--paper); background: var(--olive); padding: 4px 12px; transform: rotate(-3deg);
+  }
+  .tier .tname { font-weight: 800; font-size: clamp(19px, 2.3vw, 24px); }
+  .tier .tnote { color: var(--stone); font-size: 13.5px; letter-spacing: 0.04em; margin-top: 4px; }
+  .tier .amt { font-weight: 800; font-size: clamp(40px, 5.5vw, 54px); letter-spacing: -0.02em; margin: 20px 0 2px; }
+  .tier .amt small { font-weight: 500; font-size: 0.38em; color: var(--stone); letter-spacing: 0.04em; }
+  .tier .was { color: var(--stone); font-size: 14px; margin-bottom: 20px; }
+  .tier .was s { opacity: 0.85; }
+  .tier ul { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 26px; flex: 1; }
+  .tier li { display: flex; gap: 10px; align-items: flex-start; font-size: clamp(13.5px, 1.6vw, 15.5px); font-weight: 300; color: var(--bark); }
+  .tier li b { font-weight: 700; color: var(--ink); }
+  .tier li::before { content: "✓"; color: var(--olive); font-weight: 800; flex: 0 0 auto; }
+  .tier .cta { width: 100%; }
+
+  .guar { text-align: center; max-width: 54ch; margin: clamp(40px, 6vh, 56px) auto 0; }
+  .guar .kicker { color: var(--olive); }
+  .guar p { margin-top: var(--f2); font-weight: 300; color: var(--bark); font-size: clamp(15px, 1.8vw, 18px); line-height: 1.65; }
+  .guar b { font-weight: 700; color: var(--ink); }
+
+  /* ===== FAQ ===== */
+  .faq { background: var(--paper); }
+  .faq .list { max-width: 720px; margin: clamp(36px, 6vh, 56px) auto 0; text-align: right; }
+  .faq details { border-top: 1px solid var(--line); padding: 20px 2px; }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; font-weight: 700; font-size: clamp(15.5px, 1.9vw, 19px); display: flex; justify-content: space-between; gap: 18px; align-items: center; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--olive); font-size: 1.4em; font-weight: 400; transition: transform 0.3s var(--grow); }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { font-weight: 300; color: var(--bark); margin-top: 10px; font-size: clamp(14px, 1.7vw, 16.5px); line-height: 1.65; max-width: 62ch; }
+
+  /* ===== FINAL (site contact idiom) ===== */
+  .final { background: var(--ink); color: var(--paper); text-align: center; }
+  .final h2 { color: var(--paper); font-size: clamp(38px, 8.5vw, 104px); line-height: 0.96; letter-spacing: -0.03em; font-weight: 800; }
+  .final .lead { color: var(--lichen); margin: var(--f4) auto 0; max-width: 36ch; }
+  .final .cta { margin-top: var(--f5); }
+
+  /* ===== FOOTER (site idiom) ===== */
+  .footer {
+    background: var(--ink); color: var(--paper);
+    padding: 0 clamp(20px, 5vw, 44px) clamp(40px, 7vh, 64px);
+    display: flex; flex-direction: column; align-items: center; gap: var(--f4);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-mark { height: 34px; width: auto; filter: invert(1); opacity: 0.85; margin-top: clamp(40px, 7vh, 64px); }
+  .footer-links { display: flex; flex-wrap: wrap; gap: clamp(16px, 3vw, 30px); justify-content: center; }
+  .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper); opacity: 0.6; transition: opacity 0.3s; }
+  .footer-links a:hover { opacity: 1; }
+  .footer-fine { font-size: 10px; letter-spacing: 0.18em; color: var(--stone); }
+
+  /* ===== ANIMATION ===== */
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.9s var(--grow), transform 0.9s var(--grow); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+  :focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+  .dark :focus-visible, .hero :focus-visible { outline-color: var(--lichen); }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY BUY BAR -->
+  <div class="buybar" id="buybar" aria-hidden="true">
+    <div class="in">
+      <div class="t"><b>עשר דלתות</b><span>דלת · 100 ₪ &nbsp;·&nbsp; הספרייה המלאה · 1,000 ₪</span></div>
+      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">לרכישה</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="../" class="nav-mark" aria-label="Almog Studio"><img src="../assets/symbol.png" alt="" /></a>
+    <a href="../" class="nav-back">Almog Studio</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="kicker">Almog Studio · מהדורה ראשונה</span>
+    <h1>עשר דלתות</h1>
+    <p class="sub">עשרה מסמכים על לראות אחרת.<br><i>גינות הן רק התירוץ.</i></p>
+    <div class="act">
+      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">אני נכנס</a>
+      <span class="fine"><b>PDF מיידי</b> · קבלה אוטומטית · <b>אחריות 14 יום</b></span>
+    </div>
+    <span class="hero-cue" aria-hidden="true"></span>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true" dir="ltr">
+    <div class="ticker-track">
+      <span class="ticker-item">קשב</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">גבול</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">קצב</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">אור וצל</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">זמן</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">ריק</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">חומר</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">אנשים</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">טעם</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">חיים</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">קשב</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">גבול</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">קצב</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">אור וצל</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">זמן</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">ריק</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">חומר</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">אנשים</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">טעם</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">חיים</span><span class="ticker-sep">·</span>
+    </div>
+  </div>
+
+  <!-- PROMISE -->
+  <section class="promise center reveal">
+    <div class="inner">
+      <span class="kicker">למה זה קיים</span>
+      <h2 class="head-gap">אתה רואה את העולם.<br>אבל אתה לא באמת מסתכל.</h2>
+      <p class="lead head-gap">כולנו עוברים ליד אותם עצים, אותם קירות, אותם אנשים, ולא רואים כלום. במשך שנים למדתי להסתכל לאט, כי זו העבודה שלי. גיליתי שההתבוננות היא לא כישרון. היא מיומנות. <b>ומיומנות אפשר לפתוח, דלת אחר דלת.</b></p>
+    </div>
+  </section>
+
+  <!-- DOORS -->
+  <section class="doors-sec reveal">
+    <div class="inner center">
+      <span class="kicker">הספרייה · עשרה שערים</span>
+      <h2 class="head-gap">כל דלת רומזת<br>על מה שמאחוריה.</h2>
+      <p class="lead head-gap" style="margin-inline:auto;">עבור עליהן לאט. לאחת נקודה אחת של מיקוד. לאחת קו שמפריד. לאחת טבעות של עץ. הדלתות נפתחות אחת לחודש, לפי הסדר.</p>
+
+      <div class="grid">
+        <a class="door open" href="#pricing">
+          <div class="door-media"><span class="door-motif mo-keshev"></span><span class="door-name">קשב</span><span class="stamp">נפתחת ראשונה</span></div>
+          <div class="door-meta"><span class="door-idx">001</span><span class="door-hint">חומר הגלם של הכול</span></div>
+        </a>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-gvul"></span><span class="door-name">גבול</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">002</span><span class="door-hint">הגוף של היצירה</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-ketzev"></span><span class="door-name">קצב</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">003</span><span class="door-hint">רעש או מוזיקה</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-or"></span><span class="door-name">אור וצל</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">004</span><span class="door-hint">בלי צל אין עומק</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-zman"></span><span class="door-name">זמן</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">005</span><span class="door-hint">השורש עובד בחושך</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-rik"></span><span class="door-name">ריק</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">006</span><span class="door-hint">המקום לנשום</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-chomer"></span><span class="door-name">חומר</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">007</span><span class="door-hint">אבן לא משקרת</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-anashim"></span><span class="door-name">אנשים</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">008</span><span class="door-hint">כל מקום הוא דיוקן</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-taam"></span><span class="door-name">טעם</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">009</span><span class="door-hint">לדעת מה שלך</span></div>
+        </div>
+        <div class="door locked">
+          <div class="door-media"><span class="door-motif mo-chaim"></span><span class="door-name">חיים</span><span class="stamp">נעולה</span></div>
+          <div class="door-meta"><span class="door-idx">010</span><span class="door-hint">העולם הוא הספר</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIDE -->
+  <section class="inside center reveal">
+    <div class="inner">
+      <span class="kicker">מה יש מאחורי דלת</span>
+      <h2 class="head-gap">עשרה עמודים.<br>עיקרון אחד. עד הסוף.</h2>
+      <div class="rows">
+        <div class="row"><span class="n">01</span><div><h3>שיחה, לא שיעור</h3><p>כתוב כמו שאני מדבר, כאילו אתה יושב לידי בסטודיו. בלי מונחים, בלי הרצאות.</p></div></div>
+        <div class="row"><span class="n">02</span><div><h3>העיקרון עצמו</h3><p>מה אני באמת עושה כשאני עובד: איך קשב, גבול או ריק הופכים להחלטות בשטח.</p></div></div>
+        <div class="row"><span class="n">03</span><div><h3>תרגול קטן, אמיתי</h3><p>בכל מסמך תרגיל אחד שלוקח דקות, ומשנה את מה שאתה רואה כשאתה יוצא מהדלת.</p></div></div>
+        <div class="row"><span class="n">04</span><div><h3>סוף שפונה החוצה</h3><p>העמוד האחרון לא שולח אותך לפרק הבא. הוא שולח אותך החוצה, להסתכל.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section class="author dark reveal">
+    <div class="inner">
+      <span class="kicker">מי כותב</span>
+      <h2 class="head-gap">אני אלמוג.<br>אני מלחין גינות.</h2>
+      <p class="lead">מקומות כנים, עשויים אבן, ירוק ואור. את הדרך שבה אני מסתכל, על מרחב, על אנשים, על זמן, אני פותח כאן בפעם הראשונה, דלת אחר דלת.</p>
+      <a class="textlink" href="https://instagram.com/almog.studio" target="_blank" rel="noopener">העבודות באינסטגרם <em>&larr;</em></a>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing center reveal">
+    <div class="inner">
+      <span class="kicker">מחיר השקה · מהדורה ראשונה</span>
+      <h2 class="head-gap">בחר את הכניסה שלך.</h2>
+      <div class="tiers">
+        <div class="tier">
+          <div class="tname">המפה</div>
+          <div class="tnote">ההצצה הראשונה לעולם הזה</div>
+          <div class="amt">מתנה</div>
+          <div class="was">ממני, לכל מי שרוצה להציץ</div>
+          <ul>
+            <li>עשר הדלתות, עמוד לכל אחת <b>(PDF)</b></li>
+            <li>13 עמודים מעוצבים</li>
+            <li>הורדה מיידית, שלך לתמיד</li>
+          </ul>
+          <a href="map.pdf" download="עשר-דלתות-המפה.pdf" class="cta cta--ghost" onclick="fbq('track','Lead',{content_name:'Ten Doors Map'})">לקבל את המפה במתנה</a>
+        </div>
+        <div class="tier best">
+          <span class="tag">המשתלם ביותר</span>
+          <div class="tname">הספרייה המלאה</div>
+          <div class="tnote">כל עשר הדלתות, כולל העתידיות</div>
+          <div class="amt">1,000 ₪</div>
+          <div class="was">עשר דלתות · 100 ₪ לדלת</div>
+          <ul>
+            <li><b>כל עשרת המסמכים</b>, עשרה עמודים כל אחד</li>
+            <li>כל דלת חדשה מגיעה למייל ביום שנפתחת</li>
+            <li><b>המפה מצורפת במתנה</b></li>
+            <li>מחיר נעול, גם כשהמחיר יעלה</li>
+            <li>שלך לתמיד, בכל מכשיר</li>
+          </ul>
+          <a href="https://pay.sumit.co.il/jco37z/zruz37/zruz38/payment/" data-sumit="library" class="cta" onclick="fbq('track','InitiateCheckout',{value:1000,currency:'ILS'})">אני נכנס לכולן · 1,000 ₪</a>
+        </div>
+        <div class="tier">
+          <div class="tname">דלת אחת</div>
+          <div class="tnote">הדלת הפתוחה הנוכחית: קשב</div>
+          <div class="amt">100 ₪</div>
+          <div class="was">מסמך אחד, שלם</div>
+          <ul>
+            <li>מסמך אחד מלא, עשרה עמודים</li>
+            <li>עיקרון אחד, עד הסוף</li>
+            <li>תרגול אחד שמשנה מבט</li>
+            <li>קבלה אוטומטית למייל</li>
+          </ul>
+          <a href="https://pay.sumit.co.il/jco37z/zruk3r/zruk3s/payment/" data-sumit="door1" class="cta cta--ghost" onclick="fbq('track','InitiateCheckout',{value:100,currency:'ILS'})">לפתוח את קשב · 100 ₪</a>
+        </div>
+      </div>
+      <div class="guar">
+        <span class="kicker">האחריות שלי</span>
+        <p><b>ארבעה עשר יום.</b> אם לא הרגשת שמשהו במבט שלך זז, הודעה אחת ואני מחזיר לך כל שקל. בלי שאלות, בלי טפסים. הסיכון עליי.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq center reveal">
+    <div class="inner">
+      <span class="kicker">לפני שנכנסים</span>
+      <h2 class="head-gap">שאלות אחרונות.</h2>
+      <div class="list">
+        <details open><summary>מה בדיוק אני מקבל?</summary><p>קובץ PDF מעוצב שמגיע למייל מיד אחרי התשלום, יחד עם קבלה. בספרייה המלאה, כל דלת חדשה נשלחת אליך אוטומטית ביום שהיא נפתחת.</p></details>
+        <details><summary>זה על גינון?</summary><p>לא. הגינות הן רק המקום שבו למדתי להסתכל. המסמכים עוסקים בקשב, בזמן, בטעם, באנשים. אם יש לך עיניים, זה בשבילך.</p></details>
+        <details><summary>למה לא הכול בבת אחת?</summary><p>כי ככה לא קוראים. דלת בחודש נותנת לכל עיקרון זמן לשקוע לפני שהבא מגיע. מי שבספרייה המלאה מקבל כל דלת ביום שנפתחת, ראשון.</p></details>
+        <details><summary>איך משלמים?</summary><p>תשלום מאובטח בכרטיס אשראי. קבלה מונפקת אוטומטית ונשלחת למייל יחד עם הקובץ, תוך שניות.</p></details>
+        <details><summary>ואם זה לא בשבילי?</summary><p>ארבעה עשר יום של אחריות מלאה. הודעה אחת, וכל הכסף חוזר.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final reveal">
+    <div class="inner">
+      <h2>הדלת הראשונה<br>כבר פתוחה.</h2>
+      <p class="lead">כניסה אחת, ואתה מתחיל לראות אחרת.</p>
+      <a href="#pricing" class="cta" onclick="fbq('track','InitiateCheckout')">אני נכנס</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img class="footer-mark" src="../assets/symbol.png" alt="" />
+    <nav class="footer-links" aria-label="Site">
+      <a href="../works/">Works</a>
+      <a href="../philosophy/">About</a>
+      <a href="../process/">Process</a>
+      <a href="https://wa.me/972509572882">WhatsApp</a>
+    </nav>
+    <p class="footer-fine">© <span id="year"></span> Almog Studio</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const io = new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    const bar = document.getElementById('buybar');
+    const onScroll = () => { if (window.scrollY > window.innerHeight * 0.9) bar.classList.add('show'); else bar.classList.remove('show'); };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  </script>
+</body>
+</html>

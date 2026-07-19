@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f1ea" />
+  <title>קשב · הדלת הראשונה — עשר דלתות</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../../assets/symbol.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap" rel="stylesheet" />
+
+  <style>
+  /* ============================================================
+     קשב — הדלת הראשונה · ספר של עשרה עמודים
+     שפת האתר: Assistant + Clash Display · נייר, דיו, זית
+     ============================================================ */
+  :root {
+    --ink: #16140f; --bark: #3a352c; --stone: #9a958b;
+    --linen: #e9e3d6; --paper: #f4f1ea; --line: #e4dfd3;
+    --olive: #706835; --white: #ffffff;
+    --display: "Clash Display", "Assistant", system-ui, sans-serif;
+    --hebrew: "Assistant", system-ui, sans-serif;
+    --grow: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { font-family: var(--hebrew); background: var(--paper); color: var(--ink); line-height: 1.85; }
+  ::selection { background: var(--olive); color: var(--paper); }
+  img, svg { display: block; max-width: 100%; }
+
+  #bar { position: fixed; top: 0; right: 0; height: 2px; background: var(--olive); width: 0; z-index: 10; }
+
+  .book { max-width: 760px; margin: 0 auto; padding: clamp(20px, 4vw, 48px) clamp(14px, 3vw, 24px) 80px; display: flex; flex-direction: column; gap: clamp(26px, 4vh, 44px); }
+
+  .sheet {
+    background: var(--white); border: 1px solid var(--line); border-radius: 2px;
+    box-shadow: 0 24px 50px -38px rgba(22, 20, 15, .35);
+    padding: clamp(34px, 7vw, 78px) clamp(24px, 6vw, 72px);
+    min-height: 86svh; display: flex; flex-direction: column; position: relative;
+  }
+  .sheet-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .pageno {
+    margin-top: 34px; text-align: center; direction: ltr;
+    font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: .3em; color: var(--stone);
+  }
+
+  .kick { font-family: var(--display); font-size: clamp(11px, 1.4vw, 13px); font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--olive); display: block; margin-bottom: 16px; }
+  h1 { font-weight: 800; font-size: clamp(64px, 16vw, 130px); line-height: .95; letter-spacing: -0.02em; }
+  h2 { font-weight: 800; font-size: clamp(25px, 4.6vw, 37px); line-height: 1.22; letter-spacing: -0.01em; margin-bottom: 24px; }
+  p { font-weight: 300; font-size: clamp(16.5px, 2vw, 19px); color: var(--bark); margin-bottom: 1.25em; }
+  p b, p strong { font-weight: 700; color: var(--ink); }
+  .center { text-align: center; }
+
+  blockquote { border-inline-start: 2px solid var(--olive); padding-inline-start: 22px; margin: 34px 0; }
+  blockquote p { font-weight: 500; font-size: clamp(19px, 2.6vw, 23px); color: var(--ink); line-height: 1.65; margin: 0; }
+
+  ul.plain { list-style: none; margin: 26px 0; display: flex; flex-direction: column; gap: 14px; }
+  ul.plain li { display: flex; gap: 14px; align-items: flex-start; font-weight: 300; font-size: clamp(16px, 1.9vw, 18px); color: var(--bark); line-height: 1.75; }
+  ul.plain li::before { content: ""; flex: 0 0 auto; width: 7px; height: 7px; margin-top: 12px; background: var(--olive); border-radius: 50%; }
+  ul.plain li b { font-weight: 700; color: var(--ink); }
+
+  ol.steps { counter-reset: st; list-style: none; margin: 26px 0; display: flex; flex-direction: column; gap: 18px; }
+  ol.steps li { counter-increment: st; display: flex; gap: 18px; align-items: flex-start; font-weight: 300; font-size: clamp(16px, 1.9vw, 18px); color: var(--bark); line-height: 1.75; }
+  ol.steps li::before {
+    content: counter(st, decimal-leading-zero); flex: 0 0 auto;
+    font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .1em; color: var(--olive); padding-top: 6px;
+  }
+  ol.steps li b { font-weight: 700; color: var(--ink); }
+
+  .fig { margin: 30px auto; }
+  .fig svg { margin: 0 auto; }
+  .figcap { text-align: center; font-family: var(--display); font-size: 11px; font-weight: 500; letter-spacing: .2em; color: var(--stone); margin-top: 14px; text-transform: uppercase; }
+
+  .divider { text-align: center; color: var(--stone); letter-spacing: .5em; margin: 26px 0; font-size: 14px; }
+
+  .gate-symbol { width: 46px; margin: 0 auto 30px; opacity: .9; }
+  .gate-hint { font-weight: 300; font-size: clamp(15px, 1.8vw, 17px); color: var(--stone); max-width: 34ch; margin: 26px auto 0; line-height: 1.8; }
+
+  .sig { font-family: var(--display); font-size: 12px; letter-spacing: .22em; color: var(--stone); text-transform: uppercase; }
+
+  @media (max-width: 560px) { .sheet { min-height: auto; } }
+  </style>
+</head>
+<body>
+  <div id="bar"></div>
+
+  <main class="book">
+
+    <!-- ═══════════ עמוד 1 · שער ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner center">
+        <img class="gate-symbol" src="../../assets/symbol.png" alt="" />
+        <span class="kick">עשר דלתות · הדלת הראשונה</span>
+        <h1>קשב</h1>
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="margin: 34px auto 0;">
+          <circle cx="60" cy="60" r="44" stroke="#16140f" stroke-opacity=".18" stroke-width="1"/>
+          <circle cx="60" cy="60" r="28" stroke="#16140f" stroke-opacity=".1" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="60" cy="60" r="3.5" fill="#706835"/>
+        </svg>
+        <p class="gate-hint">חומר הגלם של הכול.<br>מאת אלמוג, אמן נוף.</p>
+      </div>
+      <div class="pageno">01 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 2 · כניסה ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">לפני הכול</span>
+        <h2>רגע אחד, לפני שמתחילים.</h2>
+        <p>במסך אנחנו רגילים לקרוא מהר. לרפרף, לקפוץ, לחפש את השורה החשובה. את הדף הזה כתבתי בקצב אחר, והוא מבקש קריאה בקצב אחר. לאט. כמו שנכנסים לגינה.</p>
+        <p>אז לפני שממשיכים, הנה הזמנה קטנה: אפשר להרים לרגע את העיניים מהמסך, להביט בחדר הזה שאנחנו יושבים בו, ולמצוא בו דבר אחד, אחד בלבד, שעד היום עבר לידנו בשקט. סדק עדין בקיר. הצורה שהאור מצייר על הרצפה. הצבע האמיתי, המדויק, של הדלת.</p>
+        <p>אם משהו כזה נמצא עכשיו, קרה כאן דבר יפה.</p>
+        <p><b>זו כל הדלת הראשונה, בתנועה אחת קטנה.</b> עשרת העמודים האלה נועדו להעמיק את התנועה הזאת, עד שתהפוך לטבע שני.</p>
+        <blockquote>
+          <p>אף אחד לא נולד רואה. רואים לומדים להיות.</p>
+        </blockquote>
+        <p>עשרה עמודים יש כאן, והם שלך לתמיד. עמוד אחד בערב הוא קצב נהדר. הם מחכים בסבלנות, בדיוק כמו גינה.</p>
+      </div>
+      <div class="pageno">02 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 3 · הסיפור ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הסיפור</span>
+        <h2>הכיסא המתקפל.</h2>
+        <p>לפני כמה שנים הוזמנתי למגרש של בית חדש. אדמה חשופה, חול, שמש גדולה. המשפחה חיכתה לי עם קפה ועם ציפייה ברורה: שאשלוף מחברת, שאתחיל לשרטט, שאספר מה הולך להיות פה.</p>
+        <p>הוצאתי מהרכב כיסא מתקפל, פתחתי אותו באמצע המגרש, וישבתי.</p>
+        <p>ישבתי שעה שלמה. בלי מחברת, בלי טלפון, כמעט בלי לזוז. בעל הבית הציץ מהחלון כמה פעמים, ורק אחרי חודשים, כשכבר היינו חברים, הוא גילה לי בצחוק מה אמר אז לאשתו: נראה לי ששילמנו למישהו שיושב.</p>
+        <p>אבל באותה שעה שקטה המגרש דיבר, ואני הספקתי לרשום בלב שלושה דברים. שמעתי מאיפה הרוח נכנסת אחר הצהריים, בדיוק במקום שסומן לפינת הישיבה. ראיתי איך קו המבט מהבית השכן פוגש את הפינה שנועדה לג'קוזי. ובעיקר ראיתי את הילדה הקטנה של המשפחה, שהסתובבה איתנו בחצר, חוזרת שוב ושוב אל הפינה הצפונית דווקא. הלכתי לשם אחריה, ועמדתי. בשעת ערב, רק שם, האור נהיה רך כמו דבש.</p>
+        <p><b>הגינה ההיא בנויה עד היום סביב שלוש התובנות של השעה ההיא.</b> פינת הישיבה עברה אל מקום מוגן, הג'קוזי קיבל חגורה ירוקה וגבוהה, ובפינה הצפונית עומד היום ספסל עץ שכל המשפחה קוראת לו "הפינה של נועה".</p>
+        <p>שעה אחת של ישיבה העניקה למשפחה גינה שמרגישה כאילו תמיד הייתה שם. וזה בדיוק העניין: היא באמת תמיד הייתה שם. רק היה צריך מישהו שיישב מספיק זמן בשביל לשמוע אותה.</p>
+      </div>
+      <div class="pageno">03 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 4 · העיקרון ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">העיקרון</span>
+        <h2>ההתבוננות קודמת לפעולה. תמיד.</h2>
+        <p>יצירה טובה מתחילה בראייה טובה. הרעיונות הם הפרי, אבל הראייה היא השורש, וכשמשקים את השורש, הפרי מגיע כמעט מעצמו. ההחלטות הטובות ביותר בחיי, בגינות ומחוצה להן, נולדו כולן מאותו מקום: מרגע אחד שבו ראיתי משהו קטן, ונתתי לו את מלוא תשומת הלב.</p>
+        <blockquote>
+          <p>ההבדל בין להסתכל לבין לראות הוא לא בעיניים. הוא בקצב.</p>
+        </blockquote>
+        <p>העין מהירה להפליא. בשנייה אחת היא אוספת חדר שלם, ומדביקה לכל דבר תווית: עץ, קיר, שביל, שולחן. זה כישרון נהדר, והוא גם בדיוק המקום שבו הראייה האמיתית רק מתחילה.</p>
+        <p>כי הראייה האמיתית מתעוררת אחרי שהתוויות נגמרות. בסיבוב השני והשלישי, כשנשארים מול המקום עוד רגע, מתגלה השכבה העמוקה: הצל שנופל דווקא שם בארבע אחר הצהריים. הקיר שאוגר חום ומחזיר אותו בערב. הפינה שהגוף מבקש ללכת אליה עוד לפני שהמחשבה הספיקה להחליט.</p>
+        <p>ההבחנות העדינות האלה הן זהב טהור. עליהן נבנות גינות שמרגישות נכון, ועליהן נבנה כל דבר טוב באמת.</p>
+        <p><b>בגלל זה אני מתחיל תמיד מהקשבה, ורק אחר כך מהצמחים.</b> צמח הוא תשובה, והוא יודע לחכות בסבלנות. קשב הוא האומנות להישאר עוד רגע אחד בתוך השאלה.</p>
+      </div>
+      <div class="pageno">04 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 5 · שש השאלות ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">הכלים שלי</span>
+        <h2>שש השאלות שאני שואל בכל מקום.</h2>
+        <p>כשאני יושב על הכיסא המתקפל, יש לי סדר פנימי. שש שאלות שאני עובר עליהן לאט, אחת אחרי השנייה. הן עובדות על כל מרחב: חצר, מרפסת, חדר עבודה, ואפילו יום שלם בחיים.</p>
+        <ul class="plain">
+          <li><b>איפה האור?</b> ולא רק אם יש שמש, אלא איך היא נעה. מה קורה בבוקר, בצהריים, בחמש. איפה האור רך ומזמין, ואיפה הוא חזק ומלא.</li>
+          <li><b>מאיפה הרוח?</b> לכל מקום יש נשימה משלו. פינה שנעימה בצהריים יכולה לקבל בערב משב קבוע, וידיעה כזאת מראש שווה זהב.</li>
+          <li><b>לאן הגוף הולך לבד?</b> הרגליים יודעות לפני המחשבה. שווה לשים לב לאן הן לוקחות אותנו, ואיפה נעים להיעצר בטבעיות.</li>
+          <li><b>מה שומעים?</b> דקה אחת בעיניים עצומות מגלה עולם שלם: ציפורים, רחוב, שכנים, עלים. השקט קובע איפה טוב לשהות, לא פחות מהנוף.</li>
+          <li><b>מה כבר יש?</b> העץ העקום, הקיר הישן, השיפוע. אלה כמעט תמיד המתנות הגדולות של המקום, והן כבר שם, מחכות שיראו אותן.</li>
+          <li><b>מה המקום מבקש?</b> השאלה האחרונה והחשובה מכולן. לא מה אפשר להוסיף. מה המקום עצמו, כמו שהוא, מבקש להיות.</li>
+        </ul>
+      </div>
+      <div class="pageno">05 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 6 · מה נשאר ביד ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">מה נשאר ביד</span>
+        <h2>מה שעה של הקשבה משאירה.</h2>
+        <p>אחרי שעה כזאת על הכיסא, אני קם עם דף אחד פשוט. מי שמציץ בו מהצד עשוי להתפלא, כי אין בו אף רעיון ואף צמח. יש בו דברים אחרים, יקרים הרבה יותר.</p>
+        <p>יש בו את מסלול השמש, מהבוקר ועד הערב. את הכיוון שממנו מגיעה הרוח אחר הצהריים. את המקומות שבהם הרחוב נשמע, ואת המקום שבו הוא נמוג לגמרי. את העץ שכבר עומד שם שנים ויודע על המקום יותר מכולנו. את הדרך שהרגליים בחרו לחצות בה את השטח, בלי שאף אחד סימן אותה.</p>
+        <p>ובפינה אחת של הדף, נקודה אחת ירוקה: המקום שהגוף ביקש להישאר בו.</p>
+        <blockquote>
+          <p>הנקודה הירוקה הזאת היא הגינה. כל השאר יבוא לשרת אותה.</p>
+        </blockquote>
+        <p>זה כל הסוד של השעה השקטה: היא לא ממציאה את המקום, היא מגלה אותו. המקום כבר יודע מה הוא רוצה להיות. התפקיד שלנו הוא לשמוע אותו ראשונים, לפני שהיד נוגעת באדמה.</p>
+        <p>וכשמגיעים ככה לתכנון, הכול נהיה קל יותר. ההחלטות מתיישרות סביב מה שהמקום כבר אמר, והתוצאה מרגישה כאילו תמיד הייתה שם. זו המחמאה הכי גדולה שגינה יכולה לקבל.</p>
+      </div>
+      <div class="pageno">06 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 7 · התרגול המרכזי ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">התרגול המרכזי</span>
+        <h2>עשר דקות, מקום אחד, שלושה סיבובים.</h2>
+        <p>זה התרגול שאני נותן לכל מי שעובד איתי, והוא הדבר הקרוב ביותר לשיעור פרטי אצלי בסטודיו. עשר דקות ביום, שבוע אחד, באותו מקום בדיוק. זה הכול.</p>
+        <ol class="steps">
+          <li><b>בוחרים מקום מוכר.</b> החצר, המרפסת, פינת העבודה, הרחוב של הבית. דווקא הכי מוכר, דווקא הכי יומיומי. יושבים בו בנוח, והטלפון נשאר בפנים.</li>
+          <li><b>הסיבוב הראשון, שתי דקות: התוויות.</b> אומרים בלב מה רואים. עץ, קיר, שולחן, עציץ. מתישהו יגיע הדחף לסיים, הרגשה של "טוב, ראינו הכול". זה טבעי לגמרי, וזו בדיוק נקודת ההתחלה. אפשר לחייך אליה ולהישאר.</li>
+          <li><b>הסיבוב השני, שלוש דקות: מה שאין לו שם.</b> עכשיו מחפשים רק דברים בלי תווית מיידית. איכות של אור. מרחק בין שני עצמים. לאן העין חוזרת שוב ושוב. איפה הכי נעים, ולמה דווקא שם.</li>
+          <li><b>הסיבוב השלישי, חמש דקות: השאלה.</b> שואלים את המקום שאלה אחת: מה אתה מבקש? ובסוף כותבים משפט אחד. לא יותר. משפט אחד ביום.</li>
+        </ol>
+        <p>בסוף שבוע כזה מחכים שבעה משפטים, ואני מבטיח דבר אחד: לפחות אחד מהם יפתיע. אפשר יהיה לזהות אותו מיד, כי הוא ירגיש כאילו נכתב מעצמו. <b>זה הרגע שבו המקום התחיל לדבר.</b></p>
+      </div>
+      <div class="pageno">07 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 8 · תרגולים לחיים ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">להמשך הדרך</span>
+        <h2>שלושה תרגולים קטנים לחיים עצמם.</h2>
+        <p>את שריר הקשב אפשר לאמן בכל מקום, לא רק בישיבה. אלה שלושת התרגולים שאני חוזר אליהם כבר שנים, והם הפכו אצלי להרגלים של ממש:</p>
+        <ul class="plain">
+          <li><b>המסלול המוכר, מחדש.</b> פעם בשבוע, ללכת את הדרך המוכרת ביותר, אל העבודה או אל המכולת, מהצד השני של הרחוב. המוח חוסך אנרגיה בכל מה שמוכר לו, והצד השני מחזיר לעיניים את הרעננות. רחוב שהלכנו בו אלף פעמים נהיה פתאום רחוב חדש, מלא דברים לגלות.</li>
+          <li><b>מצלמה בלי מצלמה.</b> כשמשהו יפה תופס את העין, אפשר לעצור שלוש שניות ולנסח בלב מה בדיוק עובד כאן. הקונטרסט? הקצב של החזרות? הצל? ורק אחרי שיש תשובה, לצלם. התמונות משתפרות, אבל העיקר הוא שהעין מתחדדת מיום ליום.</li>
+          <li><b>מחברת המשפטים.</b> מחברת קטנה, משפט אחד ביום: דבר אחד שראיתי היום ולא ראיתי אתמול. זה הכול. אחרי חודש מחכות שם שלושים תגליות ממקומות שהכרנו, לכאורה, בעל פה. אחרי שנה, אלה עיניים חדשות לגמרי.</li>
+        </ul>
+        <div class="fig">
+          <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
+            <rect x="30" y="20" width="120" height="84" rx="2" stroke="#16140f" stroke-opacity=".5" stroke-width="1.2"/>
+            <line x1="90" y1="20" x2="90" y2="104" stroke="#16140f" stroke-opacity=".35" stroke-width="1"/>
+            <g stroke="#16140f" stroke-opacity=".22" stroke-width="1">
+              <line x1="42" y1="42" x2="78" y2="42"/><line x1="42" y1="56" x2="72" y2="56"/>
+              <line x1="102" y1="42" x2="138" y2="42"/>
+            </g>
+            <circle cx="102" cy="56" r="2" fill="#706835"/>
+          </svg>
+          <div class="figcap">משפט אחד ביום</div>
+        </div>
+      </div>
+      <div class="pageno">08 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 9 · חמשת הכללים ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner">
+        <span class="kick">מהסטודיו שלי</span>
+        <h2>חמישה כללים שאני שומר עליהם.</h2>
+        <p>אחרי שנים של עבודה עם מקומות ועם אנשים, זיקקתי לעצמי חמישה כללים פשוטים. הם תלויים אצלי בסטודיו, והיום הם עוברים אליך:</p>
+        <ul class="plain">
+          <li><b>אני נותן לרעיון לחכות.</b> כשרעיון טוב מגיע מוקדם, אני מניח אותו בעדינות בצד ואומר לו: תכף, קודם מקשיבים עד הסוף. רעיון טוב באמת רק משתבח מההמתנה, כי המקום מספיק להגיד את שלו.</li>
+          <li><b>אני מתחיל ממה שיש.</b> העץ העקום, הקיר הישן, השיפוע הטבעי. כשמתחילים מהקיים, המקום שומר על נשמתו, והיצירה מקבלת עומק שאי אפשר לקנות.</li>
+          <li><b>אני מרים את המבט, ומוריד אותו.</b> השמיים הם חצי מכל גינה. האדמה היא החצי השני. בין שניהם, בגובה העיניים, נמצא רק חלק קטן מהסיפור.</li>
+          <li><b>אני מקשיב לגוף.</b> המקום שנעים לשבת בו הוא מדידה מדויקת יותר מכל סרגל. כשהגוף רגוע, המקום נכון.</li>
+          <li><b>אני מעצב בשביל הערב האלף.</b> לא בשביל תמונה אחת יפה, אלא בשביל אלף ערבים של קפה, שיחה ושקט. יופי אמיתי הוא יופי שחיים בתוכו.</li>
+        </ul>
+      </div>
+      <div class="pageno">09 / 10</div>
+    </section>
+
+    <!-- ═══════════ עמוד 10 · היציאה ═══════════ -->
+    <section class="sheet">
+      <div class="sheet-inner center">
+        <span class="kick">השכבה האחרונה · להשתנות</span>
+        <h2>הקשב זולג. וזה כל היופי.</h2>
+        <p style="max-width:52ch;margin-inline:auto;">מותר לגלות סוד קטן: התרגולים האלה לא נשארים בחצר. מי שלומד לשאול "מה המקום מבקש" מתחיל לשאול את זה גם על אנשים, על שיחות, על הימים עצמם. ופתאום רואים שגם לאדם שמולנו יש אור וצל, שגם לשיחה יש קצב, שגם ליום שלנו יש פינה שקטה שרק מחכה שנשב בה.</p>
+        <p style="max-width:52ch;margin-inline:auto;"><b>בגלל זה קשב הוא הדלת הראשונה.</b> כל תשע הדלתות הבאות, הגבול, הקצב, האור והצל, הריק, נפתחות מעצמן למי שלמד את הדבר האחד הזה: לעמוד בשקט מול משהו, ולתת לו לדבר ראשון.</p>
+        <div class="divider">· · ·</div>
+        <p style="font-weight:500;color:var(--ink);font-size:clamp(19px,2.6vw,23px);line-height:1.75;">עכשיו אפשר לסגור את המסך,<br>לצאת החוצה או להתקרב אל החלון,<br>ולמצוא דבר אחד חדש שהיה שם כל הזמן.</p>
+        <div class="divider">· · ·</div>
+        <p class="sig">אלמוג · Almog Studio</p>
+        <p style="font-size:14px;color:var(--stone);margin-top:10px;">הדלת הבאה, <b style="color:var(--olive);">גבול</b>, נפתחת בקרוב.<br>הספרייה המלאה מקבלת אותה ראשונה.</p>
+      </div>
+      <div class="pageno">10 / 10</div>
+    </section>
+
+  </main>
+
+  <script>
+    const bar = document.getElementById('bar');
+    addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    }, { passive: true });
+  </script>
+</body>
+</html>
