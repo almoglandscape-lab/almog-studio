@@ -80,4 +80,28 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://almog.studio/materials/"/>
     <xhtml:link rel="alternate" hreflang="he" href="https://almog.studio/he/materials/"/>
   </url>
+  <url>
+    <loc>https://almog.studio/guide/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://almog.studio/privacy/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://almog.studio/terms/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://almog.studio/accessibility/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
