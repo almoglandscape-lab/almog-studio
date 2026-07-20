@@ -125,6 +125,30 @@
   /* ---- upload flow ---- */
   pickBtn.addEventListener("click", function () { filesInput.click(); });
 
+  // PUT a file; if it already exists (422), fetch its sha and overwrite.
+  function putFile(path, b64, msg) {
+    return gh(path, {
+      method: "PUT",
+      body: JSON.stringify({ message: msg, content: b64, branch: BRANCH })
+    }).catch(function (e) {
+      if (e.message !== "api-422") throw e;
+      return gh(path + "?ref=" + BRANCH).then(function (existing) {
+        if (!existing || !existing.sha) throw e;
+        return gh(path, {
+          method: "PUT",
+          body: JSON.stringify({ message: msg, content: b64, branch: BRANCH, sha: existing.sha })
+        });
+      });
+    });
+  }
+
+  function reason(e) {
+    if (e.message === "bad-token") return "✗ בעיית מפתח";
+    if (e.message === "decode") return "✗ פורמט תמונה לא נתמך";
+    if (/^api-/.test(e.message)) return "✗ שגיאת רשת (" + e.message.replace("api-", "") + ")";
+    return "✗ נכשל";
+  }
+
   filesInput.addEventListener("change", function () {
     var files = Array.prototype.slice.call(filesInput.files || []);
     filesInput.value = "";
@@ -140,7 +164,7 @@
       var sha = res.sha;
       var proj = manifest[slug] || (manifest[slug] = { name: slug, images: [] });
 
-      // next number: highest -N suffix in the manifest for this project
+      // next number: continue from the highest -N suffix in the manifest
       var next = 1;
       proj.images.forEach(function (it) {
         var m = /-(\d+)\.jpg$/.exec(it.file || "");
@@ -148,7 +172,8 @@
       });
       next += 1; if (next < 2) next = 2;
 
-      // 2) resize+upload photos one by one
+      // 2) photos one by one — a single failure never kills the batch
+      var okCount = 0;
       var chain = Promise.resolve();
       files.forEach(function (file) {
         var item = logItem(file.name);
@@ -158,26 +183,21 @@
             var fname = "project-" + slug + "-" + next + ".jpg";
             next += 1;
             item.set("מעלה…");
-            return gh("assets/" + fname, {
-              method: "PUT",
-              body: JSON.stringify({
-                message: "Backstage: add photo to " + slug,
-                content: b64,
-                branch: BRANCH
-              })
-            }).then(function () {
+            return putFile("assets/" + fname, b64, "Backstage: add photo to " + slug).then(function () {
               proj.images.push({ file: fname, alt: proj.name || slug, alt_he: proj.name || slug });
+              okCount += 1;
               item.set("✓ עלה");
             });
+          }).catch(function (e) {
+            if (e.message === "bad-token") throw e;   // no point continuing
+            item.set(reason(e));                       // mark this one, keep going
           });
-        }).catch(function (e) {
-          item.set(e.message === "bad-token" ? "✗ בעיית מפתח" : "✗ נכשל");
-          throw e;
         });
       });
 
-      // 3) write the updated manifest once
+      // 3) if anything made it up, write the manifest so it shows on the site
       return chain.then(function () {
+        if (!okCount) throw new Error("none-ok");
         status("מעדכן את הגלריה…");
         return gh("assets/galleries.json", {
           method: "PUT",
@@ -187,12 +207,15 @@
             sha: sha,
             branch: BRANCH
           })
-        });
+        }).then(function () { return { ok: okCount, total: files.length }; });
       });
-    }).then(function () {
-      status("✓ הכל באוויר! התמונות יופיעו באתר תוך כדקה.");
+    }).then(function (r) {
+      status(r.ok === r.total
+        ? "✓ הכל באוויר! התמונות יופיעו באתר תוך כדקה."
+        : "✓ עלו " + r.ok + " מתוך " + r.total + " — השאר מסומנות למעלה עם הסיבה. מה שעלה יופיע באתר תוך כדקה.");
     }).catch(function (e) {
       if (e.message === "bad-token") { status("המפתח נדחה — הדבק מפתח חדש", true); setToken(""); swap(); }
+      else if (e.message === "none-ok") status("אף תמונה לא עלתה — הסיבות מסומנות למעלה. נסה שוב.", true);
       else status("משהו נכשל — נסה שוב (" + e.message + ")", true);
     });
   });
