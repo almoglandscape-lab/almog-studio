@@ -159,6 +159,16 @@ input,select,button{font-family:inherit}
 
 .form-card{max-width:560px;display:flex;flex-direction:column;gap:2px}
 
+/* Uploader (media view) */
+button.dropzone{width:100%;font-family:inherit}
+.dropzone--btn{margin:14px 0 6px}
+.up-note{font-size:13px;color:var(--muted);line-height:1.7;margin:6px 0}
+.up-steps{padding-inline-start:20px;font-size:13.5px;line-height:2;color:var(--bark);margin:10px 0 16px}
+.up-steps a{color:var(--gold);text-decoration:underline}
+.up-steps b{color:var(--text)}
+#up-log:empty{display:none}
+#up-log li time{display:none}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:900px){
   .stats{grid-template-columns:repeat(2,1fr)}
