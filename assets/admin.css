@@ -168,6 +168,8 @@ button.dropzone{width:100%;font-family:inherit}
 .up-steps b{color:var(--text)}
 #up-log:empty{display:none}
 #up-log li time{display:none}
+.media-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r-sm);background:var(--linen);display:block}
+#up-gallery:empty{display:none}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:900px){

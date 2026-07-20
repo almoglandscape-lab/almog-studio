@@ -38,4 +38,32 @@
   function closeDrawer() { if (app) app.classList.remove("nav-open"); }
   if (menuBtn) menuBtn.addEventListener("click", function () { app.classList.toggle("nav-open"); });
   if (scrim) scrim.addEventListener("click", closeDrawer);
+
+  // real numbers, straight from the gallery manifest — no fake data
+  var stP = document.getElementById("st-projects");
+  var stPh = document.getElementById("st-photos");
+  if (stP || stPh) {
+    fetch("/assets/galleries.json", { cache: "no-cache" })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var live = 0, photos = 0, total = 0;
+        Object.keys(data).forEach(function (k) {
+          total += 1;
+          var n = (data[k].images || []).length;
+          photos += n;
+          if (n > 0) live += 1;
+        });
+        if (stP) {
+          stP.textContent = live;
+          var s = document.getElementById("st-projects-sub");
+          if (s) s.textContent = "מתוך " + total + " בתיק";
+        }
+        if (stPh) {
+          stPh.textContent = photos;
+          var s2 = document.getElementById("st-photos-sub");
+          if (s2) s2.textContent = "בכל הפרויקטים";
+        }
+      })
+      .catch(function () {});
+  }
 })();

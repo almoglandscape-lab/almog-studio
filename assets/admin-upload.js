@@ -207,9 +207,10 @@
             sha: sha,
             branch: BRANCH
           })
-        }).then(function () { return { ok: okCount, total: files.length }; });
+        }).then(function () { return { ok: okCount, total: files.length, manifest: manifest }; });
       });
     }).then(function (r) {
+      renderGallery(r.manifest);
       status(r.ok === r.total
         ? "✓ הכל באוויר! התמונות יופיעו באתר תוך כדקה."
         : "✓ עלו " + r.ok + " מתוך " + r.total + " — השאר מסומנות למעלה עם הסיבה. מה שעלה יופיע באתר תוך כדקה.");
@@ -219,4 +220,41 @@
       else status("משהו נכשל — נסה שוב (" + e.message + ")", true);
     });
   });
+
+  /* ---- "בגלריה עכשיו" — see what each project already holds ---- */
+  var galGrid = el("up-gallery"), galTitle = el("up-gal-title"),
+      galEmpty = el("up-gal-empty"), galSite = el("up-gal-site");
+
+  function renderGallery(manifest) {
+    if (!galGrid) return;
+    var slug = projectSel.value;
+    if (galSite) galSite.href = "/works/#" + slug;
+
+    var done = function (data) {
+      var proj = (data && data[slug]) || { images: [] };
+      var imgs = proj.images || [];
+      if (galTitle) galTitle.textContent = "בגלריה עכשיו · " + (proj.name || slug) + " (" + imgs.length + ")";
+      if (galEmpty) galEmpty.hidden = imgs.length > 0;
+      galGrid.innerHTML = "";
+      imgs.forEach(function (it) {
+        var img = document.createElement("img");
+        img.src = "/assets/" + it.file;
+        img.alt = it.alt_he || it.alt || "";
+        img.loading = "lazy";
+        // a photo uploaded seconds ago isn't served yet — retry once when the site catches up
+        img.onerror = function () {
+          img.onerror = null;
+          setTimeout(function () { img.src = "/assets/" + it.file + "?r=" + Date.now(); }, 45000);
+        };
+        galGrid.appendChild(img);
+      });
+    };
+
+    if (manifest) { done(manifest); return; }
+    fetch("/assets/galleries.json", { cache: "no-cache" })
+      .then(function (r) { return r.json(); }).then(done).catch(function () {});
+  }
+
+  projectSel.addEventListener("change", function () { renderGallery(null); });
+  renderGallery(null);
 })();

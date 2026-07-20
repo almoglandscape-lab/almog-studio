@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="../assets/symbol.png" />
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/admin.css?v=4" />
+  <link rel="stylesheet" href="../assets/admin.css?v=5" />
 </head>
 <body>
 
@@ -38,7 +38,6 @@
           <a class="nav-item" data-view="messages" href="#messages">
             <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span>הודעות</span>
-            <em class="badge">3</em>
           </a>
           <a class="nav-item" data-view="shop" href="#shop">
             <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -107,13 +106,13 @@
             </article>
             <article class="stat">
               <span class="stat-label">פרויקטים באוויר</span>
-              <b class="stat-num">3</b>
-              <span class="stat-trend">2 בעבודה</span>
+              <b class="stat-num" id="st-projects">—</b>
+              <span class="stat-trend" id="st-projects-sub"></span>
             </article>
             <article class="stat">
-              <span class="stat-label">פניות חדשות</span>
-              <b class="stat-num">3</b>
-              <span class="stat-trend up">▲ השבוע</span>
+              <span class="stat-label">תמונות בגלריות</span>
+              <b class="stat-num" id="st-photos">—</b>
+              <span class="stat-trend" id="st-photos-sub"></span>
             </article>
             <article class="stat">
               <span class="stat-label">הזמנות בחנות</span>
@@ -125,11 +124,7 @@
           <div class="grid-2">
             <section class="card">
               <header class="card-head"><h3>פניות אחרונות</h3><a href="#messages" class="link" data-jump="messages">הצג הכל</a></header>
-              <ul class="list">
-                <li><div class="li-main"><b>גינה חדשה — הרצליה</b><span>"מחפש עיצוב גינה פרטית לבית חדש…"</span></div><time>2ש׳</time></li>
-                <li><div class="li-main"><b>ייעוץ גג — תל אביב</b><span>"ראינו את Sky Garden והתאהבנו…"</span></div><time>יום</time></li>
-                <li><div class="li-main"><b>עיתונות — מגזין עיצוב</b><span>"בקשה לכתבה וראיון קצר…"</span></div><time>3ימ׳</time></li>
-              </ul>
+              <p class="up-note">עוד אין פניות דרך האתר — טופס הלידים יחובר בשלב הבא. בינתיים פניות מגיעות אליך בוואטסאפ ובאימייל.</p>
             </section>
 
             <section class="card">
@@ -205,17 +200,23 @@
             <ul class="list" id="up-log"></ul>
             <p class="up-note" id="up-status"></p>
           </section>
+
+          <!-- מה שכבר בגלריה של הפרויקט הנבחר -->
+          <section class="card" id="up-gallery-card">
+            <header class="card-head">
+              <h3 id="up-gal-title">בגלריה עכשיו</h3>
+              <a class="link" id="up-gal-site" href="/works/" target="_blank" rel="noopener">פתח באתר ↗</a>
+            </header>
+            <div class="media-grid" id="up-gallery"></div>
+            <p class="up-note" id="up-gal-empty" hidden>עוד אין תמונות בפרויקט הזה — העלה את הראשונה 🌿</p>
+          </section>
         </section>
 
         <!-- הודעות -->
         <section class="view" data-view="messages">
           <div class="view-head"><div><span class="eyebrow">תיבה</span><h2>הודעות</h2></div></div>
           <section class="card">
-            <ul class="list list-lg">
-              <li><div class="avatar sm">ה</div><div class="li-main"><b>גינה חדשה — הרצליה</b><span>"מחפש עיצוב גינה פרטית לבית חדש…"</span></div><time>2ש׳</time></li>
-              <li><div class="avatar sm">ת</div><div class="li-main"><b>ייעוץ גג — תל אביב</b><span>"ראינו את Sky Garden והתאהבנו, אפשר לדבר?"</span></div><time>יום</time></li>
-              <li><div class="avatar sm">מ</div><div class="li-main"><b>עיתונות — מגזין עיצוב</b><span>"בקשה לראיון קצר על העבודה שלך."</span></div><time>3ימ׳</time></li>
-            </ul>
+            <p class="up-note">כאן יופיעו פניות אמיתיות מהאתר — זה מחובר בשלב הבא של התוכנית (טופס לידים → מייל → כאן). בינתיים, פניות מגיעות אליך ישירות בוואטסאפ ובאימייל.</p>
           </section>
         </section>
 
@@ -248,7 +249,7 @@
     </div>
   </div>
 
-  <script src="../assets/admin.js?v=3" defer></script>
-  <script src="../assets/admin-upload.js?v=2" defer></script>
+  <script src="../assets/admin.js?v=4" defer></script>
+  <script src="../assets/admin-upload.js?v=3" defer></script>
 </body>
 </html>
