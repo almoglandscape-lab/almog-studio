@@ -2,29 +2,88 @@
   "white-jungle": {
     "name": "White Jungle",
     "images": [
-      { "file": "project-white-jungle-2.jpg", "alt": "White Jungle, cactus planter along a white wall", "alt_he": "White Jungle, אדנית קקטוסים לאורך קיר לבן" },
-      { "file": "project-white-jungle-3.jpg", "alt": "White Jungle, louvered shade with chairs and silver planting", "alt_he": "White Jungle, תריסי הצללה, כיסאות וצמחייה כסופה" },
-      { "file": "project-white-jungle-4.jpg", "alt": "White Jungle, outdoor kitchen with terracotta vessels", "alt_he": "White Jungle, מטבח חוץ עם כלי טרקוטה" },
-      { "file": "project-white-jungle-5.jpg", "alt": "White Jungle, outdoor kitchen along the bamboo fence", "alt_he": "White Jungle, מטבח חוץ לאורך גדר הבמבוק" },
-      { "file": "project-white-jungle-6.jpg", "alt": "White Jungle, daybed resting under the trees", "alt_he": "White Jungle, מיטת שיזוף נחה תחת העצים" },
-      { "file": "project-white-jungle-7.jpg", "alt": "White Jungle, a quiet seat by the louvers", "alt_he": "White Jungle, פינת ישיבה שקטה ליד התריסים" },
-      { "file": "project-white-jungle-8.jpg", "alt": "White Jungle, white tree with agave and pots", "alt_he": "White Jungle, עץ לבן עם אגבה ועציצים" },
-      { "file": "project-white-jungle-9.jpg", "alt": "White Jungle, vase and wooden stool detail", "alt_he": "White Jungle, אגרטל ושרפרף עץ" },
-      { "file": "project-white-jungle-10.jpg", "alt": "White Jungle, the full garden with fire bowl", "alt_he": "White Jungle, הגינה במלואה עם קערת אש", "wide": true }
+      {
+        "file": "project-white-jungle-2.jpg",
+        "alt": "White Jungle, cactus planter along a white wall",
+        "alt_he": "White Jungle, אדנית קקטוסים לאורך קיר לבן"
+      },
+      {
+        "file": "project-white-jungle-3.jpg",
+        "alt": "White Jungle, louvered shade with chairs and silver planting",
+        "alt_he": "White Jungle, תריסי הצללה, כיסאות וצמחייה כסופה"
+      },
+      {
+        "file": "project-white-jungle-4.jpg",
+        "alt": "White Jungle, outdoor kitchen with terracotta vessels",
+        "alt_he": "White Jungle, מטבח חוץ עם כלי טרקוטה"
+      },
+      {
+        "file": "project-white-jungle-5.jpg",
+        "alt": "White Jungle, outdoor kitchen along the bamboo fence",
+        "alt_he": "White Jungle, מטבח חוץ לאורך גדר הבמבוק"
+      },
+      {
+        "file": "project-white-jungle-6.jpg",
+        "alt": "White Jungle, daybed resting under the trees",
+        "alt_he": "White Jungle, מיטת שיזוף נחה תחת העצים"
+      },
+      {
+        "file": "project-white-jungle-7.jpg",
+        "alt": "White Jungle, a quiet seat by the louvers",
+        "alt_he": "White Jungle, פינת ישיבה שקטה ליד התריסים"
+      },
+      {
+        "file": "project-white-jungle-8.jpg",
+        "alt": "White Jungle, white tree with agave and pots",
+        "alt_he": "White Jungle, עץ לבן עם אגבה ועציצים"
+      },
+      {
+        "file": "project-white-jungle-9.jpg",
+        "alt": "White Jungle, vase and wooden stool detail",
+        "alt_he": "White Jungle, אגרטל ושרפרף עץ"
+      },
+      {
+        "file": "project-white-jungle-10.jpg",
+        "alt": "White Jungle, the full garden with fire bowl",
+        "alt_he": "White Jungle, הגינה במלואה עם קערת אש",
+        "wide": true
+      }
     ]
   },
   "low-of-nature": {
     "name": "Low of Nature",
     "images": [
-      { "file": "project-low-of-nature-2.jpg", "alt": "Low of Nature, planting the olive tree by the house", "alt_he": "Low of Nature, שתילת עץ הזית ליד הבית" },
-      { "file": "project-low-of-nature-3.jpg", "alt": "Low of Nature, layered planting against a white wall", "alt_he": "Low of Nature, צמחייה בשכבות על קיר לבן" },
-      { "file": "project-low-of-nature-4.jpg", "alt": "Low of Nature, sculpted trees along the pool", "alt_he": "Low of Nature, עצים מפוסלים לאורך הבריכה" },
-      { "file": "project-low-of-nature-5.jpg", "alt": "Low of Nature, flowering native planting", "alt_he": "Low of Nature, צמחייה מקומית פורחת" }
+      {
+        "file": "project-low-of-nature-2.jpg",
+        "alt": "Low of Nature, planting the olive tree by the house",
+        "alt_he": "Low of Nature, שתילת עץ הזית ליד הבית"
+      },
+      {
+        "file": "project-low-of-nature-3.jpg",
+        "alt": "Low of Nature, layered planting against a white wall",
+        "alt_he": "Low of Nature, צמחייה בשכבות על קיר לבן"
+      },
+      {
+        "file": "project-low-of-nature-4.jpg",
+        "alt": "Low of Nature, sculpted trees along the pool",
+        "alt_he": "Low of Nature, עצים מפוסלים לאורך הבריכה"
+      },
+      {
+        "file": "project-low-of-nature-5.jpg",
+        "alt": "Low of Nature, flowering native planting",
+        "alt_he": "Low of Nature, צמחייה מקומית פורחת"
+      }
     ]
   },
   "sky-garden": {
     "name": "Sky Garden",
-    "images": []
+    "images": [
+      {
+        "file": "project-sky-garden-2.jpg",
+        "alt": "Sky Garden",
+        "alt_he": "Sky Garden"
+      }
+    ]
   },
   "norish-yard": {
     "name": "Norish Yard",
