@@ -95,7 +95,7 @@
               <span class="eyebrow">סקירה</span>
               <h2 id="greeting">שלום, אלמוג.</h2>
             </div>
-            <button class="btn btn-primary">+ פרויקט חדש</button>
+            <button class="btn btn-primary" data-go="media">⤒ העלה תמונות</button>
           </div>
 
           <div class="stats">
@@ -130,10 +130,10 @@
             <section class="card">
               <header class="card-head"><h3>פעולות מהירות</h3></header>
               <div class="quick">
-                <button class="quick-btn"><span class="qi">＋</span>הוסף פרויקט</button>
-                <button class="quick-btn"><span class="qi">⤒</span>העלה מדיה</button>
-                <button class="quick-btn"><span class="qi">✎</span>ערוך כותרת</button>
-                <button class="quick-btn"><span class="qi">◷</span>החלף שפה</button>
+                <button class="quick-btn" data-go="projects"><span class="qi">▦</span>נהל פרויקטים</button>
+                <button class="quick-btn" data-go="media"><span class="qi">⤒</span>העלה תמונות</button>
+                <button class="quick-btn" data-go="site"><span class="qi">↗</span>פתח את האתר</button>
+                <button class="quick-btn" data-go="site-he"><span class="qi">עב</span>האתר בעברית</button>
               </div>
               <div class="site-status">
                 <span class="status-dot"></span>
@@ -147,16 +147,10 @@
         <section class="view" data-view="projects">
           <div class="view-head">
             <div><span class="eyebrow">תיק עבודות</span><h2>פרויקטים</h2></div>
-            <button class="btn btn-primary">+ הוסף פרויקט</button>
+            <button class="btn btn-primary" data-go="media">⤒ העלה תמונות</button>
           </div>
-          <div class="proj-grid">
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>White Jungle</b><span class="tag live">באוויר</span></div></article>
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>Low of Nature</b><span class="tag live">באוויר</span></div></article>
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>Sky Garden</b><span class="tag live">באוויר</span></div></article>
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>Norish Yard</b><span class="tag wip">בעבודה</span></div></article>
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>My Secret</b><span class="tag wip">בעבודה</span></div></article>
-            <button class="proj proj-add"><span>＋</span>הוסף פרויקט</button>
-          </div>
+          <p class="up-note">הקש על פרויקט כדי לנהל את הגלריה שלו — התמונות, הסדר והתמונה הראשית.</p>
+          <div class="proj-grid" id="proj-grid"></div>
         </section>
 
         <!-- מדיה -->
@@ -250,7 +244,7 @@
     </div>
   </div>
 
-  <script src="../assets/admin.js?v=4" defer></script>
+  <script src="../assets/admin.js?v=5" defer></script>
   <script src="../assets/admin-upload.js?v=4" defer></script>
 </body>
 </html>

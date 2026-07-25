@@ -137,7 +137,9 @@ input,select,button{font-family:inherit}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
 .proj{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
 .proj:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(22,20,15,.1)}
-.proj-thumb{aspect-ratio:1/1.15;background:linear-gradient(160deg,var(--linen),#ded7c6)}
+.proj-thumb{aspect-ratio:1/1.15;background:linear-gradient(160deg,var(--linen),#ded7c6);overflow:hidden}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.proj:hover .proj-thumb img{transform:scale(1.04)}
 .proj-body{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 15px}
 .proj-body b{font-family:var(--display);font-weight:500;font-size:15px}
 .tag{font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 9px;border-radius:20px;background:var(--linen);color:var(--muted)}
