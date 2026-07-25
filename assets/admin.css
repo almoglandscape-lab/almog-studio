@@ -171,6 +171,29 @@ button.dropzone{width:100%;font-family:inherit}
 .media-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r-sm);background:var(--linen);display:block}
 #up-gallery:empty{display:none}
 
+/* Gallery manager — tap a photo, tools slide up over it */
+.mt-wrap{position:relative;border-radius:var(--r-sm);overflow:hidden;cursor:pointer}
+.mt-wrap img{transition:transform .3s var(--ease)}
+.mt-wrap.is-selected{outline:2.5px solid var(--gold);outline-offset:2px}
+.mt-wrap.is-selected img{transform:scale(1.04)}
+.mt-tools{
+  position:absolute;inset-inline:0;bottom:0;display:flex;justify-content:center;gap:6px;
+  padding:8px 6px;background:linear-gradient(to top,rgba(22,20,15,.85),transparent);
+  opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s var(--ease);
+  pointer-events:none;
+}
+.mt-wrap.is-selected .mt-tools{opacity:1;transform:none;pointer-events:auto}
+.mt-btn{
+  width:34px;height:34px;border:0;border-radius:9px;cursor:pointer;font-size:15px;line-height:1;
+  background:rgba(244,241,234,.94);color:var(--ink);display:grid;place-items:center;
+  transition:transform .15s var(--ease),background .2s;
+}
+.mt-btn:active{transform:scale(.92)}
+.mt-btn.mt-danger{background:rgba(178,59,59,.92);color:#fff}
+@media(hover:hover){
+  .mt-wrap:hover .mt-tools{opacity:1;transform:none;pointer-events:auto}
+}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:900px){
   .stats{grid-template-columns:repeat(2,1fr)}
