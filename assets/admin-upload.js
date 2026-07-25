@@ -378,4 +378,13 @@
 
   projectSel.addEventListener("change", function () { selectedFile = null; renderGallery(null); });
   renderGallery(null);
+
+  /* shared toolbox for the other Backstage modules (projects editor, settings) */
+  window.BS = {
+    gh: gh, contents: contents,
+    freshManifest: freshManifest, putManifest: putManifest, putFile: putFile,
+    getToken: getToken, hasToken: function () { return !!getToken(); },
+    b64ToUtf8: b64ToUtf8, utf8ToB64: utf8ToB64,
+    refreshGallery: function () { renderGallery(null); }
+  };
 })();

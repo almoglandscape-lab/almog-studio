@@ -51,18 +51,22 @@
     show("media");
   }
 
-  /* ---- live data: one fetch feeds the dashboard + projects grid ---- */
-  var STATUS = { live: "באוויר", wip: "בעבודה" };
+  /* ---- live data: one fetch feeds everything ---- */
+  function projectSlugs(data) {
+    return Object.keys(data)
+      .filter(function (k) { return k !== "_settings"; })
+      .sort(function (a, b) { return (data[a].order || 999) - (data[b].order || 999); });
+  }
 
   function renderStats(data) {
     var stP = document.getElementById("st-projects");
     var stPh = document.getElementById("st-photos");
     var live = 0, photos = 0, total = 0;
-    Object.keys(data).forEach(function (k) {
+    projectSlugs(data).forEach(function (k) {
       total += 1;
       var n = (data[k].images || []).length;
       photos += n;
-      if (n > 0) live += 1;
+      if (n > 0 && !data[k].hidden) live += 1;
     });
     if (stP) {
       stP.textContent = live;
@@ -76,21 +80,35 @@
     }
   }
 
+  /* keep the media screen's project picker in sync with the manifest */
+  function renderPicker(data) {
+    var sel = document.getElementById("up-project");
+    if (!sel) return;
+    var current = sel.value;
+    sel.innerHTML = "";
+    projectSlugs(data).forEach(function (slug) {
+      var o = document.createElement("option");
+      o.value = slug;
+      o.textContent = (data[slug].name_he || data[slug].name || slug) + (data[slug].hidden ? " · מוסתר" : "");
+      sel.appendChild(o);
+    });
+    if (current && data[current]) sel.value = current;
+  }
+
   function renderProjects(data) {
     var grid = document.getElementById("proj-grid");
     if (!grid) return;
     grid.innerHTML = "";
+    var slugs = projectSlugs(data);
 
-    Object.keys(data).forEach(function (slug) {
+    slugs.forEach(function (slug, idx) {
       var proj = data[slug] || {};
       var imgs = proj.images || [];
-      var isLive = imgs.length > 0;
+      var isLive = imgs.length > 0 && !proj.hidden;
 
       var card = document.createElement("article");
-      card.className = "proj";
-      card.setAttribute("role", "button");
-      card.tabIndex = 0;
-      card.title = "נהל את הגלריה של " + (proj.name || slug);
+      card.className = "proj" + (proj.hidden ? " proj--hidden" : "");
+      card.title = "נהל את הגלריה של " + (proj.name_he || proj.name || slug);
 
       var thumb = document.createElement("div");
       thumb.className = "proj-thumb";
@@ -105,47 +123,64 @@
       };
       thumb.appendChild(img);
 
+      // floating tools: edit + reorder
+      var tools = document.createElement("div");
+      tools.className = "proj-tools";
+      [
+        { icon: "✎", label: "ערוך פרטים", act: function () { if (window.BSProjects) window.BSProjects.edit(slug); } },
+        { icon: "↑", label: "הזז למעלה בתיק", act: function () { if (window.BSProjects) window.BSProjects.move(slug, -1); } },
+        { icon: "↓", label: "הזז למטה בתיק", act: function () { if (window.BSProjects) window.BSProjects.move(slug, +1); } }
+      ].forEach(function (tdef) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "mt-btn"; b.textContent = tdef.icon;
+        b.title = tdef.label; b.setAttribute("aria-label", tdef.label);
+        b.addEventListener("click", function (e) { e.stopPropagation(); tdef.act(); });
+        tools.appendChild(b);
+      });
+      thumb.appendChild(tools);
+
       var body = document.createElement("div");
       body.className = "proj-body";
       var name = document.createElement("b");
-      name.textContent = proj.name || slug;
+      name.textContent = proj.name_he || proj.name || slug;
       var meta = document.createElement("span");
-      meta.className = "tag " + (isLive ? "live" : "wip");
-      meta.textContent = isLive ? imgs.length + " תמונות · " + STATUS.live : STATUS.wip;
+      meta.className = "tag " + (proj.hidden ? "" : (isLive ? "live" : "wip"));
+      meta.textContent = proj.hidden ? "מוסתר" : (isLive ? imgs.length + " תמונות · באוויר" : "בעבודה");
       body.appendChild(name);
       body.appendChild(meta);
 
       card.appendChild(thumb);
       card.appendChild(body);
-
-      var go = function () { manageProject(slug); };
-      card.addEventListener("click", go);
-      card.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+      card.addEventListener("click", function () { manageProject(slug); });
 
       grid.appendChild(card);
     });
 
-    // add-project tile — honest: coming in the next phase
     var add = document.createElement("button");
     add.type = "button";
     add.className = "proj proj-add";
     add.innerHTML = "<span>＋</span>פרויקט חדש";
     add.addEventListener("click", function () {
-      alert("הוספת פרויקט חדש נבנית בשלב הבא — בינתיים אפשר להעלות ולנהל תמונות בפרויקטים הקיימים.");
+      if (window.BSProjects) window.BSProjects.add();
     });
     grid.appendChild(add);
   }
 
-  fetch("/assets/galleries.json", { cache: "no-cache" })
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      renderStats(data);
-      renderProjects(data);
-    })
-    .catch(function () {
-      var grid = document.getElementById("proj-grid");
-      if (grid) grid.innerHTML = '<p class="up-note">לא הצלחתי לטעון את הנתונים — רענן את הדף.</p>';
-    });
+  function loadData() {
+    fetch("/assets/galleries.json", { cache: "no-cache" })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        renderStats(data);
+        renderPicker(data);
+        renderProjects(data);
+      })
+      .catch(function () {
+        var grid = document.getElementById("proj-grid");
+        if (grid) grid.innerHTML = '<p class="up-note">לא הצלחתי לטעון את הנתונים — רענן את הדף.</p>';
+      });
+  }
+  loadData();
+  window.BSReloadData = loadData;
 
   /* ---- quick actions: every button leads somewhere real ---- */
   document.querySelectorAll("[data-go]").forEach(function (b) {

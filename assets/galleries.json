@@ -1,6 +1,13 @@
 {
+  "_settings": {
+    "email": "almog.landscape@gmail.com",
+    "whatsapp": "972509572882",
+    "instagram": "almog.studio"
+  },
   "white-jungle": {
     "name": "White Jungle",
+    "hidden": false,
+    "order": 10,
     "images": [
       {
         "file": "project-white-jungle-2.jpg",
@@ -52,6 +59,8 @@
   },
   "low-of-nature": {
     "name": "Low of Nature",
+    "hidden": false,
+    "order": 20,
     "images": [
       {
         "file": "project-low-of-nature-2.jpg",
@@ -77,14 +86,20 @@
   },
   "sky-garden": {
     "name": "Sky Garden",
+    "hidden": false,
+    "order": 30,
     "images": []
   },
   "norish-yard": {
     "name": "Norish Yard",
+    "hidden": false,
+    "order": 40,
     "images": []
   },
   "my-secret": {
     "name": "My Secret",
+    "hidden": false,
+    "order": 50,
     "images": []
   }
 }
