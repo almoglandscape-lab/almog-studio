@@ -22,6 +22,8 @@
     .then(function (r) { if (!r.ok) throw 0; return r.json(); })
     .then(function (data) {
       var settings = data._settings || {};
+      window.ALMOG_SETTINGS = settings;
+      try { document.dispatchEvent(new CustomEvent("almog:settings", { detail: settings })); } catch (e) {}
       var slugs = Object.keys(data).filter(function (k) { return k !== "_settings"; });
       slugs.sort(function (a, b) { return (data[a].order || 999) - (data[b].order || 999); });
 

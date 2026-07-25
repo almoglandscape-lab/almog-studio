@@ -72,7 +72,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@300,400,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css?v=2" />
   <!-- Meta Pixel -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -215,24 +215,50 @@
       </header>
       <div class="shop-grid">
         <div class="shop-card">
-          <div class="shop-media"><span class="wip-stamp">Soon</span></div>
+          <div class="shop-media shop-media--sketch">
+            <svg viewBox="0 0 120 100" aria-label="Studio cap sketch">
+              <path d="M24 62 A36 34 0 0 1 92 60" />
+              <path d="M24 62 Q58 74 92 60" />
+              <path d="M58 28 Q60 26 62 28" />
+              <path d="M88 60 Q108 62 112 68 Q108 72 90 66" />
+              <path d="M44 34 Q40 48 40 63" opacity=".45" />
+              <path d="M72 32 Q76 46 77 62" opacity=".45" />
+              <text x="57" y="54" class="sk-mark">א</text>
+            </svg>
+            <span class="shop-soon">Soon</span>
+          </div>
           <div>
             <p class="shop-name">Studio Cap</p>
-            <p class="shop-note">Forming</p>
+            <p class="shop-note">First edition</p>
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-media"><span class="wip-stamp">Soon</span></div>
+          <div class="shop-media shop-media--sketch">
+            <svg viewBox="0 0 120 100" aria-label="Studio tee sketch">
+              <path d="M45 22 Q60 30 75 22 L96 32 L89 50 L80 46 L80 84 L40 84 L40 46 L31 50 L24 32 Z" />
+              <path d="M45 22 Q60 30 75 22" opacity=".45" />
+              <text x="53" y="60" class="sk-mark">א</text>
+            </svg>
+            <span class="shop-soon">Soon</span>
+          </div>
           <div>
             <p class="shop-name">Studio Tee</p>
-            <p class="shop-note">Forming</p>
+            <p class="shop-note">First edition</p>
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-media"><span class="wip-stamp">Soon</span></div>
+          <div class="shop-media shop-media--sketch">
+            <svg viewBox="0 0 120 100" aria-label="Thermal flask sketch">
+              <rect x="46" y="26" width="28" height="62" rx="9" />
+              <path d="M50 26 L50 18 Q50 14 54 14 L66 14 Q70 14 70 18 L70 26" />
+              <path d="M46 40 L74 40" opacity=".45" />
+              <text x="54" y="70" class="sk-mark">א</text>
+            </svg>
+            <span class="shop-soon">Soon</span>
+          </div>
           <div>
             <p class="shop-name">Thermal Flask</p>
-            <p class="shop-note">Forming</p>
+            <p class="shop-note">First edition</p>
           </div>
         </div>
       </div>
@@ -243,6 +269,15 @@
     <section class="contact" id="contact">
       <h2 class="contact-h">Let's plant.</h2>
       <p class="contact-intro">Tell me about your space — I read every message.</p>
+
+      <form class="contact-form" id="lead-form" autocomplete="off">
+        <div class="cf-row">
+          <label class="cf-field"><span>Name</span><input type="text" id="lead-name" placeholder="Your name" /></label>
+          <label class="cf-field"><span>City</span><input type="text" id="lead-city" placeholder="Where is the garden?" /></label>
+        </div>
+        <label class="cf-field"><span>The dream</span><textarea id="lead-msg" rows="3" placeholder="A rooftop, a yard, a feeling you want to come home to…"></textarea></label>
+        <button type="submit" class="cf-submit">Send on WhatsApp <em>&rarr;</em></button>
+      </form>
 
       <ul class="contact-list">
         <li><a href="https://wa.me/972509572882" target="_blank" rel="noopener">WhatsApp</a></li>
@@ -274,6 +309,7 @@
   <script src="assets/script.js" defer></script>
   <script src="assets/carousel.js?v=2" defer></script>
   <script src="assets/gallery-render.js?v=2" defer></script>
+  <script src="assets/lead-form.js?v=1" defer></script>
 </body>
 </html>
 

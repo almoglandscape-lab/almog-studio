@@ -9,9 +9,27 @@
   <link rel="icon" type="image/png" href="../assets/symbol.png" />
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/admin.css?v=7" />
+  <link rel="stylesheet" href="../assets/admin.css?v=8" />
 </head>
 <body>
+
+<div class="lock" id="lock">
+  <div class="lock-card">
+    <img class="lock-mark" src="../assets/symbol.png" alt="" />
+    <h1>Backstage</h1>
+    <p class="lock-sub" id="lock-sub">נעול · הכניסה עם זיהוי פנים</p>
+    <button class="btn lock-btn" id="lock-btn">
+      <svg viewBox="0 0 24 24"><path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"/><path d="M9 10v.5M15 10v.5"/><path d="M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>
+      <span id="lock-btn-txt">כניסה עם זיהוי פנים</span>
+    </button>
+    <p class="lock-status" id="lock-status"></p>
+    <button class="lock-reset" id="lock-reset" hidden>הגדר זיהוי מחדש במכשיר הזה</button>
+  </div>
+</div>
+<script>
+  if (sessionStorage.getItem("hq_unlocked") === "1") { document.getElementById("lock").hidden = true; }
+  else { document.documentElement.classList.add("locked"); }
+</script>
 
   <div class="app" id="app">
 
@@ -99,11 +117,11 @@
           </div>
 
           <div class="stats">
-            <article class="stat">
-              <span class="stat-label">מבקרים באתר <em>· 30 ימים</em></span>
-              <b class="stat-num">—</b>
-              <span class="stat-trend up">▲ בקרוב</span>
-            </article>
+            <a class="stat stat--link" href="https://clarity.microsoft.com/projects/view/xnirs5o9b6/dashboard" target="_blank" rel="noopener">
+              <span class="stat-label">מבקרים באתר <em>· Clarity</em></span>
+              <b class="stat-num">↗</b>
+              <span class="stat-trend">פתח את לוח הנתונים</span>
+            </a>
             <article class="stat">
               <span class="stat-label">פרויקטים באוויר</span>
               <b class="stat-num" id="st-projects">—</b>
@@ -115,16 +133,16 @@
               <span class="stat-trend" id="st-photos-sub"></span>
             </article>
             <article class="stat">
-              <span class="stat-label">הזמנות בחנות</span>
-              <b class="stat-num">—</b>
-              <span class="stat-trend">לא פעיל</span>
+              <span class="stat-label">מוצרים בחנות</span>
+              <b class="stat-num">3</b>
+              <span class="stat-trend">מוצגים · מכירה בקרוב</span>
             </article>
           </div>
 
           <div class="grid-2">
             <section class="card">
               <header class="card-head"><h3>פניות אחרונות</h3><a href="#messages" class="link" data-jump="messages">הצג הכל</a></header>
-              <p class="up-note">עוד אין פניות דרך האתר — טופס הלידים יחובר בשלב הבא. בינתיים פניות מגיעות אליך בוואטסאפ ובאימייל.</p>
+              <p class="up-note">טופס הלידים באתר שולח פניות ישירות לוואטסאפ שלך — כולל שם, עיר והחלום. תיבת פניות מרוכזת כאן תגיע בשלב הבא.</p>
             </section>
 
             <section class="card">
@@ -211,18 +229,33 @@
         <section class="view" data-view="messages">
           <div class="view-head"><div><span class="eyebrow">תיבה</span><h2>הודעות</h2></div></div>
           <section class="card">
-            <p class="up-note">כאן יופיעו פניות אמיתיות מהאתר — זה מחובר בשלב הבא של התוכנית (טופס לידים → מייל → כאן). בינתיים, פניות מגיעות אליך ישירות בוואטסאפ ובאימייל.</p>
+            <p class="up-note">טופס הלידים באתר שולח כל פנייה ישירות לוואטסאפ שלך, מסודרת: שם, עיר והחלום. תיבה מרוכזת כאן — בשלב הבא.</p>
           </section>
         </section>
 
         <!-- חנות -->
         <section class="view" data-view="shop">
-          <div class="view-head"><div><span class="eyebrow">חנות</span><h2>חנות</h2></div><button class="btn btn-primary">+ הוסף מוצר</button></div>
+          <div class="view-head"><div><span class="eyebrow">חנות · Studio Edition</span><h2>חנות</h2></div></div>
+          <p class="up-note">שלושת המוצרים מוצגים באתר כסקיצות אטלייה עם תג "בקרוב". חיבור תשלומים ומכירה אמיתית — בשלב הבא של התוכנית.</p>
           <div class="proj-grid">
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>כובע</b><span class="tag">₪100</span></div></article>
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>חולצה</b><span class="tag">₪100</span></div></article>
-            <article class="proj"><div class="proj-thumb"></div><div class="proj-body"><b>בקבוק תרמי</b><span class="tag">₪100</span></div></article>
-            <button class="proj proj-add"><span>＋</span>הוסף מוצר</button>
+            <article class="proj">
+              <div class="proj-thumb proj-thumb--sketch">
+                <svg viewBox="0 0 120 100"><path d="M24 62 A36 34 0 0 1 92 60"/><path d="M24 62 Q58 74 92 60"/><path d="M88 60 Q108 62 112 68 Q108 72 90 66"/><path d="M44 34 Q40 48 40 63" opacity=".45"/><path d="M72 32 Q76 46 77 62" opacity=".45"/><text x="57" y="54" class="sk-mark">א</text></svg>
+              </div>
+              <div class="proj-body"><b>כובע סטודיו</b><span class="tag wip">בקרוב · ₪100</span></div>
+            </article>
+            <article class="proj">
+              <div class="proj-thumb proj-thumb--sketch">
+                <svg viewBox="0 0 120 100"><path d="M45 22 Q60 30 75 22 L96 32 L89 50 L80 46 L80 84 L40 84 L40 46 L31 50 L24 32 Z"/><text x="53" y="60" class="sk-mark">א</text></svg>
+              </div>
+              <div class="proj-body"><b>חולצת סטודיו</b><span class="tag wip">בקרוב · ₪100</span></div>
+            </article>
+            <article class="proj">
+              <div class="proj-thumb proj-thumb--sketch">
+                <svg viewBox="0 0 120 100"><rect x="46" y="26" width="28" height="62" rx="9"/><path d="M50 26 L50 18 Q50 14 54 14 L66 14 Q70 14 70 18 L70 26"/><path d="M46 40 L74 40" opacity=".45"/><text x="54" y="70" class="sk-mark">א</text></svg>
+              </div>
+              <div class="proj-body"><b>בקבוק תרמי</b><span class="tag wip">בקרוב · ₪100</span></div>
+            </article>
           </div>
         </section>
 
@@ -242,6 +275,7 @@
     </div>
   </div>
 
+  <script src="../assets/hq-lock.js" defer></script>
   <script src="../assets/admin.js?v=6" defer></script>
   <script src="../assets/admin-upload.js?v=5" defer></script>
   <script src="../assets/admin-projects.js?v=1" defer></script>

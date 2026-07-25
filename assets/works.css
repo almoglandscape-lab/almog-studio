@@ -104,3 +104,44 @@
 .prose .back { display: inline-flex; gap: 8px; align-items: center; margin-top: var(--f5); font-size: 14px; color: var(--olive); transition: gap 0.3s var(--grow); }
 .prose .back:hover { gap: 13px; }
 
+/* ===================== LIGHTBOX ===================== */
+html.lb-open, html.lb-open body { overflow: hidden; }
+.w-gallery img, .w-media img { cursor: zoom-in; }
+.lb {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(16, 14, 10, 0.94);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.35s var(--grow), visibility 0.35s;
+}
+.lb.open { opacity: 1; visibility: visible; }
+.lb-stage { max-width: min(92vw, 1400px); max-height: 88svh; display: flex; }
+.lb-stage img {
+  max-width: 100%; max-height: 88svh; object-fit: contain;
+  border-radius: 2px; opacity: 0; transform: scale(0.985);
+  transition: opacity 0.45s var(--grow), transform 0.45s var(--grow);
+}
+.lb-stage img.in { opacity: 1; transform: none; }
+.lb-x, .lb-prev, .lb-next {
+  position: fixed; z-index: 2; border: 0; cursor: pointer;
+  background: rgba(244, 241, 234, 0.08); color: var(--paper, #f4f1ea);
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 20px; line-height: 1;
+  transition: background 0.25s, transform 0.2s var(--grow);
+  -webkit-tap-highlight-color: transparent;
+}
+.lb-x:hover, .lb-prev:hover, .lb-next:hover { background: rgba(244, 241, 234, 0.18); }
+.lb-x:active, .lb-prev:active, .lb-next:active { transform: scale(0.92); }
+.lb-x { top: max(16px, env(safe-area-inset-top)); inset-inline-end: 16px; font-size: 16px; }
+.lb-prev { inset-inline-start: 14px; top: 50%; margin-top: -22px; }
+.lb-next { inset-inline-end: 14px; top: 50%; margin-top: -22px; }
+.lb-count {
+  position: fixed; bottom: max(18px, env(safe-area-inset-bottom));
+  left: 50%; transform: translateX(-50%);
+  font-family: var(--display, sans-serif); font-size: 12px; letter-spacing: 0.14em;
+  color: rgba(244, 241, 234, 0.75);
+}
+@media (max-width: 640px) {
+  .lb-prev, .lb-next { display: none; } /* swipe rules on mobile */
+}
+
