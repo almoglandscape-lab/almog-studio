@@ -77,13 +77,7 @@
   },
   "sky-garden": {
     "name": "Sky Garden",
-    "images": [
-      {
-        "file": "project-sky-garden-2.jpg",
-        "alt": "Sky Garden",
-        "alt_he": "Sky Garden"
-      }
-    ]
+    "images": []
   },
   "norish-yard": {
     "name": "Norish Yard",
