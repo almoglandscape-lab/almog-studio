@@ -362,8 +362,14 @@ a { color: inherit; text-decoration: none; }
 .shop-media {
   aspect-ratio: 3 / 4; background: var(--linen); border-radius: 2px;
   display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
+  overflow: hidden; position: relative;
 }
+.shop-media > img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.8s ease, transform 0.8s var(--grow);
+}
+.shop-media > img.is-loaded { opacity: 1; }
+.shop-card:hover .shop-media > img { transform: scale(1.04); }
 .shop-name {
   font-family: var(--display); font-weight: 500;
   font-size: clamp(16px, 1.8vw, 22px); line-height: 1;
